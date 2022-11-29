@@ -1,4 +1,4 @@
-package Admin;
+package mainPackage;
 
 public class InternetPaymentService implements IService{
 

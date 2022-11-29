@@ -1,6 +1,6 @@
-package Admin;
+package mainPackage;
 
-public class LandlineFactory implements IServiceFactory {
+public class InternetPaymentFactory implements IServiceFactory {
 
 	@Override
 	public IService createService() {
