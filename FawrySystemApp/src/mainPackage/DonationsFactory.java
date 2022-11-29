@@ -3,9 +3,8 @@ package mainPackage;
 public class DonationsFactory implements IServiceFactory {
 
 	@Override
-	public IService createService() {
-		// TODO Auto-generated method stub
-		return null;
+	public IService createService() {		
+		return new DonationsService();
 	}
 	
 
