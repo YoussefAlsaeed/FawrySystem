@@ -15,14 +15,42 @@ public class main {
         String username;
         String password;
         String email;
-        UserController c = new UserController();
+        ArrayList <IService> services = new ArrayList<>();
+        
+        //Creating services using Factory Method
+        
+        IService service;
+        IServiceFactory fact;
+       
+    	fact = new DonationsFactory();
+    	service = fact.createService();  	
+    	services.add(service);
+    	
+    	fact = new LandlineFactory();
+    	service = fact.createService();
+    	services.add(service);
+    	
+    	fact = new MobileRechargeFactory();
+    	service = fact.createService();  	
+    	services.add(service);
+    	
+    	fact = new InternetPaymentFactory();
+    	service = fact.createService();   	
+    	services.add(service);
+    	  	       
+       
+        UserController c = new UserController(services);
+        
+        
+        
+        
 		while (!choice.equals("4"))
 		{
 			System.out.println("* * * * * * * * * * * * * * * * * * ");
 
 			System.out.println("registeration Menu: ");
 			System.out.println();
-			// System.out.println("1-Generate randoms slots");
+			
 			System.out.println("1-login as users");
 			System.out.println("2-SignUp as users");
 			System.out.println("3-login as admin");
@@ -45,8 +73,45 @@ public class main {
 				User user2=new User();
 				user2.setPassword(password);
 				user2.setUsername(username);
+				
 				if(c.login(user2))
-					 System.out.println("Login Successful");
+				{
+					boolean signedIn = true;
+					System.out.println("Login Successful");
+					
+					while(signedIn)
+					{
+						System.out.println("* * * * * * * * * * * * * * * * * * ");
+
+						System.out.println("User Menu: ");
+						System.out.println();
+						
+						System.out.println("1-Search for services");
+						System.out.println("3-Log out");  
+						System.out.println();
+						System.out.println("* * * * * * * * * * * * * * * * * * ");
+						
+						System.out.println("Enter your choice: ");
+						choice = scan.next();// taking the user's choice
+						
+						switch (choice)
+						{
+						case"1":
+							System.out.println("Enter the service you want to query for "); 
+							String service5 = scan.next();			        
+					        c.searchforService(service5);
+							break;
+							
+						case"3":
+							System.out.println("You are logged out! mtgesh tany ");
+							signedIn = false;
+							break;
+							
+						}
+					}
+					 
+				}
+				
 				else
 					 System.out.println("there is no user with info please sign up first");
 				break;
@@ -115,16 +180,12 @@ public class main {
 						break;
 						
 					
-			}
+					}
 				}
 				
 			}
 
 		}
-		
-		
-		
 
-
+  }
 }
-	}
