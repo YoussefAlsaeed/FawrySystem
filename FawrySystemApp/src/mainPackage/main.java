@@ -131,7 +131,8 @@ public class main {
                         	//else System.out.println("no service with this type");
                         	else
                         	{ System.out.println("no service with this type");
-                        		break;}
+                        		break;
+                        	}
                         	System.out.println("Now please enter the provider");
                         	String provider=scan.next();
                         	//provider=provider.trim();
