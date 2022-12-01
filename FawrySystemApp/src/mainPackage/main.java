@@ -20,10 +20,16 @@ public class main {
         
         //Creating services using Factory Method
         
+       // IService service;
+        IServiceFactory fact = null;
         IService service;
-        IServiceFactory fact;
-       
-    	fact = new DonationsFactory();
+        
+      //  IServiceFactory fact=new MobileRechargeFactory();
+      //  IService service=fact.createService("Vodafonemobile");
+      //  service.pay();
+//        IServiceFactory fact;
+//        IService service;
+    	/*fact = new DonationsFactory();
     	service = fact.createService();  	
     	services.add(service);
     	
@@ -38,8 +44,8 @@ public class main {
     	fact = new InternetPaymentFactory();
     	service = fact.createService();   	
     	services.add(service);
-    	
-    	
+    	*/
+        	
     	
         UserController c = new UserController(services);
         
@@ -86,8 +92,9 @@ public class main {
                         System.out.println();
                         
                         System.out.println("1-Search for services");
-                        
-                        System.out.println("3-Log out");  
+                        System.out.println("2-fillForm");  
+                        System.out.println("4-Log out"); 
+                        System.out.println("3-Pay for services");
                         System.out.println();
                         System.out.println("* * * * * * * * * * * * * * * * * * ");
                         
@@ -104,14 +111,49 @@ public class main {
                         case "2":
                         	forms.get(0).fillForm();
                         	break;
-                        	
+                     
+                           
                         case"3":
+                     
+                            System.out.println("Enter the service you want to pay for");
+                            System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                        	String serviceChoice=scan.next();
+                     
+                        	serviceChoice=serviceChoice.trim();
+                        	if(serviceChoice.toLowerCase().contains("mobile"))
+                        		fact=new MobileRechargeFactory();
+                        	else if(serviceChoice.toLowerCase().contains("internet"))
+                    			fact=new InternetPaymentFactory();
+                        	else if(serviceChoice.toLowerCase().contains("donations"))
+                    			fact=new DonationsFactory();
+                        	else if(serviceChoice.toLowerCase().contains("landline"))
+                    			fact=new LandLineFactory();
+                        	//else System.out.println("no service with this type");
+                        	else
+                        	{ System.out.println("no service with this type");
+                        		break;}
+                        	System.out.println("Now please enter the provider");
+                        	String provider=scan.next();
+                        	//provider=provider.trim();
+                        	
+                        	service=fact.createService(provider);
+                        	if(service!=null) 
+                      	       service.pay();
+                        	else
+                        	   System.out.println("there is no provider with that type");
+                        	
+                        		
+                      	    break;
+                      	    
+                      	    
+                        case"4":
                             System.out.println("You are logged out! mtgesh tany ");
                             signedIn = false;
                             break;
-                            
-                        }
-                    }}
+                           
+                        	
+                       
+       }}}
                      
 				
 				else
