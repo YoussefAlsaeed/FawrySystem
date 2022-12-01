@@ -42,32 +42,57 @@ public class UserController{
     	}
     	
     }
-    public void signUp(User user) throws IOException 
-    {
-    	
-		FileWriter fr = null;
-		BufferedWriter br = null;
-		PrintWriter pr = null;
+
+public void signUp(User user) throws IOException 
+{
+	
+	FileWriter fr = null;
+	BufferedWriter br = null;
+	PrintWriter pr = null;
+	Scanner read=new Scanner(file);
+	String tempUsername="";
+	try {
+		boolean check=true;
+		// to append to file, you need to initialize FileWriter using below constructor
+		fr = new FileWriter(file, true);
+		br = new BufferedWriter(fr);
+		
+		pr = new PrintWriter(br);
+		while(read.hasNext())
+		{
+			 tempUsername=read.nextLine();
+             String [] values=tempUsername.split("-");
+             if(values[0].equals(user.getUsername()))
+             {
+            	 System.out.println("USER ALREADY EXISTS! ");
+ 				 pr.close();
+				 br.close();
+				 fr.close();
+				 check = false;
+				 
+             }
+             
+		}
+		if(check)
+		{
+			pr.println(user.getUsername()+"-"+user.getPassword()+"-"+user.getEmail());		
+			System.out.println("you are now part of our system ;-) ");
+		}
+		
+	} catch (IOException e) {
+		e.printStackTrace();
+		
+	} finally {
 		try {
-			// to append to file, you need to initialize FileWriter using below constructor
-			fr = new FileWriter(file, true);
-			br = new BufferedWriter(fr);
-			pr = new PrintWriter(br);
-			pr.println(user.getUsername()+"-"+user.getPassword()+"-"+user.getEmail());
+			pr.close();
+			br.close();
+			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				pr.close();
-				br.close();
-				fr.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
-        
-    }
-
+	}
+    
+}
     public boolean login(User user)
     { 
          boolean found=false;
