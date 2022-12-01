@@ -76,7 +76,7 @@ public void signUp(User user) throws IOException
 		if(check)
 		{
 			pr.println(user.getUsername()+"-"+user.getPassword()+"-"+user.getEmail());		
-			System.out.println("you are now part of our system ;-) ");
+			System.out.println("You are now part of our system ;-) ");
 		}
 		
 	} catch (IOException e) {
