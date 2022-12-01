@@ -2,7 +2,7 @@ package mainPackage;
 
 public class ServiceProvider {
 	Form form;
-	ICommand command;
+	//ICommand command;
 	String name;
 	
 	
