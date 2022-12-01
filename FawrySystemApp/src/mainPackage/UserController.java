@@ -5,15 +5,41 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserController{
 
     User user;
     File file= new File("users.txt");
- 
-    public UserController () {
-        
+    ArrayList <IService> servicesList= new ArrayList<IService>();
+    
+    public UserController (ArrayList <IService> servicesList) {
+    	
+        this.servicesList=servicesList;
+    }
+    public void searchforService(String service)
+    {
+    	ArrayList<String> results = new ArrayList<String>();
+    	
+    	service = service.trim().toLowerCase();
+    	
+    	int count = 0;
+    	 	
+    	for(int i = 0 ; i< servicesList.size() ; i++)
+    	{
+    		if(servicesList.get(i).getClass().getSimpleName().toLowerCase().contains(service))
+    		{
+    			System.out.println((count+1) + " . "+ servicesList.get(i).getClass().getSimpleName()); //THIS IS PRINTING NOT INCREMENTING
+    			count++;
+    		}
+    	}
+    	
+    	if(count == 0)
+    	{
+    		System.out.println("Nothing matches your query	:'( ");
+    	}
+    	
     }
     public void signUp(User user) throws IOException 
     {
