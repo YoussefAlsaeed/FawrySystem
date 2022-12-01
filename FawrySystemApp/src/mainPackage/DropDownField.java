@@ -20,5 +20,6 @@ public class DropDownField implements UIElements {
 			System.out.println(array.get(i));
 		}
 	}
+	public String returnValue() {return null;}
 
 }

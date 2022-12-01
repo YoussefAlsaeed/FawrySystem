@@ -1,3 +1,4 @@
+
 package mainPackage;
 
 import java.io.BufferedWriter;
@@ -13,12 +14,11 @@ public class UserController{
     User user;
     File file= new File("users.txt");
     ArrayList <IService> servicesList= new ArrayList<IService>();
- 
+    
     public UserController (ArrayList <IService> servicesList) {
     	
         this.servicesList=servicesList;
     }
-    
     public void searchforService(String service)
     {
     	ArrayList<String> results = new ArrayList<String>();
@@ -42,7 +42,6 @@ public class UserController{
     	}
     	
     }
-    
     public void signUp(User user) throws IOException 
     {
     	
@@ -92,6 +91,8 @@ public class UserController{
              read.close();
        
          }
+
+
 
          catch(Exception e) {
            

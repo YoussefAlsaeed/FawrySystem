@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 
 
+
 public class main {
 
 	public static void main(String[] args) throws IOException {
@@ -19,10 +20,16 @@ public class main {
         
         //Creating services using Factory Method
         
+       // IService service;
+        IServiceFactory fact = null;
         IService service;
-        IServiceFactory fact;
-       
-    	fact = new DonationsFactory();
+        
+      //  IServiceFactory fact=new MobileRechargeFactory();
+      //  IService service=fact.createService("Vodafonemobile");
+      //  service.pay();
+//        IServiceFactory fact;
+//        IService service;
+    	/*fact = new DonationsFactory();
     	service = fact.createService();  	
     	services.add(service);
     	
@@ -37,20 +44,19 @@ public class main {
     	fact = new InternetPaymentFactory();
     	service = fact.createService();   	
     	services.add(service);
-    	  	       
-       
+    	*/
+        	
+    	
         UserController c = new UserController(services);
         
-        
-        
-        
+        ArrayList<Form> forms=new ArrayList<Form>();
 		while (!choice.equals("4"))
 		{
 			System.out.println("* * * * * * * * * * * * * * * * * * ");
 
 			System.out.println("registeration Menu: ");
 			System.out.println();
-			
+			// System.out.println("1-Generate randoms slots");
 			System.out.println("1-login as users");
 			System.out.println("2-SignUp as users");
 			System.out.println("3-login as admin");
@@ -73,44 +79,83 @@ public class main {
 				User user2=new User();
 				user2.setPassword(password);
 				user2.setUsername(username);
-				
 				if(c.login(user2))
-				{
-					boolean signedIn = true;
-					System.out.println("Login Successful");
-					
-					while(signedIn)
-					{
-						System.out.println("* * * * * * * * * * * * * * * * * * ");
+                {
+                    boolean signedIn = true;
+                    System.out.println("Login Successful");
+                    
+                    while(signedIn)
+                    {
+                        System.out.println("* * * * * * * * * * * * * * * * * * ");
 
-						System.out.println("User Menu: ");
-						System.out.println();
-						
-						System.out.println("1-Search for services");
-						System.out.println("3-Log out");  
-						System.out.println();
-						System.out.println("* * * * * * * * * * * * * * * * * * ");
-						
-						System.out.println("Enter your choice: ");
-						choice = scan.next();// taking the user's choice
-						
-						switch (choice)
-						{
-						case"1":
-							System.out.println("Enter the service you want to query for "); 
-							String service5 = scan.next();			        
-					        c.searchforService(service5);
-							break;
-							
-						case"3":
-							System.out.println("You are logged out! mtgesh tany ");
-							signedIn = false;
-							break;
-							
-						}
-					}
-					 
-				}
+                        System.out.println("User Menu: ");
+                        System.out.println();
+                        
+                        System.out.println("1-Search for services");
+                        System.out.println("2-fillForm");  
+                        System.out.println("4-Log out"); 
+                        System.out.println("3-Pay for services");
+                        System.out.println();
+                        System.out.println("* * * * * * * * * * * * * * * * * * ");
+                        
+                        System.out.println("Enter your choice: ");
+                        choice = scan.next();// taking the user's choice
+                        
+                        switch (choice)
+                        {
+                        case"1":
+                            System.out.println("Enter the service you want to query for "); 
+                            String service5 = scan.next();                    
+                            c.searchforService(service5);
+                            break;
+                        case "2":
+                        	forms.get(0).fillForm();
+                        	break;
+                     
+                           
+                        case"3":
+                     
+                            System.out.println("Enter the service you want to pay for");
+                            System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                        	String serviceChoice=scan.next();
+                     
+                        	serviceChoice=serviceChoice.trim();
+                        	if(serviceChoice.toLowerCase().contains("mobile"))
+                        		fact=new MobileRechargeFactory();
+                        	else if(serviceChoice.toLowerCase().contains("internet"))
+                    			fact=new InternetPaymentFactory();
+                        	else if(serviceChoice.toLowerCase().contains("donations"))
+                    			fact=new DonationsFactory();
+                        	else if(serviceChoice.toLowerCase().contains("landline"))
+                    			fact=new LandLineFactory();
+                        	//else System.out.println("no service with this type");
+                        	else
+                        	{ System.out.println("no service with this type");
+                        		break;
+                        	}
+                        	System.out.println("Now please enter the provider");
+                        	String provider=scan.next();
+                        	//provider=provider.trim();
+                        	
+                        	service=fact.createService(provider);
+                        	if(service!=null) 
+                      	       service.pay();
+                        	else
+                        	   System.out.println("there is no provider with that type");
+                        	
+                        		
+                      	    break;
+                      	    
+                      	    
+                        case"4":
+                            System.out.println("You are logged out! mtgesh tany ");
+                            signedIn = false;
+                            break;
+                           
+                        	
+                       
+       }}}
+                     
 				
 				else
 					 System.out.println("there is no user with info please sign up first");
@@ -177,15 +222,21 @@ public class main {
 						builder.addName(name);
 						Form f=builder.Build();
 						f.print();
+						forms.add(f);
+						
 						break;
 						
 					
-					}
+			}
 				}
 				
 			}
 
 		}
+		
+		
+		
 
-  }
+
 }
+	}
