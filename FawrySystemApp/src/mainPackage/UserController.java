@@ -1,6 +1,8 @@
 
 package mainPackage;
 import serviceProviders.*;
+import transaction.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -10,21 +12,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserController{
-
-    User user;
+	
     File file= new File("users.txt");
     ArrayList <IService> servicesList= new ArrayList<IService>();
-    double wallet;
-    double CreditCard;
-    
     public UserController (ArrayList <IService> servicesList) {
     	
         this.servicesList=servicesList;
     }
-	public void addToWallet(double amount)
+	public void addToWallet(double amount,User user,AdminController a)
 	{
-		wallet+=amount;
-		CreditCard-=amount;
+		if(amount>user.getCreditCard())
+		{
+			System.out.println("Not enough money in your creditcard");
+		}
+		else {
+			user.setWallet(user.getWallet()+amount);
+			user.setCreditCard(user.getCreditCard()-amount);;
+			AddToWalletTransaction t=new AddToWalletTransaction(amount);
+			System.out.println(t);
+			user.addTransaction(t);
+			a.addToTransactions(t);
+		}
+			
+		
+		
 	}
     
     public void searchforService(String service)
@@ -84,7 +95,7 @@ public void signUp(User user) throws IOException
 		if(check)
 		{
 			pr.println(user.getUsername()+"-"+user.getPassword()+"-"+user.getEmail());		
-			System.out.println("You are now part of our system ;-) ");
+			System.out.println("Welcome, "+user.getUsername()+" You are now part of our system ;-) ");
 		}
 		
 	} catch (IOException e) {
@@ -131,10 +142,16 @@ public void signUp(User user) throws IOException
     }
     
     
-   public void  viewUserTransactionHistory(User user)
+   public boolean  viewUserTransactionHistory(User user)
    {
-	   user.printTransaction();
+	   
+	   return user.printTransactions();
    }
+	public void viewBalance(User user) {
+		System.out.println("CreditCard = "+user.getCreditCard());
+		System.out.println("Wallet Balance = "+user.getWallet());
+		
+	}
 
 }
 
