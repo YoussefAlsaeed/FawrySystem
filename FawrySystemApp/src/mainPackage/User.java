@@ -53,7 +53,7 @@ public class User
 			{
 				for(int i = 0;i<transactionList.size();i++)
 				{
-					if(!(transactionList.get(i) instanceof RefundTransaction))
+//					if(!(transactionList.get(i) instanceof RefundTransaction))
 					 System.out.println(transactionList.get(i));
 				}
 				

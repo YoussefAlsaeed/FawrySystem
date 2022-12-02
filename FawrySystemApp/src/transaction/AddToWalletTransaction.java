@@ -31,5 +31,13 @@ public class AddToWalletTransaction implements ITransaction
 	public String getID() {
 		return TransactionId;
 	}
+
+
+
+	@Override
+	public double getAmount() {
+		// TODO Auto-generated method stub
+		return amount;
+	}
 	
 }
