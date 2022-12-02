@@ -4,35 +4,65 @@ import java.util.ArrayList;
 
 import serviceProviders.IService;
 import transaction.ITransaction;
+import transaction.*;
 
 public class User 
 {
 			
-		String username;
-		String password;
-		String email;
-		ArrayList <ITransaction> TransactionList= new ArrayList<ITransaction>();
-		public double CreditCard; 
-		public double wallet;
+		private String username;
+		private String password;
+		private String email;
+		private ArrayList <ITransaction> transactionList= new ArrayList<ITransaction>();
+		private double CreditCard=10000; 
+		private double wallet;
 		
-		public User ()
-		{
+		public ArrayList<ITransaction> getTransactionList() {
+			return transactionList;
 		}
+
+		public void setTransactionList(ArrayList<ITransaction> transactionList) {
+			this.transactionList = transactionList;
+		}
+
+		public double getCreditCard() {
+			return CreditCard;
+		}
+
+		public void setCreditCard(double creditCard) {
+			CreditCard = creditCard;
+		}
+
+		public double getWallet() {
+			return wallet;
+		}
+
+		public void setWallet(double wallet) {
+			this.wallet = wallet;
+		}
+
 		
-		public void printTransaction()
+		public boolean printTransactions()
 		{
-			if(TransactionList.size()==0)
+			if(transactionList.size()==0)
 			{
 				System.out.println("No Transaction Yet");
+				return false;
 				
 			}
 			else
 			{
-				for(int i = 0;i<TransactionList.size();i++)
+				for(int i = 0;i<transactionList.size();i++)
 				{
-					System.out.println(TransactionList.get(i));
+					if(!(transactionList.get(i) instanceof RefundTransaction))
+					 System.out.println(transactionList.get(i));
 				}
+				
 			}
+			return true;
+		}
+		public void addTransaction(ITransaction t)
+		{
+			transactionList.add(t);
 		}
 		
 		

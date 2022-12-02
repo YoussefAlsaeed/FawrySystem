@@ -52,6 +52,7 @@ public class main {
         	
     	
         UserController userController = new UserController(services);
+        AdminController adminController=new AdminController();
         
         ArrayList<Form> forms=new ArrayList<Form>();
 		while (!choice.equals("4"))
@@ -96,10 +97,12 @@ public class main {
                         System.out.println();
                         
                         System.out.println("1-Search for services");
-                        System.out.println("2-fillForm");  
+                        System.out.println("2-View My Balance");  
                         System.out.println("3-Pay for services");
-                        System.out.println("4- REquest a refund");
-                        System.out.println("5-Log out"); 
+                        System.out.println("4- Request a refund");
+                        System.out.println("5- Add to wallet from creditcard");
+                        System.out.println("6-View my transactions history");
+                        System.out.println("7-Log out"); 
 
                         System.out.println();
                         System.out.println("* * * * * * * * * * * * * * * * * * ");
@@ -115,7 +118,7 @@ public class main {
                             userController.searchforService(service5);
                             break;
                         case "2":
-                        	//forms.get(0).fillForm();
+                        	userController.viewBalance(user2);
                         	break;
                      
                            
@@ -153,15 +156,33 @@ public class main {
                       	    break;
                       	    
                         case"4":
-                        	userController.viewUserTransactionHistory(user2);
-                        	System.out.println("Enter your Transaction ID");
-                        	TransactionID=scan.next();
-                        
+                        	
+                        	if(userController.viewUserTransactionHistory(user2))
+                        	{
+                        		System.out.println("Enter the Transaction ID");
+                        		TransactionID=scan.next();
+                            	adminController.addToRefundRequests(user2,TransactionID);
+                            	System.out.println("Your request will be accepted/rejected by the admin");
+                        	}
                         	
                         	break;
-                      
+                        	
                         case"5":
-                            System.out.println("You are logged out! mtgesh tany ");
+                            userController.viewBalance(user2);
+                            System.out.println("Enter the amount you want to add to the wallet");
+                            double n=scan.nextDouble();
+                            userController.addToWallet(n, user2, adminController);
+                          
+                            break;
+                        case"6":
+                        	System.out.println("-----------------------------");
+                        	System.out.println("Transaction History:\n");
+                            userController.viewUserTransactionHistory(user2);
+                            System.out.println("-----------------------------");
+                            break;
+                      
+                        case"7":
+                            System.out.println("You are logged out ! ");
                             signedIn = false;
                             break;
                            
@@ -191,65 +212,94 @@ public class main {
 				break;
 				
 			case"3":
-				choice= "";
-				while (!choice.equals("3")) {
-					System.out.println("* * * * * * * * * * * * * * * * * * ");
+				boolean signedIn = true;
+                System.out.println("Login Successful");
+                
+                while(signedIn)
+                {
+                	System.out.println("* * * * * * * * * * * * * * * * * * ");
 
-					System.out.println("Creation Menu: ");
-					System.out.println();
-					// System.out.println("1-Generate randoms slots");
-					System.out.println("1-Add drop down field");
-					System.out.println("2-Add Text Field");
-					System.out.println("3-Create Form");
-					System.out.println();
-					System.out.println("* * * * * * * * * * * * * * * * * * ");
+                    System.out.println("User Menu: ");
+                    System.out.println();
+                    
+                    System.out.println("1-Edit a service provider form");
+                    System.out.println("2-List a user transactions");
+                    System.out.println("3-List all transactions");
+                    System.out.println("4-Add discounts");
+                    System.out.println("5-Review Refund Requests");
+                    System.out.println("6-Log out"); 
 
-					System.out.println("Enter your choice: ");
-					choice = scan.next();// taking the user's choice
-
-					switch (choice)
-					{
+                    System.out.println();
+                    System.out.println("* * * * * * * * * * * * * * * * * * ");
+                    
+                    System.out.println("Enter your choice: ");
+                    choice = scan.next();// taking the user's choice
+                    
+                    switch (choice)
+                    {
+                    case"5":
+                    	adminController.viewRefundRequests();
+                    	break;
+                    
+                    case"1":
+                    	choice= "";
+    					while (!choice.equals("3")) {
+    						System.out.println("* * * * * * * * * * * * * * * * * * ");
+    	
+    						System.out.println("Creation Menu: ");
+    						System.out.println();
+    						// System.out.println("1-Generate randoms slots");
+    						System.out.println("1-Add drop down field");
+    						System.out.println("2-Add Text Field");
+    						System.out.println("3-Create Form");
+    						System.out.println();
+    						System.out.println("* * * * * * * * * * * * * * * * * * ");
+    	
+    						System.out.println("Enter your choice: ");
+    						choice = scan.next();// taking the user's choice
+    	
+    						switch (choice)
+    						{
+    						
+    						case "1": 
+    							System.out.println("Enter the name of the drop down field: ");
+    							String name=scan.next();
+    							System.out.println("Enter the number of the fields: ");
+    							int no=scan.nextInt();
+    							ArrayList<Object> array=new ArrayList<Object>();
+    							for(int i=0;i<no;i++)
+    							{
+    								System.out.println("Enter value "+(i+1)+" : ");
+    								array.add(scan.next());
+    							}
+    							builder.buildDropDownField(name, no, array);
+    							break;
+    						
+    						case "2": 
+    							System.out.println("Enter the name of the drop down field: ");
+    							name=scan.next();
+    							builder.buildTextField(name);
+    							break;
+    						case "3":
+    							System.out.println("Please enter the name of the form: ");
+    							name=scan.next();
+    							builder.addName(name);
+    							Form f=builder.Build();
+    							f.view();
+    							forms.add(f);
+    							
+    							break;
+							
 					
-					case "1": 
-						System.out.println("Enter the name of the drop down field: ");
-						String name=scan.next();
-						System.out.println("Enter the number of the fields: ");
-						int no=scan.nextInt();
-						ArrayList<Object> array=new ArrayList<Object>();
-						for(int i=0;i<no;i++)
-						{
-							System.out.println("Enter value "+(i+1)+" : ");
-							array.add(scan.next());
-						}
-						builder.buildDropDownField(name, no, array);
-						break;
+    						}
+	    					}
 					
-					case "2": 
-						System.out.println("Enter the name of the drop down field: ");
-						name=scan.next();
-						builder.buildTextField(name);
-						break;
-					case "3":
-						System.out.println("Please enter the name of the form: ");
-						name=scan.next();
-						builder.addName(name);
-						Form f=builder.Build();
-						f.view();
-						forms.add(f);
-						
-						break;
-						
-					
-			}
-				}
+                    }
 				
+                }
+
 			}
-
+	
 		}
-		
-		
-		
-
-
-}
 	}
+}

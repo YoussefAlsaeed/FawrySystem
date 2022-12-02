@@ -4,15 +4,15 @@ import serviceProviders.IService;
 
 public class AddToWalletTransaction implements ITransaction 
 {
-	private IService service;
+
 	private String TransactionId;
-	private int counter;
-	private int amount;
-	public  AddToWalletTransaction(IService service,int amount) 
+	private static int counter=0;
+	private double amount;
+	public  AddToWalletTransaction(double amount) 
 	{
 		counter++;
-		TransactionId="1"+Integer.toString(counter);
-		this.service = service;
+		TransactionId="0"+Integer.toString(counter);
+		this.amount=amount;
 	}
 		
 	
@@ -23,7 +23,7 @@ public class AddToWalletTransaction implements ITransaction
 	{
 
 		
-		return "Transaction ID is "+ TransactionId +("\n")+ "amount is "+ amount +"\n" +"provider is "+ service.getClass().getSimpleName() ;
+		return "Transaction ID is "+ TransactionId +("\n")+ "amount is "+ amount +"\n";
 		
 	}
 	

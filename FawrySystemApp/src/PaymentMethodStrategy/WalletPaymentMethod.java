@@ -6,11 +6,11 @@ public class WalletPaymentMethod implements IPaymentMethod {
 
 	@Override
 	public void pay(User user,double amount) {
-		if(user.wallet<amount)
+		if(user.getWallet()<amount)
 		{
 			System.out.println("Not Enough in ur wallet");
 		}
-		else user.wallet-=amount;
+		else user.setWallet(user.getWallet()-amount);
 		
 
 	}

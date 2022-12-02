@@ -6,13 +6,14 @@ public class PaymentTransaction implements ITransaction
 {
 	private IService service;
 	private String TransactionId;
-	private int counter;
-	private int amount;
-	public  PaymentTransaction(IService service,int amount) 
+	private static int counter=0;
+	private double amount;
+	public  PaymentTransaction(IService service,double amount) 
 	{
 		counter++;
 		TransactionId="1"+Integer.toString(counter);
 		this.service = service;
+		this.amount=amount;
 	}
 		
 	

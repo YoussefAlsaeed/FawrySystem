@@ -19,7 +19,7 @@ public class SubmitCommand extends Command {
 			double amount=Double.parseDouble(values.get(1));
 			//System.out.println("sdshf"+amount);
 			payment.pay(user, amount);
-			System.out.println(user.CreditCard);
+			System.out.println(user.getCreditCard());
 		}
 		else if(values.get(0).equals("w"))
 		{
@@ -27,7 +27,7 @@ public class SubmitCommand extends Command {
 			double amount=Double.parseDouble(values.get(1));
 			//System.out.println("sdshf"+amount);
 			payment.pay(user, amount);
-			System.out.println(user.wallet);
+			System.out.println(user.getWallet());
 		}
 		
 		
