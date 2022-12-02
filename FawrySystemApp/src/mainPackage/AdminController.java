@@ -2,7 +2,10 @@ package mainPackage;
 import serviceProviders.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 import composite.*;
@@ -10,13 +13,13 @@ import transaction.*;
 
 public class AdminController {
 
-	private HashMap<String,ITransaction> refundRequests=new HashMap<String,ITransaction>();
+	private HashMap<String,User> refundRequests=new HashMap<String,User>();
 	private ArrayList <ITransaction>transactions=new ArrayList<ITransaction>();
 	
 	public boolean viewRefundRequests()
 	{
-		for( Entry<String, ITransaction> entry : refundRequests.entrySet() ){
-		    System.out.println( entry.getKey() + " --- " + entry.getValue() );
+		for( Entry<String, User> entry : refundRequests.entrySet() ){
+		    System.out.println( entry.getKey() + " --- " + entry.getValue().getUsername() );
 		}
 		return false;
 		
@@ -27,21 +30,48 @@ public class AdminController {
 		
 	}
 
-	public void addToRefundRequests(User user2, String transactionID) {
+	public void addToRefundRequests(User user, String transactionID) {
 		for(int i=0;i<transactions.size();i++)
 		{
 			if(transactions.get(i).getID().equals(transactionID))
 			{
-				refundRequests.put(user2.getUsername(),transactions.get(i));
+				refundRequests.put(transactionID,user);
 			}
 		}
 		
 	}
 
 	public void addToTransactions(ITransaction t) {
-		transactions.add(t);
-		
+		transactions.add(t);	
 	}
+	
+	public void acceptTransaction(String transactionID)
+	{
+		User user =refundRequests.get(transactionID);
+		ITransaction acceptedTransaction = null;
+		
+		for(int i=0;i<transactions.size();i++)
+		{
+			if(transactions.get(i).getID().equals(transactionID))
+			{
+				acceptedTransaction = transactions.get(i);
+			}
+		}
+		
+		user.setCreditCard(user.getCreditCard()+acceptedTransaction.getAmount());
+		
+		refundedTransaction(acceptedTransaction, user);
+	}
+	
+	public void refundedTransaction(ITransaction t, User user)
+	{
+		ITransaction transaction = new RefundTransaction(t.getAmount());
+		user.addTransaction(transaction);
+		addToTransactions(transaction);
+	}
+	
+	
+	
 	
 	
 }

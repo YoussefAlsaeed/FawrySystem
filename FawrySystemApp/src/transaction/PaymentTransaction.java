@@ -28,5 +28,11 @@ public class PaymentTransaction implements ITransaction
 		// TODO Auto-generated method stub
 		return TransactionId;
 	}
+
+	@Override
+	public double getAmount() {
+		// TODO Auto-generated method stub
+		return amount;
+	}
 	
 }

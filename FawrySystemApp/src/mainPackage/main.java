@@ -21,6 +21,8 @@ public class main {
         String email;
         String TransactionID;
         ArrayList <IService> services = new ArrayList<>();
+        ArrayList <User> users=new ArrayList<>();
+        int counter=0;
         
         //Creating services using Factory Method
         
@@ -81,13 +83,27 @@ public class main {
 				 
 			     System.out.println("What is your password: ");
 			     password= scan.next();
-				User user2=new User();
-				user2.setPassword(password);
-				user2.setUsername(username);
-				if(userController.login(user2))
-                {
-                    boolean signedIn = true;
-                    System.out.println("Login Successful");
+				User user=new User();
+				user.setPassword(password);
+				user.setUsername(username);
+				boolean found=false;
+				if(userController.login(user))
+                { 
+					for(int i=0;i<users.size();i++)
+                    {
+                        if(users.get(i).getUsername().equals(username))
+                        {
+                            user=users.get(i);
+                            found=true;
+                        }
+                    }
+                    if(!found)
+                    {
+                        users.add(user);
+                    }
+					
+                   boolean signedIn = true;
+                   System.out.println("Login Successful");
                     
                     while(signedIn)
                     {
@@ -118,7 +134,7 @@ public class main {
                             userController.searchforService(service5);
                             break;
                         case "2":
-                        	userController.viewBalance(user2);
+                        	userController.viewBalance(user);
                         	break;
                      
                            
@@ -157,27 +173,27 @@ public class main {
                       	    
                         case"4":
                         	
-                        	if(userController.viewUserTransactionHistory(user2))
+                        	if(userController.viewUserTransactionHistory(user))
                         	{
                         		System.out.println("Enter the Transaction ID");
                         		TransactionID=scan.next();
-                            	adminController.addToRefundRequests(user2,TransactionID);
+                            	adminController.addToRefundRequests(user,TransactionID);
                             	System.out.println("Your request will be accepted/rejected by the admin");
                         	}
                         	
                         	break;
                         	
                         case"5":
-                            userController.viewBalance(user2);
+                            userController.viewBalance(user);
                             System.out.println("Enter the amount you want to add to the wallet");
                             double n=scan.nextDouble();
-                            userController.addToWallet(n, user2, adminController);
+                            userController.addToWallet(n, user, adminController);
                           
                             break;
                         case"6":
                         	System.out.println("-----------------------------");
                         	System.out.println("Transaction History:\n");
-                            userController.viewUserTransactionHistory(user2);
+                            userController.viewUserTransactionHistory(user);
                             System.out.println("-----------------------------");
                             break;
                       
@@ -204,11 +220,11 @@ public class main {
 			     
 			     System.out.println("What is your email: ");
 			     email= scan.next();
-			     User user=new User();
-			     user.setUsername(username);
-			     user.setPassword(password);
-			     user.setEmail(email);
-			      userController.signUp(user);
+			     User user2=new User();
+			     user2.setUsername(username);
+			     user2.setPassword(password);
+			     user2.setEmail(email);
+			      userController.signUp(user2);
 				break;
 				
 			case"3":
@@ -239,6 +255,22 @@ public class main {
                     {
                     case"5":
                     	adminController.viewRefundRequests();
+                    	System.out.println("Choose the transaction you want to process ");
+                    	String chooseTransaction;
+                    	chooseTransaction = scan.next();
+                    	
+                    	System.out.println("Choose '1' to Accept or '2' to decline ");
+                    	String acceptance = scan.next();
+                    	
+                    	if(acceptance.equals("1"))
+                    	{
+                    		adminController.acceptTransaction(chooseTransaction);
+                    	}
+                    	else
+                    	{
+                    		System.out.println("REJECTED YALAAA");
+                    	}
+
                     	break;
                     	
                     case"6":
@@ -295,14 +327,10 @@ public class main {
 							
 					
     						}
-	    				}
-					
-                    }
-				
+	    				}					
+                    }				
                 }
-
 			}
-	
 		}
 	}
 }
