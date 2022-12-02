@@ -1,11 +1,9 @@
-/mainPackage/
-/DiscountsDecorator/
-/Factory/
-/abstractFactory/
-/discountsDecorator/
-/serviceProviders/
-/Command/
-/Composite/
 /PaymentMethodStrategy/
+/abstractFactory/
 /command/
 /composite/
+/discountsDecorator/
+/mainPackage/
+/serviceProviders/
+/Transaction/
+/transaction/

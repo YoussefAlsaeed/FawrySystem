@@ -19,6 +19,7 @@ public class main {
         String username;
         String password;
         String email;
+        String TransactionID;
         ArrayList <IService> services = new ArrayList<>();
         
         //Creating services using Factory Method
@@ -50,7 +51,7 @@ public class main {
     	*/
         	
     	
-        UserController c = new UserController(services);
+        UserController userController = new UserController(services);
         
         ArrayList<Form> forms=new ArrayList<Form>();
 		while (!choice.equals("4"))
@@ -82,7 +83,7 @@ public class main {
 				User user2=new User();
 				user2.setPassword(password);
 				user2.setUsername(username);
-				if(c.login(user2))
+				if(userController.login(user2))
                 {
                     boolean signedIn = true;
                     System.out.println("Login Successful");
@@ -96,8 +97,10 @@ public class main {
                         
                         System.out.println("1-Search for services");
                         System.out.println("2-fillForm");  
-                        System.out.println("4-Log out"); 
                         System.out.println("3-Pay for services");
+                        System.out.println("4- REquest a refund");
+                        System.out.println("5-Log out"); 
+
                         System.out.println();
                         System.out.println("* * * * * * * * * * * * * * * * * * ");
                         
@@ -109,7 +112,7 @@ public class main {
                         case"1":
                             System.out.println("Enter the service you want to query for "); 
                             String service5 = scan.next();                    
-                            c.searchforService(service5);
+                            userController.searchforService(service5);
                             break;
                         case "2":
                         	//forms.get(0).fillForm();
@@ -149,8 +152,15 @@ public class main {
                         		
                       	    break;
                       	    
-                      	    
                         case"4":
+                        	userController.viewUserTransactionHistory(user2);
+                        	System.out.println("Enter your Transaction ID");
+                        	TransactionID=scan.next();
+                        
+                        	
+                        	break;
+                      
+                        case"5":
                             System.out.println("You are logged out! mtgesh tany ");
                             signedIn = false;
                             break;
@@ -177,7 +187,7 @@ public class main {
 			     user.setUsername(username);
 			     user.setPassword(password);
 			     user.setEmail(email);
-			      c.signUp(user);
+			      userController.signUp(user);
 				break;
 				
 			case"3":

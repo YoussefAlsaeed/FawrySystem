@@ -1,5 +1,6 @@
-package mainPackage;
+package transaction;
 
 public interface ITransaction {
-
+	
+	
 }
