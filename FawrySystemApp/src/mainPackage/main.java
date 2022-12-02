@@ -1,5 +1,8 @@
 package mainPackage;
-
+import discountsDecorator.*;
+import abstractFactory.*;
+import composite.*;
+import serviceProviders.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -109,7 +112,7 @@ public class main {
                             c.searchforService(service5);
                             break;
                         case "2":
-                        	forms.get(0).fillForm();
+                        	//forms.get(0).fillForm();
                         	break;
                      
                            
@@ -138,10 +141,10 @@ public class main {
                         	//provider=provider.trim();
                         	
                         	service=fact.createService(provider);
-                        	if(service!=null) 
-                      	       service.pay();
-                        	else
-                        	   System.out.println("there is no provider with that type");
+//                        	if(service!=null) 
+//                      	       service.pay();
+//                        	else
+//                        	   System.out.println("there is no provider with that type");
                         	
                         		
                       	    break;
@@ -221,7 +224,7 @@ public class main {
 						name=scan.next();
 						builder.addName(name);
 						Form f=builder.Build();
-						f.print();
+						f.view();
 						forms.add(f);
 						
 						break;

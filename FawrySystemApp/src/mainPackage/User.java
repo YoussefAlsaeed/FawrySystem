@@ -5,6 +5,12 @@ public class User {
 String username;
 String password;
 String email;
+public double CreditCard=1000;
+public double wallet=300;
+public void addToWallet(double amount) {
+	wallet+=amount;
+	CreditCard-=amount;
+}
 public User ()
 {
 }
