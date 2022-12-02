@@ -14,11 +14,19 @@ public class UserController{
     User user;
     File file= new File("users.txt");
     ArrayList <IService> servicesList= new ArrayList<IService>();
+    double wallet;
+    double CreditCard;
     
     public UserController (ArrayList <IService> servicesList) {
     	
         this.servicesList=servicesList;
     }
+	public void addToWallet(double amount)
+	{
+		wallet+=amount;
+		CreditCard-=amount;
+	}
+    
     public void searchforService(String service)
     {
     	ArrayList<String> results = new ArrayList<String>();
@@ -114,19 +122,19 @@ public void signUp(User user) throws IOException
 
            }
              read.close();
-       
          }
-
-
-
          catch(Exception e) {
            
              e.printStackTrace();
          }
         return found;
+    }
+    
+    
+   public void  viewUserTransactionHistory(User user)
+   {
+	   user.printTransaction();
+   }
 
-
-
-
-    }}
+}
 
