@@ -16,7 +16,7 @@ public class AdminController {
 	public boolean viewRefundRequests()
 	{
 		for( Entry<String, ITransaction> entry : refundRequests.entrySet() ){
-		    System.out.println( entry.getKey() + " = " + entry.getValue() );
+		    System.out.println( entry.getKey() + " --- " + entry.getValue() );
 		}
 		return false;
 		
@@ -30,7 +30,7 @@ public class AdminController {
 	public void addToRefundRequests(User user2, String transactionID) {
 		for(int i=0;i<transactions.size();i++)
 		{
-			if(transactions.get(i).equals(transactionID))
+			if(transactions.get(i).getID().equals(transactionID))
 			{
 				refundRequests.put(user2.getUsername(),transactions.get(i));
 			}

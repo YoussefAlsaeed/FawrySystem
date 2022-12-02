@@ -219,7 +219,7 @@ public class main {
                 {
                 	System.out.println("* * * * * * * * * * * * * * * * * * ");
 
-                    System.out.println("User Menu: ");
+                    System.out.println("Admin Menu: ");
                     System.out.println();
                     
                     System.out.println("1-Edit a service provider form");
@@ -240,6 +240,10 @@ public class main {
                     case"5":
                     	adminController.viewRefundRequests();
                     	break;
+                    	
+                    case"6":
+                    	signedIn = false;
+                    	break;
                     
                     case"1":
                     	choice= "";
@@ -248,7 +252,6 @@ public class main {
     	
     						System.out.println("Creation Menu: ");
     						System.out.println();
-    						// System.out.println("1-Generate randoms slots");
     						System.out.println("1-Add drop down field");
     						System.out.println("2-Add Text Field");
     						System.out.println("3-Create Form");
@@ -292,7 +295,7 @@ public class main {
 							
 					
     						}
-	    					}
+	    				}
 					
                     }
 				
