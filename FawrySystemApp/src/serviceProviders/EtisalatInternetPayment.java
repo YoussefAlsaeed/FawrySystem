@@ -1,10 +1,17 @@
 package serviceProviders;
 
+import command.Command;
 import composite.*;
 
 public class EtisalatInternetPayment implements IInternetPaymentProvider {
 
 	Form form;
+	Command c;
+
+	public EtisalatInternetPayment(Form form, Command c) {
+		this.form=form;
+		this.c=c;
+	}
 	
 	@Override
 	public double getCost() {

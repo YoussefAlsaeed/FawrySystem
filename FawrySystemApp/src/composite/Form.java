@@ -11,6 +11,9 @@ public class Form implements UIElements {
 	{
 		this.formName=formName;
 	}
+	public Form() {
+		
+	}
 	@Override
 	public void view() {
 		System.out.println("\t\tThis is "+formName+" form");
@@ -49,7 +52,10 @@ public class Form implements UIElements {
 		return values;
 		
 	}
-	
+	public void setName(String name)
+	{
+		this.formName=name;
+	}
 
 
 }

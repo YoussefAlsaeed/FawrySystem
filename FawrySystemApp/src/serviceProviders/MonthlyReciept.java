@@ -1,5 +1,8 @@
 package serviceProviders;
 
+import command.Command;
+import composite.Form;
+
 public class MonthlyReciept implements ILandLineProvider {
 
 //	@Override
@@ -7,6 +10,15 @@ public class MonthlyReciept implements ILandLineProvider {
 //		// TODO Auto-generated method stub
 //		System.out.println("monthly receipt");
 //	}
+	
+	Form form;
+	Command c;
+
+	public MonthlyReciept(Form form, Command c) {
+		this.form=form;
+		this.c=c;
+		form.view();
+	}
 
 	@Override
 	public double getCost() {

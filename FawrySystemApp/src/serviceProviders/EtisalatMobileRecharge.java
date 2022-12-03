@@ -1,6 +1,17 @@
 package serviceProviders;
 
+import command.Command;
+import composite.Form;
+
 public class EtisalatMobileRecharge implements IMobileRecharge {
+	
+	Form form;
+	Command c;
+
+	public EtisalatMobileRecharge(Form form, Command c) {
+		this.form=form;
+		this.c=c;
+	}
 
 	@Override
 	public double getCost() {

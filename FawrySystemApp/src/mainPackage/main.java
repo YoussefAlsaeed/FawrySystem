@@ -1,11 +1,13 @@
 package mainPackage;
 import discountsDecorator.*;
-import abstractFactory.*;
+import oldAbstractFactory.*;
 import composite.*;
 import serviceProviders.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import abstractFactory.*;
 
 
 
@@ -23,11 +25,22 @@ public class main {
         ArrayList <IService> services = new ArrayList<>();
         ArrayList <User> users=new ArrayList<>();
         int counter=0;
+        WeFactory we=new WeFactory();
+        VodafoneFactory vodafone=new VodafoneFactory();
+        OrangeFactory orange=new OrangeFactory();
+        EtisalatFactory etisalat=new EtisalatFactory();
+        CancerHospitalFactory cancerhospital=new  CancerHospitalFactory(); 
+        NGOFactory ngos=new NGOFactory(); 
+        SchoolProviderFactory school=new SchoolProviderFactory();
+        MonthlyReceiptFactory mr=new MonthlyReceiptFactory();
+        QuarterReceiptFactory qr=new QuarterReceiptFactory();
+        
+       
         
         //Creating services using Factory Method
         
        // IService service;
-        IServiceFactory fact = null;
+      //  IServiceFactory fact = null;
         IService service;
         
       //  IServiceFactory fact=new MobileRechargeFactory();
@@ -139,36 +152,68 @@ public class main {
                      
                            
                         case"3":
-                     
-                            System.out.println("Enter the service you want to pay for");
-                            System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
-                        	String serviceChoice=scan.next();
-                     
-                        	serviceChoice=serviceChoice.trim();
-                        	if(serviceChoice.toLowerCase().contains("mobile"))
-                        		fact=new MobileRechargeFactory();
-                        	else if(serviceChoice.toLowerCase().contains("internet"))
-                    			fact=new InternetPaymentFactory();
-                        	else if(serviceChoice.toLowerCase().contains("donations"))
-                    			fact=new DonationsFactory();
-                        	else if(serviceChoice.toLowerCase().contains("landline"))
-                    			fact=new LandLineFactory();
-                        	//else System.out.println("no service with this type");
-                        	else
-                        	{ System.out.println("no service with this type");
-                        		break;
+                        	 System.out.println("Enter the provider you want to pay for");
+                        	 System.out.println("your options is (we-vodafone-orange-etislat)");
+                        	 String providerChoice=scan.next();
+                        	 //providerChoice=providerChoice.trim();
+                        	if(providerChoice.toLowerCase().contains("we"))
+                        	{
+                        		System.out.println("Enter the service you want to pay for");
+                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                            	String serviceChoice=scan.next();
+                        		we.createServiceProvider(serviceChoice);
                         	}
-                        	System.out.println("Now please enter the provider");
-                        	String provider=scan.next();
-                        	//provider=provider.trim();
+                        	else if(providerChoice.toLowerCase().contains("orange"))
+                        	{
+                        		System.out.println("Enter the service you want to pay for");
+                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                            	String serviceChoice=scan.next();
+                        		orange.createServiceProvider(serviceChoice);
+                        	}
+                        	else if(providerChoice.toLowerCase().contains("vodafone"))
+                        	{
+                        		System.out.println("Enter the service you want to pay for");
+                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                            	String serviceChoice=scan.next();
+                        		vodafone.createServiceProvider(serviceChoice);
+                        	}
+                        	else if(providerChoice.toLowerCase().contains("etisalat"))
+                        	{
+                        		System.out.println("Enter the service you want to pay for");
+                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
+                            	String serviceChoice=scan.next();
+                        		etisalat.createServiceProvider(serviceChoice);
+                        	}
                         	
-                        	service=fact.createService(provider);
+                            	     
+                        	 
+                            
+                     
+//                      	serviceChoice=serviceChoice.trim();
+//                        	if(serviceChoice.toLowerCase().contains("mobile"))
+//                        		we.createServiceProvider(serviceChoice);
+//                        	else if(serviceChoice.toLowerCase().contains("internet"))
+//                    			fact=new InternetPaymentFactory();
+//                        	else if(serviceChoice.toLowerCase().contains("donations"))
+//                    			fact=new DonationsFactory();
+//                        	else if(serviceChoice.toLowerCase().contains("landline"))
+//                    			fact=new LandLineFactory();
+//                        	//else System.out.println("no service with this type");
+//                        	else
+//                        	{ System.out.println("no service with this type");
+//                        		break;
+//                        	}
+//                        	System.out.println("Now please enter the provider");
+//                        	String provider=scan.next();
+//                        	//provider=provider.trim();
+//                        	
+//                        	service=fact.createService(provider);
 //                        	if(service!=null) 
 //                      	       service.pay();
 //                        	else
 //                        	   System.out.println("there is no provider with that type");
-                        	
-                        		
+//                        	
+//                        		
                       	    break;
                       	    
                         case"4":
@@ -268,7 +313,7 @@ public class main {
                     	}
                     	else
                     	{
-                    		System.out.println("REJECTED YALAAA");
+                    		System.out.println("REJECTED refund");
                     	}
 
                     	break;
