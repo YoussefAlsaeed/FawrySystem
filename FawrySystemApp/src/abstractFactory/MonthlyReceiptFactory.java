@@ -15,10 +15,8 @@ public class MonthlyReceiptFactory extends ProviderFactory{
 
 	@Override
 	public IService createServiceProvider(String type) {
-		createForm();
-		createCommand();
-		
-		 if(type.toLowerCase().contains("Landline"))
+	
+		 if(type.toLowerCase().contains("landline"))
 		 {
 			 form.setName("Monthly Receipt Landline");
 			 return new MonthlyReciept(form,c);

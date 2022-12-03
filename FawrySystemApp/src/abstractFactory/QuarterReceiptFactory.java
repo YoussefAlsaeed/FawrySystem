@@ -15,10 +15,8 @@ public class QuarterReceiptFactory extends ProviderFactory{
 
 	@Override
 	public IService createServiceProvider(String type) {
-		createForm();
-		createCommand();
 		
-		 if(type.toLowerCase().contains("Landline"))
+		 if(type.toLowerCase().contains("landline"))
 		 {
 			 form.setName("Quarter Receipt Landline");
 			 return new QuarterReceipt(form,c);

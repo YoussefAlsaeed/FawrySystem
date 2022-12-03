@@ -9,6 +9,7 @@ public class Form implements UIElements {
 	
 	public Form(String formName)
 	{
+		
 		this.formName=formName;
 	}
 	public Form() {
@@ -16,6 +17,7 @@ public class Form implements UIElements {
 	}
 	@Override
 	public void view() {
+		System.out.println("* * * * * * * * * * * * * * * * * * ");
 		System.out.println("\t\tThis is "+formName+" form");
 		int counter=1;
 		for(int i=0;i<elements.size();i++)

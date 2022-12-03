@@ -15,8 +15,7 @@ public class WeFactory extends ProviderFactory  {
 //	//ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	@Override
 	public IService createServiceProvider(String type) {
-		createForm();
-		createCommand();
+	
 		
 		 if(type.toLowerCase().contains("mobile"))
 		 {

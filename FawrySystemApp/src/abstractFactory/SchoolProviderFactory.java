@@ -15,8 +15,7 @@ public class SchoolProviderFactory extends ProviderFactory{
 
 	@Override
 	public IService createServiceProvider(String type) {
-		createForm();
-		createCommand();
+	
 		
 		 if(type.toLowerCase().contains("donation"))
 		 {

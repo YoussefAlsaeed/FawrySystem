@@ -11,6 +11,7 @@ public class EtisalatMobileRecharge implements IMobileRecharge {
 	public EtisalatMobileRecharge(Form form, Command c) {
 		this.form=form;
 		this.c=c;
+		form.view();
 	}
 
 	@Override

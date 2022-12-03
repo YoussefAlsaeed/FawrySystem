@@ -11,7 +11,13 @@ public abstract class ProviderFactory {
 	Command c=new SubmitCommand();
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
+	public ProviderFactory()
+    {
+        createForm();
+        createCommand();
+    }
 	abstract public void setFormName(String name);
+	
 	
 	public Form createForm() {
 		ArrayList<Object>fields=new ArrayList<Object>();
