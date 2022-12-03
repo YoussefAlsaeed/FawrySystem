@@ -15,7 +15,14 @@ public class AdminController {
 
 	private HashMap<String,User> refundRequests=new HashMap<String,User>();
 	private ArrayList <ITransaction>transactions=new ArrayList<ITransaction>();
-	
+    IRefundRequest refundRequestStrategy;
+    
+    public AdminController()
+    {
+    	
+    }
+    
+    
 	public boolean viewRefundRequests()
 	{
 //		for( Entry<String, User> entry : refundRequests.entrySet() ){
@@ -48,21 +55,19 @@ public class AdminController {
 		transactions.add(t);	
 	}
 	
-	public void acceptTransaction(String transactionID)
-	{
-		User user =refundRequests.get(transactionID);
-		ITransaction acceptedTransaction = null;
-		
+	public void acceptTransaction(String transactionID,User user)
+	{    
+		user =refundRequests.get(transactionID);
+		ITransaction acceptedTransaction=null;
 		for(int i=0;i<transactions.size();i++)
 		{
 			if(transactions.get(i).getID().equals(transactionID))
 			{
 				acceptedTransaction = transactions.get(i);
+			
 			}
 		}
-		
-		user.setCreditCard(user.getCreditCard()+acceptedTransaction.getAmount());
-		
+		refundRequestStrategy.refund(acceptedTransaction,user);
 		refundedTransaction(acceptedTransaction, user);
 	}
 	
@@ -79,6 +84,12 @@ public class AdminController {
 	//	refundRequests.replace(null, user);
 		
 		
+	}
+	public void setRefundRequest(IRefundRequest request) {
+		this.refundRequestStrategy= request;
+	}
+	public IRefundRequest  RefundRequest() {
+		return refundRequestStrategy;
 	}
 	
 	
