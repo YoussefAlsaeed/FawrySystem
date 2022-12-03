@@ -11,6 +11,7 @@ public class CancerHospitalDonations implements IDonationsProvider {
 	public CancerHospitalDonations(Form form, Command c) {
 		this.form=form;
 		this.c=c;
+		form.view();
 	}
 
 	@Override

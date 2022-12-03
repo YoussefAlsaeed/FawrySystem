@@ -11,6 +11,7 @@ public class EtisalatInternetPayment implements IInternetPaymentProvider {
 	public EtisalatInternetPayment(Form form, Command c) {
 		this.form=form;
 		this.c=c;
+		form.view();
 	}
 	
 	@Override

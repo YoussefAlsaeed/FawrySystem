@@ -15,10 +15,8 @@ public class CancerHospitalFactory extends ProviderFactory  {
 //	//ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	@Override
 	public IService createServiceProvider(String type) {
-		createForm();
-		createCommand();
-		
-		 if(type.toLowerCase().contains("donation"))
+	
+		if(type.toLowerCase().contains("donation"))
 		 {
 			 form.setName("Cancer Hospital Donation provider");
 			 return new CancerHospitalDonations(form,c);
