@@ -3,6 +3,8 @@ import discountsDecorator.*;
 import oldAbstractFactory.*;
 import composite.*;
 import serviceProviders.*;
+import transaction.ITransaction;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -67,8 +69,10 @@ public class main {
         	
     	
         UserController userController = new UserController(services);
+      
         AdminController adminController=new AdminController();
-        
+        User user=new User();
+        IRefundRequest r;
         ArrayList<Form> forms=new ArrayList<Form>();
 		while (!choice.equals("4"))
 		{
@@ -96,7 +100,6 @@ public class main {
 				 
 			     System.out.println("What is your password: ");
 			     password= scan.next();
-				User user=new User();
 				user.setPassword(password);
 				user.setUsername(username);
 				boolean found=false;
@@ -371,14 +374,16 @@ public class main {
                     	adminController.viewRefundRequests();
                     	System.out.println("Choose the transaction you want to process ");
                     	String chooseTransaction;
+                    	ITransaction Transaction=null;
+                    
                     	chooseTransaction = scan.next();
                     	
                     	System.out.println("Choose '1' to Accept or '2' to decline ");
                     	String acceptance = scan.next();
                     	
                     	if(acceptance.equals("1"))
-                    	{
-                    		adminController.acceptTransaction(chooseTransaction);
+                    	{   adminController.setRefundRequest(new AddToWalletRefundRequest());
+                    		adminController.acceptTransaction(chooseTransaction,user);
                     	}
                     	else
                     	{
