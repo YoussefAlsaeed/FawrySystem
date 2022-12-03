@@ -1,5 +1,8 @@
 package serviceProviders;
 
+import command.Command;
+import composite.Form;
+
 public class NgosDonations implements IDonationsProvider{
 
 //	@Override
@@ -7,6 +10,15 @@ public class NgosDonations implements IDonationsProvider{
 //		// TODO Auto-generated method stub
 //		System.out.println("I am Ngos donation");
 //	}
+	
+	Form form;
+	Command c;
+
+	public NgosDonations(Form form, Command c) {
+		this.form=form;
+		this.c=c;
+		form.view();
+	}
 
 	@Override
 	public double getCost() {

@@ -24,5 +24,18 @@ public class DropDownField implements UIElements {
 		System.out.println("---------------------------------------");
 
 	}
+	public void incrementNoOfFields(int noOfFields)
+	{
+		this.noOfFields+=noOfFields;
+	}
+	public void addFields(int n,ArrayList<Object> newFields)
+	{
+		this.incrementNoOfFields(n);
+		for(int i=0;i<n;i++)
+		{
+			array.add(newFields.get(i));
+		}
+		
+	}
 
 }

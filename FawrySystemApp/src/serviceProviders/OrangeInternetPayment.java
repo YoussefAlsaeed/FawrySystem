@@ -1,5 +1,8 @@
 package serviceProviders;
 
+import command.Command;
+import composite.Form;
+
 public class OrangeInternetPayment implements IInternetPaymentProvider {
 
 //	@Override
@@ -7,6 +10,15 @@ public class OrangeInternetPayment implements IInternetPaymentProvider {
 //		// TODO Auto-generated method stub
 //		System.out.println("I am orange internet");
 //	}
+	
+	Form form;
+	Command c;
+
+	public OrangeInternetPayment(Form form, Command c) {
+		this.form=form;
+		this.c=c;
+		form.view();
+	}
 
 	@Override
 	public double getCost() {

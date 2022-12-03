@@ -1,9 +1,5 @@
-/PaymentMethodStrategy/
-/abstractFactory/
-/command/
-/composite/
-/discountsDecorator/
+/oldAbstractFactory/
 /mainPackage/
+/abstractFactory/
+/composite/
 /serviceProviders/
-/Transaction/
-/transaction/

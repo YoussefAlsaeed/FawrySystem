@@ -18,9 +18,12 @@ public class AdminController {
 	
 	public boolean viewRefundRequests()
 	{
-		for( Entry<String, User> entry : refundRequests.entrySet() ){
-		    System.out.println( entry.getKey() + " --- " + entry.getValue().getUsername() );
-		}
+//		for( Entry<String, User> entry : refundRequests.entrySet() ){
+//		    System.out.println(entry.getValue().getUsername()+ " --- "  + entry.getKey() + " --- " );
+//		    
+		
+		//}
+		System.out.println(refundRequests);
 		return false;
 		
 	}
@@ -68,6 +71,14 @@ public class AdminController {
 		ITransaction transaction = new RefundTransaction(t.getAmount());
 		user.addTransaction(transaction);
 		addToTransactions(transaction);
+		//refundRequests.put(transaction.getID(), null);
+		
+		System.out.println("THE IDD: "+t.getID());
+
+		System.out.println(refundRequests.remove(t.getID(),user));
+	//	refundRequests.replace(null, user);
+		
+		
 	}
 	
 	
