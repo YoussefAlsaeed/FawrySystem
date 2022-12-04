@@ -7,6 +7,8 @@ public class Form implements UIElements {
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	
+	
+	
 	public Form(String formName)
 	{
 		
@@ -40,7 +42,6 @@ public class Form implements UIElements {
 	{
 		Scanner sc=new Scanner(System.in);
 		ArrayList<String> values=new ArrayList<String>();
-		
 		System.out.println("\nPlease Enter your answers by order");
 		int counter=1;
 		for(int i=0;i<elements.size();i++)
@@ -58,6 +59,5 @@ public class Form implements UIElements {
 	{
 		this.formName=name;
 	}
-
-
+	
 }

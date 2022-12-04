@@ -10,5 +10,10 @@ public class CreditCardPaymentMethod implements IPaymentMethod {
 		user.setCreditCard(user.getCreditCard()-amount);
 
 	}
+	public String toString()
+	{
+		return "Payment method = Credit card";
+		
+	}
 
 }

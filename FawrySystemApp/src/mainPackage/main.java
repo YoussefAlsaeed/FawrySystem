@@ -171,13 +171,13 @@ public class main {
                             	 System.out.println("your options is (we-vodafone-orange-etislat)");
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("we"))
-                            		 we.createServiceProvider(serviceChoice);
+                            		 service=we.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("orange"))
-                             		orange.createServiceProvider(serviceChoice);
+                             		service=orange.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("vodafone"))
-                             		vodafone.createServiceProvider(serviceChoice);
+                             		service=vodafone.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("etisalat"))
-                             		etisalat.createServiceProvider(serviceChoice);
+                             		service=etisalat.createServiceProvider(serviceChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
@@ -191,11 +191,11 @@ public class main {
                             	 System.out.println("your options is (schooldonations-ngosDonations-cancerhospitalDonations)");
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("school"))
-                            		 school.createServiceProvider(serviceChoice);
+                            		 service=school.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("ngo"))
-                             		ngo.createServiceProvider(serviceChoice);
+                             		service=ngo.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("cancer"))
-                             		cancerhospital.createServiceProvider(serviceChoice);
+                             		service=cancerhospital.createServiceProvider(serviceChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
@@ -207,9 +207,9 @@ public class main {
                             	 System.out.println("your options is (monthly receipt-quarter reciept)");
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("monthly"))
-                            		 mr.createServiceProvider(serviceChoice);
+                            		 service= mr.createServiceProvider(serviceChoice);
                              	else if(providerChoice.toLowerCase().contains("quarter"))
-                             		qr.createServiceProvider(serviceChoice);
+                             		service=qr.createServiceProvider(serviceChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
@@ -220,6 +220,7 @@ public class main {
                         		System.out.println("no service with this type");
                    		        break;
                             }
+                            service.pay(loginUser);
                             	
                             	
                             	
@@ -371,6 +372,8 @@ public class main {
                     
                     switch (choice)
                     {
+                    
+                    
                     case"5":
                     	user = new User();
                     	adminController.viewRefundRequests();
@@ -395,19 +398,25 @@ public class main {
                     	break;
                     case"2":
                     	System.out.println("These are the users that have transactions:\n");
+                    	int countt=1;
                     	for (int i = 0; i < users.size(); i++) {
-							System.out.println((i+1)+"-"+users.get(i).getUsername());
+							if(adminController.checkTransactions(users.get(i))) {
+								System.out.println((countt)+"-"+users.get(i).getUsername());
+								countt++;
+							}
+							
 						}
                     	System.out.println("\nEnter the username you want to list his transactions");
                     	String listedUser = scan.next();
+                    	adminController.listuserTransactions(listedUser);
                ///for (int i = 0; i < users.size(); i++) {
                     	
                 //if(users.get(i).getUsername().equals(listedUser))
-                    			adminController.listuserTransactions(listedUser);
+                    		//	adminController.listuserTransactions(listedUser);
                     			
                 //    		else
                 //    			System.out.println("This user has no transactions");
-						}
+						
                     	
                     	
                     	break;
@@ -419,61 +428,11 @@ public class main {
                     case"6":
                     	signedIn = false;
                     	break;
-                    
-                    case"1":
-                    	choice= "";
-    					while (!choice.equals("3")) {
-    						System.out.println("* * * * * * * * * * * * * * * * * * ");
-    	
-    						System.out.println("Creation Menu: ");
-    						System.out.println();
-    						System.out.println("1-Add drop down field");
-    						System.out.println("2-Add Text Field");
-    						System.out.println("3-Create Form");
-    						System.out.println();
-    						System.out.println("* * * * * * * * * * * * * * * * * * ");
-    	
-    						System.out.println("Enter your choice: ");
-    						choice = scan.next();// taking the user's choice
-    	
-    						switch (choice)
-    						{
-    						
-    						case "1": 
-    							System.out.println("Enter the name of the drop down field: ");
-    							String name=scan.next();
-    							System.out.println("Enter the number of the fields: ");
-    							int no=scan.nextInt();
-    							ArrayList<Object> array=new ArrayList<Object>();
-    							for(int i=0;i<no;i++)
-    							{
-    								System.out.println("Enter value "+(i+1)+" : ");
-    								array.add(scan.next());
-    							}
-    							builder.buildDropDownField(name, no, array);
-    							break;
-    						
-    						case "2": 
-    							System.out.println("Enter the name of the drop down field: ");
-    							name=scan.next();
-    							builder.buildTextField(name);
-    							break;
-    						case "3":
-    							System.out.println("Please enter the name of the form: ");
-    							name=scan.next();
-    							builder.addName(name);
-    							Form f=builder.Build();
-    							f.view();
-    							forms.add(f);
-    							
-    							break;
-							
-					
-    						}
-	    				}					
-                    }				
+                    	
+                    }
                 }
 			}
 		}
 	}
 }
+		

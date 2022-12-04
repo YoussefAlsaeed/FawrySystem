@@ -4,12 +4,13 @@ import serviceProviders.*;
 
 public abstract class DiscountDecorator implements IService {
 
+	DiscountDecorator(IService service) {
+		this.service=service;
+		//getCost();
+		// TODO Auto-generated constructor stub
+	}
 	IService service;
-	protected double discountPercentage=0.1;
-	@Override
-	public abstract double getCost();
-	@Override
-	public abstract void setCost(double n) ;
+	protected double discountPercentage=0.0;
 	public abstract void setDiscountPercentage(double n) ;
 	public abstract double calculateCost();
 

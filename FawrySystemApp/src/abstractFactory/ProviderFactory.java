@@ -8,7 +8,7 @@ import serviceProviders.IService;
 
 public abstract class ProviderFactory {
 	Form form=new Form();
-	Command c=new SubmitCommand();
+	SubmitCommand c;
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	public ProviderFactory()

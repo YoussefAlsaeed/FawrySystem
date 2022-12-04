@@ -3,24 +3,13 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class VodafoneMobileRecharge implements IMobileRecharge{
-
-//	@Override
-//	public void pay() {
-//		// TODO Auto-generated method stub
-//		System.out.println("I am vodafonerecharge");
-//	}
+public class VodafoneMobileRecharge extends MobileRechargeService{
 	
 
-	Form form;
-	Command c;
-
 	public VodafoneMobileRecharge(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	public double getCost() {

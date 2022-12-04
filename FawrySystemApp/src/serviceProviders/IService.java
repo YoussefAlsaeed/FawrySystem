@@ -2,11 +2,11 @@ package serviceProviders;
 
 import java.util.ArrayList;
 
-public interface IService {
-	//public static final ArrayList<ServiceProvider> providerList = new ArrayList<ServiceProvider>();
-	 //public void pay();
+import mainPackage.*;
 
+public interface IService {
 	double getCost();
 
 	void setCost(double n);
+	boolean pay(User user);
 }

@@ -20,6 +20,7 @@ public class WeFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("mobile"))
 		 {
 			 form.setName("WE Mobile Recharge");
+			 //form.view();
 			 return new WeMobileRecharge(form,c);
 		 }
 	            

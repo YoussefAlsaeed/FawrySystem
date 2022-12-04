@@ -1,16 +1,18 @@
 package discountsDecorator;
 
+import mainPackage.User;
 import serviceProviders.*;
 
 public class DonationsDiscount extends DiscountDecorator{
 
 	IService service;
 	DonationsDiscount(IService service) {
-		this.service=service;
-		this.service=service;
-		//getCost();
+		super(service);
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
 	@Override
 	public double getCost() {
 		double c=service.getCost()*discountPercentage;
@@ -32,6 +34,14 @@ public class DonationsDiscount extends DiscountDecorator{
 	@Override
 	public void setDiscountPercentage(double n) {
 		this.discountPercentage=n;
+	}
+
+
+
+	@Override
+	public boolean pay(User user) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 
