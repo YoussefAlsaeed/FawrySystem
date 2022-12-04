@@ -1,18 +1,26 @@
 package discountsDecorator;
 
-import mainPackage.User;
+import mainPackage.*;
 import serviceProviders.*;
 
 public abstract class DiscountDecorator implements IServiceProviders {
 
+	
+	IServiceProviders service;
+	double cost;
+	 
 	DiscountDecorator(IServiceProviders service) {
 		this.service=service;
 		pay();
 		//getCost();
 		// TODO Auto-generated constructor stub
 	}
-	IServiceProviders service;
-	 double cost;
+	
+	public DiscountDecorator()
+	{
+		
+	}
+
 	//protected static double discountPercentage;
 	public abstract boolean pay();
 	

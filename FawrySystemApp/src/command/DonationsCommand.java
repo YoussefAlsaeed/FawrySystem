@@ -8,16 +8,16 @@ import discountsDecorator.*;
 import mainPackage.User;
 import serviceProviders.*;
 
-public class InternetCommand extends Command{
+public class DonationsCommand extends Command{
 
 	Form form;
 	IPaymentMethod payment;
 	IServiceProviders service;
-	public InternetCommand(User user, Form form) {
+	public DonationsCommand(User user, Form form) {
 		this.form=form;
 		this.user=user;	
 	}
-	public InternetCommand(User user, Form form,IServiceProviders service) {
+	public DonationsCommand(User user, Form form,IServiceProviders service) {
 		this.form=form;
 		this.user=user;
 		this.service=service;	
@@ -35,13 +35,14 @@ public class InternetCommand extends Command{
 			double c=Double.parseDouble(values.get(1));
 			service.setCost(c);
 			//System.out.println("SDasda"+service.getCost());
-			service=new InternetDiscount(service);
+			service=new DonationsDiscount(service);
+			
 			System.out.println("ssss"+service.getCost());
+			
 			if(user.getTransactionList().size()==0)
 			{
 				service=new OverallDiscount(service);
 			}
-				//service=new OverallDiscount(service);
 			payment.pay(user, service.getCost());
 			System.out.println(user.getCreditCard());
 		}
@@ -79,3 +80,4 @@ public class InternetCommand extends Command{
 
 
 }
+

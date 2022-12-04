@@ -15,8 +15,6 @@ public abstract class MobileRechargeService implements IService,IServiceProvider
 	{
 		this.form=form;
 		this.c=c;
-		
-		//form.view();
 	}
 	public boolean pay(User user)
 	{

@@ -15,11 +15,10 @@ public abstract class Donation implements IService,IServiceProviders{
 	{
 		this.form=form;
 		this.c=c;
-		form.view();
 	}
 	public boolean pay(User user)
 	{
-		c=new MobileRechargeCommand(user,form);
+		c=new DonationsCommand(user,form,this);
 		c.execute();
 		return false;
 	}

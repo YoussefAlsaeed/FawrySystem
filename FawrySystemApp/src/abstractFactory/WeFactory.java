@@ -21,13 +21,13 @@ public class WeFactory extends ProviderFactory  {
 		 {
 			 form.setName("WE Mobile Recharge");
 			 //form.view();
-			 return new WeMobileRecharge(form,c);
+			 return new WeMobileRecharge(form,mobileRechargeCommand);
 		 }
 	            
 	      else if(type.toLowerCase().contains("internet"))
 	      {
 	    	  form.setName("WE Internet");
-	    	  return new WeInternetPayment(form,c);
+	    	  return new WeInternetPayment(form,internetCommand);
 	      }
 		 
 	        	  

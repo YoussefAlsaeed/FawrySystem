@@ -5,7 +5,7 @@ import serviceProviders.*;
 
 public class DonationsDiscount extends DiscountDecorator{
 	static double discountPercentage;
-	DonationsDiscount(IServiceProviders service) {
+	public DonationsDiscount(IServiceProviders service) {
 		super(service);
 		// TODO Auto-generated constructor stub
 	}

@@ -19,7 +19,7 @@ public class MonthlyReceiptFactory extends ProviderFactory{
 		 if(type.toLowerCase().contains("landline"))
 		 {
 			 form.setName("Monthly Receipt Landline");
-			 return new MonthlyReciept(form,c);
+			 return new MonthlyReciept(form,landlineCommand);
 		 }
 	         
 	        	  
