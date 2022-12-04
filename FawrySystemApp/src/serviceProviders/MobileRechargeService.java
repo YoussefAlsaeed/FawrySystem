@@ -5,11 +5,12 @@ import command.*;
 import composite.*;
 import mainPackage.*;
 
-public abstract class MobileRechargeService implements IService{
+public abstract class MobileRechargeService implements IService,IServiceProviders{
 
 	IPaymentMethod paymentMethod;
-	Form form;
-	Command c;
+	private double cost;
+	private Form form;
+	private Command c;
 	public MobileRechargeService(Form form,Command c)
 	{
 		this.form=form;
@@ -20,9 +21,16 @@ public abstract class MobileRechargeService implements IService{
 	public boolean pay(User user)
 	{
 		
-		c=new SubmitCommand(user);
+		c=new MobileRechargeCommand(user, form,this);
 		c.execute();
 		return false;
 	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
 	
 }

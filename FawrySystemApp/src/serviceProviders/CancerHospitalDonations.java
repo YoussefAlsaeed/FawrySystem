@@ -9,16 +9,4 @@ public class CancerHospitalDonations extends Donation {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	@Override
-	public double getCost() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setCost(double n) {
-		// TODO Auto-generated method stub
-		
-	}
 }
