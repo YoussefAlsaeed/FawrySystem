@@ -37,6 +37,8 @@ public class main {
         MonthlyReceiptFactory mr=new MonthlyReceiptFactory();
         QuarterReceiptFactory qr=new QuarterReceiptFactory();
         
+        
+        
        
         
         //Creating services using Factory Method
@@ -81,7 +83,6 @@ public class main {
 
 			System.out.println("registeration Menu: ");
 			System.out.println();
-			// System.out.println("1-Generate randoms slots");
 			System.out.println("1-login as users");
 			System.out.println("2-SignUp as users");
 			System.out.println("3-login as admin");
@@ -96,13 +97,14 @@ public class main {
 			{
 			
 			case"1":
+				
 				System.out.println("What is your username: ");
-				 username=scan.next();
-				 User loginUser = new User();
-			     System.out.println("What is your password: ");
-			     password= scan.next();
-			     loginUser.setPassword(password);
-			     loginUser.setUsername(username);
+				username=scan.next();
+				User loginUser = new User();
+			    System.out.println("What is your password: ");
+			    password= scan.next();
+			    loginUser.setPassword(password);
+			    loginUser.setUsername(username);
 				boolean found=false;
 				if(userController.login(loginUser))
                 { 
@@ -388,6 +390,8 @@ public class main {
                     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
                     		MobileRechargeDiscount.setDiscountPercentage(p/100);
                     		System.out.println(MobileRechargeDiscount.getDis()); 
+                    		
+
                     	}
                     	else if(c.equals("2"))
                     	{

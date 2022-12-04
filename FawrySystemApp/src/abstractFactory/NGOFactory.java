@@ -19,7 +19,7 @@ public class NGOFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("donation"))
 		 {
 			 form.setName("NGO donation ");
-			 return new NgosDonations(form,c);
+			 return new NgosDonations(form,donationCommand);
 		 }
 
 		 

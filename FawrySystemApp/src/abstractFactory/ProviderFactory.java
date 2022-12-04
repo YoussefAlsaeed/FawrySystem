@@ -8,13 +8,16 @@ import serviceProviders.IService;
 
 public abstract class ProviderFactory {
 	Form form=new Form();
-	MobileRechargeCommand c;
+	MobileRechargeCommand mobileRechargeCommand;
+	InternetCommand internetCommand;
+	LandlineCommand landlineCommand;
+	DonationsCommand donationCommand;
+	
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	public ProviderFactory()
     {
         createForm();
-        createCommand();
     }
 	abstract public void setFormName(String name);
 	
@@ -42,10 +45,7 @@ public abstract class ProviderFactory {
 			elements.remove(elements.get(i));
 		}
 	}*/
-	public Command createCommand()
-	{
-		return c;
-	}
+
 	public void editForm(ArrayList<UIElements> array)
 	{
 		for(int i=0;i<array.size();i++)

@@ -15,6 +15,8 @@ public class UserController{
 	
     File file= new File("users.txt");
     ArrayList <IService> servicesList= new ArrayList<IService>();
+    ArrayList<IService> discountList = new ArrayList<IService>();
+    
     public UserController (ArrayList <IService> servicesList) {
     	
         this.servicesList=servicesList;
@@ -147,9 +149,16 @@ public void signUp(User user) throws IOException
 	   
 	   return user.printTransactions();
    }
+   
+   
 	public void viewBalance(User user) {
 		System.out.println("CreditCard = "+user.getCreditCard());
 		System.out.println("Wallet Balance = "+user.getWallet());
+		
+	}
+	
+	public void addtoDiscountList(IService discount)
+	{
 		
 	}
 

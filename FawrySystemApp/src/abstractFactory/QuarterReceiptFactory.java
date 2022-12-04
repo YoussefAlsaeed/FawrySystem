@@ -19,7 +19,7 @@ public class QuarterReceiptFactory extends ProviderFactory{
 		 if(type.toLowerCase().contains("landline"))
 		 {
 			 form.setName("Quarter Receipt Landline");
-			 return new QuarterReceipt(form,c);
+			 return new QuarterReceipt(form,landlineCommand);
 		 }
 	            
 	      

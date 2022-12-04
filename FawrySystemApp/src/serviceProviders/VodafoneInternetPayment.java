@@ -2,6 +2,7 @@ package serviceProviders;
 
 import command.Command;
 import composite.Form;
+import mainPackage.User;
 
 public class VodafoneInternetPayment extends InternetPayment{
 
@@ -10,5 +11,6 @@ public class VodafoneInternetPayment extends InternetPayment{
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
+
 
 }

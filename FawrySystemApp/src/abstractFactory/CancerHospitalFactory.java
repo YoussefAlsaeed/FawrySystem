@@ -19,7 +19,7 @@ public class CancerHospitalFactory extends ProviderFactory  {
 		if(type.toLowerCase().contains("donation"))
 		 {
 			 form.setName("Cancer Hospital Donation provider");
-			 return new CancerHospitalDonations(form,c);
+			 return new CancerHospitalDonations(form,donationCommand);
 		 }
 
 		return null;
