@@ -7,23 +7,33 @@ import discountsDecorator.*;
 import mainPackage.*;
 import serviceProviders.*;
 public class MobileRechargeCommand extends Command {
-	Form form;
 	IPaymentMethod payment;
 	IServiceProviders service;
-	public MobileRechargeCommand(User user, Form form) {
-		this.form=form;
-		this.user=user;	
+	
+	public User getUser() {
+		return user;
 	}
-	public MobileRechargeCommand(User user, Form form,IServiceProviders service) {
-		this.form=form;
-		this.user=user;
-		this.service=service;	
+	public void setUser(User user) {
+		this.user = user;
 	}
+	public MobileRechargeCommand()
+	{
+		
+	}
+//	public MobileRechargeCommand(User user, Form form) {
+//		this.form=form;
+//		this.user=user;	
+//	}
+//	public MobileRechargeCommand(User user, Form form,IServiceProviders service) {
+//		this.form=form;
+//		this.user=user;
+//		this.service=service;	
+//	}
 	@Override
 	public void execute() {
-		form.view();
-		ArrayList<String> values=new ArrayList<String>();
-		values=form.getValues();
+		//form.view();
+		//ArrayList<String> values=new ArrayList<String>();
+		//values=form.getValues();
 		
 		//System.out.println(values.get(0));
 		if(values.get(0).equals("1"))
@@ -60,19 +70,20 @@ public class MobileRechargeCommand extends Command {
 		
 	}
 	
+	public IServiceProviders getService() {
+		return service;
+	}
+	public void setService(IServiceProviders service) {
+		this.service = service;
+	}
+
 	//setters and getters
-	public Form getForm() {
-		return form;
-	}
-	public void setForm(Form form) {
-		this.form = form;
-	}
-	public IPaymentMethod getPayment() {
-		return payment;
-	}
-	public void setPayment(IPaymentMethod payment) {
-		this.payment = payment;
-	}
+//	public Form getForm() {
+//		return form;
+//	}
+//	public void setForm(Form form) {
+//		this.form = form;
+//	}
 
 
 }

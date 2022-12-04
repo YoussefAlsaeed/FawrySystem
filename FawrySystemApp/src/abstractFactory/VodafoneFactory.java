@@ -20,12 +20,14 @@ public class VodafoneFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("mobile"))
 		 {
 			 form.setName("Vodafone Mobile Recharge");
+			 //mobileRechargeCommand.setForm(form);
 			 return new VodafoneMobileRecharge(form,mobileRechargeCommand);
 		 }
 	            
 	      else if(type.toLowerCase().contains("internet"))
 	      {
 	    	  form.setName("Vodafone Internet");
+	    	  //internetCommand.setForm(form);
 	    	  return new VodafoneInternetPayment(form,internetCommand);
 	      }
 		 

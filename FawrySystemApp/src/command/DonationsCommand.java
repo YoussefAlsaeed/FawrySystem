@@ -10,23 +10,31 @@ import serviceProviders.*;
 
 public class DonationsCommand extends Command{
 
-	Form form;
+//	Form form;
 	IPaymentMethod payment;
+	
 	IServiceProviders service;
-	public DonationsCommand(User user, Form form) {
-		this.form=form;
-		this.user=user;	
+	
+//	public DonationsCommand(User user, Form form) {
+//		this.form=form;
+//		this.user=user;	
+//	}
+//	public DonationsCommand(User user, Form form,IServiceProviders service) {
+//		this.form=form;
+//		this.user=user;
+//		this.service=service;	
+//	}
+	public User getUser() {
+		return user;
 	}
-	public DonationsCommand(User user, Form form,IServiceProviders service) {
-		this.form=form;
-		this.user=user;
-		this.service=service;	
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public void execute() {
-		form.view();
-		ArrayList<String> values=new ArrayList<String>();
-		values=form.getValues();
+//		form.view();
+		//ArrayList<String> values=new ArrayList<String>();
+//		values=form.getValues();
 		
 		//System.out.println(values.get(0));
 		if(values.get(0).equals("1"))
@@ -63,14 +71,20 @@ public class DonationsCommand extends Command{
 		
 		
 	}
+	public IServiceProviders getService() {
+		return service;
+	}
+	public void setService(IServiceProviders service) {
+		this.service = service;
+	}
 	
 	//setters and getters
-	public Form getForm() {
-		return form;
-	}
-	public void setForm(Form form) {
-		this.form = form;
-	}
+//	public Form getForm() {
+//		return form;
+//	}
+//	public void setForm(Form form) {
+//		this.form = form;
+//	}
 	public IPaymentMethod getPayment() {
 		return payment;
 	}

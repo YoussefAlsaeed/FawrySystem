@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import mainPackage.*;
 
 public interface IService {
-	public boolean pay(User user);
+	public boolean fillForm(User user);
+	public void pay(User user,ArrayList<String> values);
 	
 }

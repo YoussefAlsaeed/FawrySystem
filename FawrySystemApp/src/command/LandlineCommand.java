@@ -10,23 +10,35 @@ import serviceProviders.*;
 
 public class LandlineCommand extends Command{
 
-	Form form;
+	//Form form;
 	IPaymentMethod payment;
 	IServiceProviders service;
-	public LandlineCommand(User user, Form form) {
-		this.form=form;
-		this.user=user;	
+//	public LandlineCommand(User user, Form form) {
+//		this.form=form;
+//		this.user=user;	
+//	}
+//	public LandlineCommand(User user, Form form,IServiceProviders service) {
+//		this.form=form;
+//		this.user=user;
+//		this.service=service;	
+//	}
+	public IServiceProviders getService() {
+		return service;
 	}
-	public LandlineCommand(User user, Form form,IServiceProviders service) {
-		this.form=form;
-		this.user=user;
-		this.service=service;	
+	public void setService(IServiceProviders service) {
+		this.service = service;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public void execute() {
-		form.view();
-		ArrayList<String> values=new ArrayList<String>();
-		values=form.getValues();
+		//form.view();
+		//ArrayList<String> values=new ArrayList<String>();
+		//values=form.getValues();
 		
 		//System.out.println(values.get(0));
 		if(values.get(0).equals("1"))
@@ -65,12 +77,13 @@ public class LandlineCommand extends Command{
 	}
 	
 	//setters and getters
-	public Form getForm() {
-		return form;
-	}
-	public void setForm(Form form) {
-		this.form = form;
-	}
+
+//	public Form getForm() {
+//		return form;
+//	}
+//	public void setForm(Form form) {
+//		this.form = form;
+//	}
 	public IPaymentMethod getPayment() {
 		return payment;
 	}

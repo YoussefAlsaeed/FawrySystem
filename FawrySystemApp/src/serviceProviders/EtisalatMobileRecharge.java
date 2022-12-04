@@ -1,12 +1,13 @@
 package serviceProviders;
 
 import command.Command;
+import command.MobileRechargeCommand;
 import composite.Form;
 
 public class EtisalatMobileRecharge extends MobileRechargeService {
 	
 
-	public EtisalatMobileRecharge(Form form, Command c) {
+	public EtisalatMobileRecharge(Form form, MobileRechargeCommand c) {
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}

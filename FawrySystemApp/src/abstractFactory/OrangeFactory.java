@@ -20,12 +20,14 @@ public class OrangeFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("mobile"))
 		 {
 			 form.setName("Orange Mobile Recharge");
+			// mobileRechargeCommand.setForm(form);
 			 return new OrangeMobileRecharge(form,mobileRechargeCommand);
 		 }
 	            
 	      else if(type.toLowerCase().contains("internet"))
 	      {
 	    	  form.setName("Orange Internet");
+	    	 // internetCommand.setForm(form);
 	    	  return new OrangeInternetPayment(form,internetCommand);
 	      }
 		 

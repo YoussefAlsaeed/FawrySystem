@@ -1,5 +1,7 @@
 package serviceProviders;
 
+import java.util.ArrayList;
+
 import PaymentMethodStrategy.*;
 import command.*;
 import composite.*;
@@ -10,17 +12,26 @@ public abstract class MobileRechargeService implements IService,IServiceProvider
 	IPaymentMethod paymentMethod;
 	private double cost;
 	private Form form;
-	private Command c;
-	public MobileRechargeService(Form form,Command c)
+	private MobileRechargeCommand c;
+	public MobileRechargeService(Form form,MobileRechargeCommand c)
 	{
 		this.form=form;
 		this.c=c;
 	}
-	public boolean pay(User user)
+	public void pay(User user,ArrayList<String> values)
 	{
-		
-		c=new MobileRechargeCommand(user, form,this);
+		c.setValues(values);
+		c.setService(this);
+		c.setUser(user);
 		c.execute();
+	}
+	public boolean fillForm(User user)
+	{
+		form.view();
+		ArrayList<String> values=new ArrayList<String>();
+		values=form.getValues();
+		System.out.println(values);
+		pay(user,values);
 		return false;
 	}
 	public double getCost() {

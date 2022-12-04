@@ -19,12 +19,14 @@ public class EtisalatFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("mobile"))
 		 {
 			 form.setName("Etisalat Mobile Recharge");
+			 //mobileRechargeCommand.setForm(form);
 			 return new EtisalatMobileRecharge(form,mobileRechargeCommand);
 		 }
 	            
 	      else if(type.toLowerCase().contains("internet"))
 	      {
 	    	  form.setName("Etisalat Internet");
+	    	  //internetCommand.setForm(form);
 	    	  return new EtisalatInternetPayment(form,internetCommand);
 	      }
 	        	  

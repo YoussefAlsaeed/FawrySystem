@@ -1,12 +1,13 @@
 package serviceProviders;
 
 import command.Command;
+import command.MobileRechargeCommand;
 import composite.Form;
 
 public class OrangeMobileRecharge extends MobileRechargeService {
 
 
-	public OrangeMobileRecharge(Form form, Command c) {
+	public OrangeMobileRecharge(Form form, MobileRechargeCommand c) {
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
