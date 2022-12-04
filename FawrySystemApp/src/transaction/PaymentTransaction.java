@@ -18,7 +18,7 @@ public class PaymentTransaction implements ITransaction
 
 	public String toString()
 	{
-		return "Transaction ID is "+ TransactionId +("\n")+ "amount is "+ amount +"\n" +"provider is "+ service.getClass().getSimpleName() ;
+		return "\nTransaction ID is "+ TransactionId +("\n")+ "amount is "+ amount +"\n" +"provider is "+ service.getClass().getSimpleName() ;
 		
 	}
 

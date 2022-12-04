@@ -70,7 +70,8 @@ public class AdminController {
 
 	public void addToTransactions(ITransaction t, User user) {
 		transactions.add(t);
-		users.add(user);	
+		if(!(users.contains(user)))
+		   users.add(user);	
 	}
 	
 	public void acceptTransaction(String transactionID,User user)

@@ -24,7 +24,7 @@ public class RefundTransaction implements ITransaction{
 	public String toString()
 	{
 
-		return "Transaction ID is "+ transactionId +("\n")+ "amount refunded to user: "+ amount +"\n" ;
+		return "\nTransaction ID is "+ transactionId +("\n")+ "amount refunded to user: "+ amount +"\n" ;
 		
 	}
 

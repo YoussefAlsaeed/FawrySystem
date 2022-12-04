@@ -394,13 +394,22 @@ public class main {
 
                     	break;
                     case"2":
+                    	System.out.println("These are the users that have transactions:\n");
                     	for (int i = 0; i < users.size(); i++) {
-							System.out.println(users.get(i).getUsername());
+							System.out.println((i+1)+"-"+users.get(i).getUsername());
+						}
+                    	System.out.println("\nEnter the username you want to list his transactions");
+                    	String listedUser = scan.next();
+               ///for (int i = 0; i < users.size(); i++) {
+                    	
+                //if(users.get(i).getUsername().equals(listedUser))
+                    			adminController.listuserTransactions(listedUser);
+                    			
+                //    		else
+                //    			System.out.println("This user has no transactions");
 						}
                     	
-                    	String listedUser = scan.next();
                     	
-                    	adminController.listuserTransactions(listedUser);
                     	break;
                     	
                     case"3":
