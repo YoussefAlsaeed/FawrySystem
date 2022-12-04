@@ -1,5 +1,7 @@
 package serviceProviders;
 
+import java.util.ArrayList;
+
 import PaymentMethodStrategy.*;
 import command.*;
 import composite.*;
@@ -9,24 +11,33 @@ public abstract class LandLine implements IService,IServiceProviders{
 
 	IPaymentMethod paymentMethod;
 	Form form;
-	Command c;
+	LandlineCommand c;
 	double cost;
-	public LandLine(Form form,Command c)
+	public LandLine(Form form,LandlineCommand c)
 	{
 		this.form=form;
 		this.c=c;
 	}
-	public boolean pay(User user)
+	public void pay(User user,ArrayList<String> values)
 	{
-		c=new LandlineCommand(user,form,this);
+		c.setValues(values);
+		c.setService(this);
+		c.setUser(user);
 		c.execute();
+	}
+	public boolean fillForm(User user)
+	{
+		form.view();
+		ArrayList<String> values=new ArrayList<String>();
+		values=form.getValues();
+		pay(user,values);
 		return false;
 	}
 	public double getCost() {
 		return cost;
 	}
 	public void setCost(double cost) {
-		System.out.println("service");
+		
 		this.cost = cost;
 	}
 	

@@ -222,7 +222,7 @@ public class main {
                         		System.out.println("no service with this type");
                    		        break;
                             }
-                            service.pay(loginUser);
+                            service.fillForm(loginUser);
                             	
                             	
                             	

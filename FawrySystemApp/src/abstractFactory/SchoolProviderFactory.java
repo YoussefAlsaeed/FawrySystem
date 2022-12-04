@@ -20,6 +20,7 @@ public class SchoolProviderFactory extends ProviderFactory{
 		 if(type.toLowerCase().contains("donation"))
 		 {
 			 form.setName("School Donation ");
+			// donationCommand.setForm(form);
 			 return new SchoolsDonations(form,donationCommand);
 		 }
 	            

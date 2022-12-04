@@ -8,10 +8,10 @@ import serviceProviders.IService;
 
 public abstract class ProviderFactory {
 	Form form=new Form();
-	MobileRechargeCommand mobileRechargeCommand;
-	InternetCommand internetCommand;
-	LandlineCommand landlineCommand;
-	DonationsCommand donationCommand;
+	MobileRechargeCommand mobileRechargeCommand= new MobileRechargeCommand();
+	InternetCommand internetCommand=new InternetCommand();
+	LandlineCommand landlineCommand=new LandlineCommand();
+	DonationsCommand donationCommand=new DonationsCommand();
 	
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
@@ -20,8 +20,7 @@ public abstract class ProviderFactory {
         createForm();
     }
 	abstract public void setFormName(String name);
-	
-	
+
 	public Form createForm() {
 		ArrayList<Object>fields=new ArrayList<Object>();
 		fields.add("CreditCard");
