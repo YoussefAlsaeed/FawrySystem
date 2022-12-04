@@ -27,8 +27,7 @@ public class AdminController {
 	{
 		for( Entry<String, User> entry :admin.getRefundRequests().entrySet() )
 		{
-		    System.out.println(entry.getValue().getUsername()+ " --- "  + " Transaction ID: " +entry.getKey() );
-		    System.out.println("-----------------------------");
+		    System.out.println(entry.getValue().getUsername()+ " --- "  + " Transaction ID: " +entry.getKey() );	
 		}
 	//	System.out.println(refundRequests);
 		return false;
@@ -36,13 +35,9 @@ public class AdminController {
 	}
 	
 	
-	public void listallTransactions()
+	public boolean listallTransactions()
 	{
-		for (int i = 0; i <admin.getTransactionList().size(); i++)
-		{
-			System.out.println(admin.getTransactionList().get(i));
-			System.out.println("-----------------------------");
-		}
+		return admin.printTransactions();
 	}
 	
 
@@ -50,11 +45,8 @@ public class AdminController {
 	{
 		for (int i = 0; i <admin.getUserList().size(); i++)
 		{
-			if(admin.getUserList().get(i).getUsername().equals(user)) {
+			if(admin.getUserList().get(i).getUsername().equals(user))
 				System.out.println(admin.getUserList().get(i));
-				System.out.println("-----------------------------");
-			}
-				
 		}
 	}
 
@@ -120,12 +112,10 @@ public class AdminController {
 		if(t.size()>0){
 			return true;
 		}
+		else 
 		return false;
 		
 	}
-	
-	
-	
 	
 	
 }

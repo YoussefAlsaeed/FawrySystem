@@ -48,6 +48,25 @@ public class Admin {
 	{    
 		refundRequests.put(transactionID,user);
 	}
-
+	public boolean printTransactions()
+	{
+		if(transactions.size()==0)
+		{
+			System.out.println("No Transaction Yet");
+			return false;
+			
+		}
+		else
+		{
+			for(int i = 0;i<transactions.size();i++)
+			{
+//			
+				 System.out.println(transactions.get(i));
+			}
+			
+		}
+		return true;
+	}
 
 }
+
