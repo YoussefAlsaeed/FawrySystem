@@ -4,7 +4,7 @@ import mainPackage.User;
 import serviceProviders.*;
 
 public class LandLineDiscount extends DiscountDecorator{
-	static double discountPercentage;
+	static double discountPercentage=0.0;
 	public LandLineDiscount(IServiceProviders service) {
 		super(service);
 		// TODO Auto-generated constructor stub

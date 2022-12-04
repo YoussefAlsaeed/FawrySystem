@@ -4,7 +4,7 @@ import mainPackage.User;
 import serviceProviders.*;
 
 public class OverallDiscount extends DiscountDecorator{
-	static double discountPercentage;
+	static double discountPercentage=0.1;
 	public OverallDiscount(IServiceProviders service) {
 		super(service);
 		// TODO Auto-generated constructor stub

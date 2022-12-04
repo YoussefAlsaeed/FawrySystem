@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import composite.*;
 import mainPackage.*;
 import serviceProviders.*;
+import transaction.*;
 
 public abstract class Command {
 
@@ -14,7 +15,7 @@ public abstract class Command {
 	ArrayList<String> values;
 	//public Command(Form)
 	//public void execute() {}
-	public abstract void execute();
+	public abstract ITransaction execute();
 	public ArrayList<String> getValues() {
 		return values;
 	}

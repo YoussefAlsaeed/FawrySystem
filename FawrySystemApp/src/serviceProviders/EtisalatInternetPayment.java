@@ -10,5 +10,10 @@ public class EtisalatInternetPayment extends InternetPayment {
 		super(form,c);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString()
+	{
+		return "Etisalat Internet Payment";
+	}
 
 }

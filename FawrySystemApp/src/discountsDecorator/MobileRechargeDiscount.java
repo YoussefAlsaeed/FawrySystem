@@ -4,7 +4,7 @@ import mainPackage.User;
 import serviceProviders.*;
 
 public class MobileRechargeDiscount extends DiscountDecorator{
-	static double discountPercentage=0.0;
+	static double discountPercentage=0.1;
 	public MobileRechargeDiscount(IServiceProviders service) {
 		
 		super(service);
@@ -13,10 +13,10 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 	}
 	//public MobileRechargeDiscount() {}
 	public static void setDiscountPercentage(double n) {
-		System.out.println("rrrrrr");
-		discountPercentage=0.0;
+		//System.out.println("rrrrrr");
+		//discountPercentage=0.1;
 		discountPercentage+=n;
-		System.out.println("ggyg"+discountPercentage);
+		//System.out.println("ggyg"+discountPercentage);
 	}
 	public static double getDis()
 	{

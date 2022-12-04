@@ -222,7 +222,7 @@ public class main {
                         		System.out.println("no service with this type");
                    		        break;
                             }
-                            service.fillForm(loginUser);
+                            adminController.addToTransactions(service.pay(loginUser), loginUser);
                             	
                             	
                             	
@@ -231,65 +231,7 @@ public class main {
                            break;
                            
                  
-        /*                /*	 //providerChoice=providerChoice.trim();
-                        	if(providerChoice.toLowerCase().contains("we"))
-                        	{
-                        		System.out.println("Enter the service you want to pay for");
-                                System.out.println("your options is (MobileRecharge-InternetPayment)");
-                            	String serviceChoice=scan.next();
-                        		we.createServiceProvider(serviceChoice);
-                        	}
-                        	else if(providerChoice.toLowerCase().contains("orange"))
-                        	{
-                        		System.out.println("Enter the service you want to pay for");
-                                System.out.println("your options is (MobileRecharge-InternetPayment)");
-                            	String serviceChoice=scan.next();
-                        		orange.createServiceProvider(serviceChoice);
-                        	}
-                        	else if(providerChoice.toLowerCase().contains("vodafone"))
-                        	{
-                        		System.out.println("Enter the service you want to pay for");
-                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
-                            	String serviceChoice=scan.next();
-                        		vodafone.createServiceProvider(serviceChoice);
-                        	}
-                        	else if(providerChoice.toLowerCase().contains("etisalat"))
-                        	{
-                        		System.out.println("Enter the service you want to pay for");
-                                System.out.println("your options is (MobileRecharge-InternetPayment-Donations-LandLine)");
-                            	String serviceChoice=scan.next();
-                        		etisalat.createServiceProvider(serviceChoice);
-                        	}
-                        	*/
-                            	     
-                        	 
-                            
-                     
-//                      	serviceChoice=serviceChoice.trim();
-//                        	if(serviceChoice.toLowerCase().contains("mobile"))
-//                        		we.createServiceProvider(serviceChoice);
-//                        	else if(serviceChoice.toLowerCase().contains("internet"))
-//                    			fact=new InternetPaymentFactory();
-//                        	else if(serviceChoice.toLowerCase().contains("donations"))
-//                    			fact=new DonationsFactory();
-//                        	else if(serviceChoice.toLowerCase().contains("landline"))
-//                    			fact=new LandLineFactory();
-//                        	//else System.out.println("no service with this type");
-//                        	else
-//                        	{ System.out.println("no service with this type");
-//                        		break;
-//                        	}
-//                        	System.out.println("Now please enter the provider");
-//                        	String provider=scan.next();
-//                        	//provider=provider.trim();
-//                        	
-//                        	service=fact.createService(provider);
-//                        	if(service!=null) 
-//                      	       service.pay();
-//                        	else
-//                        	   System.out.println("there is no provider with that type");
-//                        	
-//         */               		
+           		
                       	  
                       	    
                         case"4":
@@ -329,7 +271,7 @@ public class main {
                      
 				
 				else
-					 System.out.println("there is no user with info please sign up first");
+					 System.out.println("There is no user with info please sign up first");
 				break;
 				
 			case"2":

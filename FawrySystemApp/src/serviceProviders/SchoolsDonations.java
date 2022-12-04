@@ -11,6 +11,11 @@ public class SchoolsDonations extends Donation{
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString()
+	{
+		return "Schools Donation";
+	}
 
 
 
