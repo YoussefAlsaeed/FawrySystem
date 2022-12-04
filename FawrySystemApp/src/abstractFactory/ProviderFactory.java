@@ -44,14 +44,16 @@ public abstract class ProviderFactory {
 			elements.remove(elements.get(i));
 		}
 	}*/
-
-	public void editForm(ArrayList<UIElements> array)
+	public void buildDropDownFlield(String name,int noOfFields,ArrayList<Object>array)
 	{
-		for(int i=0;i<array.size();i++)
-		{
-			elements.add(array.get(i));
-		}
+		form.addElement(new DropDownField(name,noOfFields,array));
 	}
+	
+	public void buildTextField(String name)
+	{
+		form.addElement(new TextField(name));
+	}
+	
 	public int getNoOfElements()
 	{
 		return elements.size();

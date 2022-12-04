@@ -316,6 +316,93 @@ public class main {
                     
                     switch (choice)
                     {
+                    
+                    
+                    case"1":
+						
+						ProviderFactory provider = null ;
+						
+						System.out.println("Enter the provider form you want to edit");
+						String providerName=scan.next();
+						if(providerName.toLowerCase().contains("vodafone"))
+						{
+						provider= vodafone;						
+						}else if(providerName.toLowerCase().contains("orange"))
+						{
+						provider =orange;
+						}else if(providerName.toLowerCase().contains("we"))
+						{
+						provider=we;
+						}
+						else if(providerName.toLowerCase().contains("etisalat"))
+						{
+						provider= etisalat;
+						}	
+						else if(providerName.toLowerCase().contains("schools"))
+						{
+						provider = school;
+						}	
+						else if(providerName.toLowerCase().contains("ngo"))
+						{
+						provider =ngo;
+						}
+						else if(providerName.toLowerCase().contains("cancer"))
+						{
+						provider = cancerhospital;
+						}
+						else if(providerName.toLowerCase().contains("monthly"))
+						{
+						provider =mr;
+						}else if(providerName.toLowerCase().contains("quarter"))
+						{
+						provider =qr;
+						
+						} else 
+						System.out.println("No provider from :( ");
+    					while (!choice.equals("3")) 
+    					{
+    						System.out.println("* * * * * * * * * * * * * * * * * * ");
+    						System.out.println("Creation Menu: ");
+    						System.out.println();
+    						System.out.println("1-Add drop down field");
+    						System.out.println("2-Add Text Field");
+    						System.out.println("3-Exit");
+    						System.out.println();
+    						System.out.println("* * * * * * * * * * * * * * * * * * ");
+    						System.out.println("Enter your choice: ");
+    						choice = scan.next();
+    						
+    						
+    						
+    						switch(choice)
+    						{
+    						case"1":
+    							    System.out.println("you are now editing the "+providerName+" form");
+    	    						System.out.println("* * * * * * * * * * * * * * * * * * * * * * * ");
+
+									System.out.println("Enter the name of the drop down field: ");
+									String name=scan.next();
+									System.out.println("Enter the number of the fields: ");
+									int no=scan.nextInt();
+	    							ArrayList<Object> array=new ArrayList<Object>();
+	    							for(int i=0;i<no;i++)
+	    							{
+	    								System.out.println("Enter value "+(i+1)+" : ");
+	    								array.add(scan.next());
+	    							}
+	    							
+	    							provider.buildDropDownFlield(name, no, array);
+    							break;
+    						case"2":
+    							
+    							System.out.println("Enter the name of the TextField: ");
+    							name=scan.next();
+    							provider.buildTextField(name);
+    							break;						
+
+    						}
+    					}
+						break;
                     case"4":
                     	String c=null;
                     	System.out.println("Enter the service you want to add/remove discount from");
@@ -385,11 +472,10 @@ public class main {
                     	}
 
                     	break;
-                   
                     case"2":
                     	if (users.size()==0)
-                    		System.out.println("No transactions yet for any user");
-                    	else {
+                            System.out.println("No transactions yet for any user");
+                        else {
                     	System.out.println("These are the users that have transactions:\n");
                     	int countt=1;
                     	for (int i = 0; i < users.size(); i++) {
@@ -401,8 +487,7 @@ public class main {
 						}
                     	System.out.println("\nEnter the username you want to list his transactions");
                     	String listedUser = scan.next();
-                    	adminController.listuserTransactions(listedUser);}
-      
+                    	adminController.listuserTransactions(listedUser);
                ///for (int i = 0; i < users.size(); i++) {
                     	
                 //if(users.get(i).getUsername().equals(listedUser))
@@ -411,7 +496,7 @@ public class main {
                 //    		else
                 //    			System.out.println("This user has no transactions");
 						
-                    	
+                        }
                     	
                     	break;
                     	
