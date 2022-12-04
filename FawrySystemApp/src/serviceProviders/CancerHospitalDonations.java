@@ -13,6 +13,8 @@ public class CancerHospitalDonations implements IDonationsProvider {
 		this.c=c;
 		form.view();
 	}
+	
+	
 
 	@Override
 	public double getCost() {

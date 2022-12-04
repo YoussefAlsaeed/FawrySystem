@@ -15,6 +15,8 @@ public class AdminController {
 
 	private HashMap<String,User> refundRequests=new HashMap<String,User>();
 	private ArrayList <ITransaction>transactions=new ArrayList<ITransaction>();
+	private ArrayList <User>users=new ArrayList<User>();
+
     IRefundRequest refundRequestStrategy;
     
     public AdminController()
@@ -25,20 +27,35 @@ public class AdminController {
     
 	public boolean viewRefundRequests()
 	{
-//		for( Entry<String, User> entry : refundRequests.entrySet() ){
-//		    System.out.println(entry.getValue().getUsername()+ " --- "  + entry.getKey() + " --- " );
-//		    
-		
-		//}
-		System.out.println(refundRequests);
+		for( Entry<String, User> entry : refundRequests.entrySet() )
+		{
+		    System.out.println(entry.getValue().getUsername()+ " --- "  + " Transaction ID: " +entry.getKey() );	
+		}
+	//	System.out.println(refundRequests);
 		return false;
 		
 	}
 	
-	public void addServiceProvider(Form form,String name,IService service)
+	
+	public void listallTransactions()
 	{
-		
+		for (int i = 0; i < transactions.size(); i++)
+		{
+			System.out.println(transactions.get(i));
+		}
 	}
+	
+
+	public void listuserTransactions(String user)
+	{
+		for (int i = 0; i < users.size(); i++)
+		{
+			if(users.get(i).getUsername().equals(user))
+				System.out.println(users.get(i));
+		}
+	}
+
+	
 
 	public void addToRefundRequests(User user, String transactionID) {
 		for(int i=0;i<transactions.size();i++)
@@ -51,8 +68,9 @@ public class AdminController {
 		
 	}
 
-	public void addToTransactions(ITransaction t) {
-		transactions.add(t);	
+	public void addToTransactions(ITransaction t, User user) {
+		transactions.add(t);
+		users.add(user);	
 	}
 	
 	public void acceptTransaction(String transactionID,User user)
@@ -75,7 +93,7 @@ public class AdminController {
 	{
 		ITransaction transaction = new RefundTransaction(t.getAmount());
 		user.addTransaction(transaction);
-		addToTransactions(transaction);
+		addToTransactions(transaction,user);
 		//refundRequests.put(transaction.getID(), null);
 		
 		System.out.println("THE IDD: "+t.getID());
