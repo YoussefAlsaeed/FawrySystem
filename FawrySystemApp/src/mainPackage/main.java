@@ -71,7 +71,8 @@ public class main {
         UserController userController = new UserController(services);
       
         AdminController adminController=new AdminController();
-        User user=new User();
+        User user;
+
         IRefundRequest r;
         ArrayList<Form> forms=new ArrayList<Form>();
 		while (!choice.equals("4"))
@@ -97,25 +98,25 @@ public class main {
 			case"1":
 				System.out.println("What is your username: ");
 				 username=scan.next();
-				 
+				 User loginUser = new User();
 			     System.out.println("What is your password: ");
 			     password= scan.next();
-				user.setPassword(password);
-				user.setUsername(username);
+			     loginUser.setPassword(password);
+			     loginUser.setUsername(username);
 				boolean found=false;
-				if(userController.login(user))
+				if(userController.login(loginUser))
                 { 
 					for(int i=0;i<users.size();i++)
                     {
                         if(users.get(i).getUsername().equals(username))
                         {
-                            user=users.get(i);
+                        	loginUser=users.get(i);
                             found=true;
                         }
                     }
                     if(!found)
                     {
-                        users.add(user);
+                        users.add(loginUser);
                     }
 					
                    boolean signedIn = true;
@@ -150,7 +151,7 @@ public class main {
                             userController.searchforService(service5);
                             break;
                         case "2":
-                        	userController.viewBalance(user);
+                        	userController.viewBalance(loginUser);
                         	break;
                      
                            
@@ -290,27 +291,27 @@ public class main {
                       	    
                         case"4":
                         	
-                        	if(userController.viewUserTransactionHistory(user))
+                        	if(userController.viewUserTransactionHistory(loginUser))
                         	{
                         		System.out.println("Enter the Transaction ID");
                         		TransactionID=scan.next();
-                            	adminController.addToRefundRequests(user,TransactionID);
+                            	adminController.addToRefundRequests(loginUser,TransactionID);
                             	System.out.println("Your request will be accepted/rejected by the admin");
                         	}
                         	
                         	break;
                         	
                         case"5":
-                            userController.viewBalance(user);
+                            userController.viewBalance(loginUser);
                             System.out.println("Enter the amount you want to add to the wallet");
                             double n=scan.nextDouble();
-                            userController.addToWallet(n, user, adminController);
+                            userController.addToWallet(n, loginUser, adminController);
                           
                             break;
                         case"6":
                         	System.out.println("-----------------------------");
                         	System.out.println("Transaction History:\n");
-                            userController.viewUserTransactionHistory(user);
+                            userController.viewUserTransactionHistory(loginUser);
                             System.out.println("-----------------------------");
                             break;
                       
@@ -371,6 +372,7 @@ public class main {
                     switch (choice)
                     {
                     case"5":
+                    	user = new User();
                     	adminController.viewRefundRequests();
                     	System.out.println("Choose the transaction you want to process ");
                     	String chooseTransaction;
@@ -390,6 +392,19 @@ public class main {
                     		System.out.println("REJECTED refund");
                     	}
 
+                    	break;
+                    case"2":
+                    	for (int i = 0; i < users.size(); i++) {
+							System.out.println(users.get(i).getUsername());
+						}
+                    	
+                    	String listedUser = scan.next();
+                    	
+                    	adminController.listuserTransactions(listedUser);
+                    	break;
+                    	
+                    case"3":
+                    	adminController.listallTransactions();
                     	break;
                     	
                     case"6":

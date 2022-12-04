@@ -31,7 +31,7 @@ public class UserController{
 			AddToWalletTransaction t=new AddToWalletTransaction(amount);
 			System.out.println(t);
 			user.addTransaction(t);
-			a.addToTransactions(t);
+			a.addToTransactions(t,user);
 		}
 			
 		

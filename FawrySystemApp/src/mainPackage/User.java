@@ -90,4 +90,11 @@ public class User
 			this.email = email;
 		}
 
+		@Override
+		public String toString() {
+			return "username: " + username + ", transactions " + transactionList.toString() ;
+		}
+		
+		
+
 }
