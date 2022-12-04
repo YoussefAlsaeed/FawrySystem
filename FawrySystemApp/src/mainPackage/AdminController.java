@@ -12,10 +12,8 @@ import composite.*;
 import transaction.*;
 
 public class AdminController {
-
-	private HashMap<String,User> refundRequests=new HashMap<String,User>();
-	private ArrayList <ITransaction>transactions=new ArrayList<ITransaction>();
-	private ArrayList <User>users=new ArrayList<User>();
+	
+	Admin admin=new Admin();
 
     IRefundRequest refundRequestStrategy;
     
@@ -27,7 +25,7 @@ public class AdminController {
     
 	public boolean viewRefundRequests()
 	{
-		for( Entry<String, User> entry : refundRequests.entrySet() )
+		for( Entry<String, User> entry :admin.getRefundRequests().entrySet() )
 		{
 		    System.out.println(entry.getValue().getUsername()+ " --- "  + " Transaction ID: " +entry.getKey() );	
 		}
@@ -39,50 +37,50 @@ public class AdminController {
 	
 	public void listallTransactions()
 	{
-		for (int i = 0; i < transactions.size(); i++)
+		for (int i = 0; i <admin.getTransactionList().size(); i++)
 		{
-			System.out.println(transactions.get(i));
+			System.out.println(admin.getTransactionList().get(i));
 		}
 	}
 	
 
 	public void listuserTransactions(String user)
 	{
-		for (int i = 0; i < users.size(); i++)
+		for (int i = 0; i <admin.getUserList().size(); i++)
 		{
-			if(users.get(i).getUsername().equals(user))
-				System.out.println(users.get(i));
+			if(admin.getUserList().get(i).getUsername().equals(user))
+				System.out.println(admin.getUserList().get(i));
 		}
 	}
 
 	
 
 	public void addToRefundRequests(User user, String transactionID) {
-		for(int i=0;i<transactions.size();i++)
+		for(int i=0;i<admin.getTransactionList().size();i++)
 		{
-			if(transactions.get(i).getID().equals(transactionID))
+			if(admin.getTransactionList().get(i).getID().equals(transactionID))
 			{
-				refundRequests.put(transactionID,user);
+				admin.addToRefundRequests(transactionID, user);
 			}
 		}
 		
 	}
 
 	public void addToTransactions(ITransaction t, User user) {
-		transactions.add(t);
-		if(!(users.contains(user)))
-		   users.add(user);	
+		admin.addTransaction(t);
+		if(!(admin.getUserList().contains(user)))
+		   admin.addUser(user);
 	}
 	
 	public void acceptTransaction(String transactionID,User user)
 	{    
-		user =refundRequests.get(transactionID);
+		user =admin.getRefundRequests().get(transactionID);
 		ITransaction acceptedTransaction=null;
-		for(int i=0;i<transactions.size();i++)
+		for(int i=0;i<admin.getTransactionList().size();i++)
 		{
-			if(transactions.get(i).getID().equals(transactionID))
+			if(admin.getTransactionList().get(i).getID().equals(transactionID))
 			{
-				acceptedTransaction = transactions.get(i);
+				acceptedTransaction = admin.getTransactionList().get(i);
 			
 			}
 		}
@@ -99,7 +97,7 @@ public class AdminController {
 		
 		System.out.println("THE IDD: "+t.getID());
 
-		System.out.println(refundRequests.remove(t.getID(),user));
+		System.out.println(admin.getRefundRequests().remove(t.getID(),user));
 	//	refundRequests.replace(null, user);
 		
 		
