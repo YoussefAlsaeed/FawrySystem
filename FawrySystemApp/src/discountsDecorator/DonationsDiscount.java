@@ -4,7 +4,7 @@ import mainPackage.User;
 import serviceProviders.*;
 
 public class DonationsDiscount extends DiscountDecorator{
-	static double discountPercentage;
+	static double discountPercentage=0.0;
 	public DonationsDiscount(IServiceProviders service) {
 		super(service);
 		// TODO Auto-generated constructor stub

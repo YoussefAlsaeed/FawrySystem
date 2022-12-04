@@ -7,6 +7,8 @@ import composite.Form;
 import discountsDecorator.*;
 import mainPackage.User;
 import serviceProviders.*;
+import transaction.ITransaction;
+import transaction.PaymentTransaction;
 
 public class DonationsCommand extends Command{
 
@@ -31,43 +33,48 @@ public class DonationsCommand extends Command{
 		this.user = user;
 	}
 	@Override
-	public void execute() {
-//		form.view();
-		//ArrayList<String> values=new ArrayList<String>();
-//		values=form.getValues();
+	public ITransaction execute() {
+		double c=Double.parseDouble(values.get(1));
+		service.setCost(c);	
+		String sName=service.toString();
+		applyDiscounts();
+		double amount=service.getCost();
 		
-		//System.out.println(values.get(0));
 		if(values.get(0).equals("1"))
 		{
-			payment=new CreditCardPaymentMethod();
-			double c=Double.parseDouble(values.get(1));
-			service.setCost(c);
-			//System.out.println("SDasda"+service.getCost());
-			service=new DonationsDiscount(service);
-			
-			System.out.println("ssss"+service.getCost());
-			
-			if(user.getTransactionList().size()==0)
-			{
-				service=new OverallDiscount(service);
-			}
-			payment.pay(user, service.getCost());
+			this.payment=new CreditCardPaymentMethod();
+			payment.pay(user,amount);
 			System.out.println(user.getCreditCard());
 		}
 		else if(values.get(0).equals("2"))
 		{
 			payment=new WalletPaymentMethod();
-			double amount=Double.parseDouble(values.get(1));
-			
 			payment.pay(user, amount);
 			System.out.println(user.getWallet());
 		}
 		else if(values.get(0).equals("3"))
 		{
 			payment=new CashOnDeliveryMethod();
-			double amount=Double.parseDouble(values.get(1));
 		}
 		else System.out.println("Payment Method not found");
+		System.out.println(payment);
+		PaymentTransaction t=new PaymentTransaction(sName, amount, payment);
+		System.out.println(t);
+		user.addTransaction(t);
+		return t;
+		
+		
+	}
+	
+	
+	public void applyDiscounts()
+	{
+		service=new DonationsDiscount(service);
+		
+		if(user.getTransactionList().size()==0)
+		{
+			service=new OverallDiscount(service);
+		}
 		
 		
 	}

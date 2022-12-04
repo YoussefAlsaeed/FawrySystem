@@ -55,6 +55,7 @@ public class User
 				{
 //					if(!(transactionList.get(i) instanceof RefundTransaction))
 					 System.out.println(transactionList.get(i));
+					 System.out.println("-----------------------------");
 				}
 				
 			}

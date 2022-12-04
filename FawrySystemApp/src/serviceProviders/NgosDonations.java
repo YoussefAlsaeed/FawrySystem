@@ -10,6 +10,10 @@ public class NgosDonations extends Donation{
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public String toString()
+	{
+		return "NGOs Donation";
+	}
 
 }

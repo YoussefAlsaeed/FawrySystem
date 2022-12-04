@@ -10,5 +10,10 @@ public class MonthlyReciept extends LandLine {
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString()
+	{
+		return "Monthly Reciept Landline";
+	}
 
 }

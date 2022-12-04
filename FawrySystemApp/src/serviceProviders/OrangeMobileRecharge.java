@@ -11,6 +11,10 @@ public class OrangeMobileRecharge extends MobileRechargeService {
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public String toString()
+	{
+		return "Orange Mobile Recharge";
+	}
 
 }

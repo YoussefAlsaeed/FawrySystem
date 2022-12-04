@@ -11,5 +11,10 @@ public class EtisalatMobileRecharge extends MobileRechargeService {
 		super(form, c);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString()
+	{
+		return "Etisalat Mobile Recharge";
+	}
 
 }

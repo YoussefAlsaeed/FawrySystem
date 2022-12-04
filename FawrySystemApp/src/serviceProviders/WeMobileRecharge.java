@@ -12,5 +12,11 @@ public class WeMobileRecharge extends MobileRechargeService {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String toString()
+	{
+		System.out.println(super.toString());
+		return "Service Provider: WE";
+	}
+	
 
 }

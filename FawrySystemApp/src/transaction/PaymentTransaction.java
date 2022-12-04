@@ -1,24 +1,28 @@
 package transaction;
 
+import PaymentMethodStrategy.*;
 import serviceProviders.*;
 
 public class PaymentTransaction implements ITransaction
 {
-	private IService service;
+	//private IServiceProviders service;
+	private String serviceName;
 	private String TransactionId;
 	private static int counter=0;
 	private double amount;
-	public  PaymentTransaction(IService service,double amount) 
-	{
+	private IPaymentMethod paymentMethod;
+
+	public PaymentTransaction(String sName, double amount, IPaymentMethod paymentMethod) {
 		counter++;
 		TransactionId="1"+Integer.toString(counter);
-		this.service = service;
+		this.serviceName = sName;
 		this.amount=amount;
+		this.paymentMethod=paymentMethod;
 	}
 
 	public String toString()
 	{
-		return "\nTransaction ID is "+ TransactionId +("\n")+ "amount payed by user "+ amount +"\n" +"provider is "+ service.getClass().getSimpleName() ;
+		return "\n<Transaction ID is "+ TransactionId +(">\n")+ "<Amount payed by user "+ amount +">\n" +"<Provider is "+ serviceName+">\n"+"<"+paymentMethod+">" ;
 		
 	}
 
