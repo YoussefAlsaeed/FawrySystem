@@ -5,11 +5,12 @@ import command.*;
 import composite.*;
 import mainPackage.*;
 
-public abstract class LandLine implements IService{
+public abstract class LandLine implements IService,IServiceProviders{
 
 	IPaymentMethod paymentMethod;
 	Form form;
 	Command c;
+	double cost;
 	public LandLine(Form form,Command c)
 	{
 		this.form=form;
@@ -18,9 +19,16 @@ public abstract class LandLine implements IService{
 	}
 	public boolean pay(User user)
 	{
-		c=new SubmitCommand(user,form);
+		c=new MobileRechargeCommand(user,form);
 		c.execute();
 		return false;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		System.out.println("service");
+		this.cost = cost;
 	}
 	
 }

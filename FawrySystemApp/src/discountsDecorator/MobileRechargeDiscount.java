@@ -4,38 +4,34 @@ import mainPackage.User;
 import serviceProviders.*;
 
 public class MobileRechargeDiscount extends DiscountDecorator{
-
-	IService service;
-	MobileRechargeDiscount(IService service) {
+	static double discountPercentage=0.0;
+	public MobileRechargeDiscount(IServiceProviders service) {
+		
 		super(service);
+		//discountPercentage=0.1;
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public double getCost() {
-		// TODO Auto-generated method stub
-		return calculateCost();
+	//public MobileRechargeDiscount() {}
+	public static void setDiscountPercentage(double n) {
+		System.out.println("rrrrrr");
+		discountPercentage=0.0;
+		discountPercentage+=n;
+		System.out.println("ggyg"+discountPercentage);
+	}
+	public static double getDis()
+	{
+		return discountPercentage;
 	}
 	@Override
-	public void setCost(double n) {
-		this.discountPercentage=n;
-		
-	}
-	@Override
-	public double calculateCost() {
+	public boolean pay()
+	{
+		//System.out.println("d"+discountPercentage);
 		double c=service.getCost()*discountPercentage;
-		service.setCost(service.getCost()-c);
-		return service.getCost();
-	}
-	@Override
-	public void setDiscountPercentage(double n) {
-		this.discountPercentage=n;
-	}
-	@Override
-	public boolean pay(User user) {
-		// TODO Auto-generated method stub
+		//System.out.println("C"+c);
+		setCost(service.getCost()-c);
+		System.out.println(service.getCost());
 		return false;
 	}
-	
 }
 
 

@@ -3,29 +3,43 @@ import java.util.ArrayList;
 
 import PaymentMethodStrategy.*;
 import composite.*;
+import discountsDecorator.*;
 import mainPackage.*;
-public class SubmitCommand extends Command {
+import serviceProviders.*;
+public class MobileRechargeCommand extends Command {
 	Form form;
 	IPaymentMethod payment;
-	public SubmitCommand(User user, Form form) {
+	IServiceProviders service;
+	public MobileRechargeCommand(User user, Form form) {
+		this.form=form;
+		this.user=user;	
+	}
+	public MobileRechargeCommand(User user, Form form,IServiceProviders service) {
 		this.form=form;
 		this.user=user;
-	}
-	public SubmitCommand(User user) {
-		// TODO Auto-generated constructor stub
+		this.service=service;	
 	}
 	@Override
 	public void execute() {
 		form.view();
 		ArrayList<String> values=new ArrayList<String>();
 		values=form.getValues();
+		
 		//System.out.println(values.get(0));
 		if(values.get(0).equals("1"))
 		{
 			payment=new CreditCardPaymentMethod();
-			double amount=Double.parseDouble(values.get(1));
-			
-			payment.pay(user, amount);
+			double c=Double.parseDouble(values.get(1));
+			service.setCost(c);
+			//System.out.println("SDasda"+service.getCost());
+			service=new MobileRechargeDiscount(service);
+			System.out.println("ssss"+service.getCost());
+			if(user.getTransactionList().size()==0)
+			{
+				service=new OverallDiscount(service);
+			}
+				//service=new OverallDiscount(service);
+			payment.pay(user, service.getCost());
 			System.out.println(user.getCreditCard());
 		}
 		else if(values.get(0).equals("2"))

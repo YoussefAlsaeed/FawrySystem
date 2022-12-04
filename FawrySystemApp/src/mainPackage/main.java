@@ -372,7 +372,50 @@ public class main {
                     
                     switch (choice)
                     {
-                    
+                    case"4":
+                    	String c=null;
+                    	System.out.println("Enter the service you want to add/remove discount from");
+                    	System.out.println("Enter 1: Mobile Recharge Services");
+                    	System.out.println("Enter 2: Internet payment Services");
+                    	System.out.println("Enter 3: Landline Services");
+                    	System.out.println("Enter 4: Donation Services");
+                    	System.out.println("Enter 5: Overall discounts");
+                    	c=scan.next();
+                    	System.out.println("enter the discoount percentage ex: 10 for 10%");
+                    	double p=scan.nextDouble();
+                    	if(c.equals("1"))
+                    	{
+                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                    		MobileRechargeDiscount.setDiscountPercentage(p/100);
+                    		System.out.println(MobileRechargeDiscount.getDis()); 
+                    	}
+                    	else if(c.equals("2"))
+                    	{
+                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                    		InternetDiscount.setDiscountPercentage(p/100);
+                    		System.out.println(InternetDiscount.getDis()); 
+                    	}
+                    	else if(c.equals("3"))
+                    	{
+                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                    		LandLineDiscount.setDiscountPercentage(p/100);
+                    		System.out.println(LandLineDiscount.getDis()); 
+                    	}
+                    	else if(c.equals("4"))
+                    	{
+                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                    		DonationsDiscount.setDiscountPercentage(p/100);
+                    		System.out.println(DonationsDiscount.getDis()); 
+                    	}
+                    	else if(c.equals("5"))
+                    	{
+                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                    		OverallDiscount.setDiscountPercentage(p/100);
+                    		System.out.println(OverallDiscount.getDis()); 
+                    	}
+                    	else System.out.println("Invalid choice");
+                    	break;
+                    	
                     
                     case"5":
                     	user = new User();
