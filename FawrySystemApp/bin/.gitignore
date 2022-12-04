@@ -1,8 +1,2 @@
-/mainPackage/
 /abstractFactory/
-/serviceProviders/
-/composite/
-/transaction/
-/command/
-/discountsDecorator/
-/PaymentMethodStrategy/
+/mainPackage/
