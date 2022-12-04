@@ -385,7 +385,11 @@ public class main {
                     	}
 
                     	break;
+                   
                     case"2":
+                    	if (users.size()==0)
+                    		System.out.println("No transactions yet for any user");
+                    	else {
                     	System.out.println("These are the users that have transactions:\n");
                     	int countt=1;
                     	for (int i = 0; i < users.size(); i++) {
@@ -397,7 +401,8 @@ public class main {
 						}
                     	System.out.println("\nEnter the username you want to list his transactions");
                     	String listedUser = scan.next();
-                    	adminController.listuserTransactions(listedUser);
+                    	adminController.listuserTransactions(listedUser);}
+      
                ///for (int i = 0; i < users.size(); i++) {
                     	
                 //if(users.get(i).getUsername().equals(listedUser))
