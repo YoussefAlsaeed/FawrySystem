@@ -1,5 +1,6 @@
 package discountsDecorator;
 
+import mainPackage.User;
 import serviceProviders.*;
 
 public class InternetDiscount extends DiscountDecorator{
@@ -7,12 +8,11 @@ public class InternetDiscount extends DiscountDecorator{
 	IService service;
 	double cost;
 	InternetDiscount(IService service) {
-		this.service=service;
-		//double c=service.getCost()*0.1;
-		//cost=service.getCost()-c;
-		//getCost();
+		super(service);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	@Override
 	public double getCost() {
@@ -36,6 +36,14 @@ public class InternetDiscount extends DiscountDecorator{
 	@Override
 	public void setDiscountPercentage(double n) {
 		this.discountPercentage=n;
+	}
+
+
+
+	@Override
+	public boolean pay(User user) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

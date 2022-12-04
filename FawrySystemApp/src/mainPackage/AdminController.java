@@ -110,6 +110,16 @@ public class AdminController {
 	public IRefundRequest  RefundRequest() {
 		return refundRequestStrategy;
 	}
+
+
+	public boolean checkTransactions(User user) {
+		ArrayList<ITransaction>t=user.getTransactionList();
+		if(t.size()>0){
+			return true;
+		}
+		return false;
+		
+	}
 	
 	
 	

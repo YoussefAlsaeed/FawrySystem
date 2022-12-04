@@ -3,21 +3,11 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class QuarterReceipt implements ILandLineProvider {
-
-//	@Override
-//	public void pay() {
-//		// TODO Auto-generated method stub
-//		System.out.println("Quarter receipt");
-//	}
-	
-	Form form;
-	Command c;
+public class QuarterReceipt extends LandLine {
 
 	public QuarterReceipt(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

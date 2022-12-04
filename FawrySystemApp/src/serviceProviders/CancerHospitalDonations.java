@@ -3,18 +3,12 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class CancerHospitalDonations implements IDonationsProvider {
-
-	Form form;
-	Command c;
-
+public class CancerHospitalDonations extends Donation {
 	public CancerHospitalDonations(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 
 	@Override
 	public double getCost() {

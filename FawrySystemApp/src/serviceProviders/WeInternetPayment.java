@@ -3,15 +3,11 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class WeInternetPayment implements IInternetPaymentProvider {
-
-	Form form;
-	Command c;
+public class WeInternetPayment extends InternetPayment {
 
 	public WeInternetPayment(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

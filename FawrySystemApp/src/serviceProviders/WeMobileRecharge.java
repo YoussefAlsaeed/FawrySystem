@@ -3,17 +3,14 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class WeMobileRecharge implements IMobileRecharge {
-
-	Form form;
-	Command c;
+public class WeMobileRecharge extends MobileRechargeService {
 
 	public WeMobileRecharge(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+	
+		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public double getCost() {
 		// TODO Auto-generated method stub

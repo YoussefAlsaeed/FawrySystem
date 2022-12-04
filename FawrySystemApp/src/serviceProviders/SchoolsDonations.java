@@ -3,21 +3,13 @@ package serviceProviders;
 import command.Command;
 import composite.Form;
 
-public class SchoolsDonations implements IDonationsProvider{
-
-//	@Override
-//	public void pay() {
-//		// TODO Auto-generated method stub
-//		System.out.println("I am school donation");
-//	}
-	Form form;
-	Command c;
+public class SchoolsDonations extends Donation{
 
 	public SchoolsDonations(Form form, Command c) {
-		this.form=form;
-		this.c=c;
-		form.view();
+		super(form, c);
+		// TODO Auto-generated constructor stub
 	}
+
 
 	@Override
 	public double getCost() {

@@ -8,5 +8,6 @@ public abstract class Command {
 	Form form;
 	User user;
 	//public Command(Form)
-	public void execute(Form form,User user) {}
+	//public void execute() {}
+	public abstract void execute();
 }

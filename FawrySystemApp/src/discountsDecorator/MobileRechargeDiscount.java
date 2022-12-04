@@ -1,12 +1,13 @@
 package discountsDecorator;
 
+import mainPackage.User;
 import serviceProviders.*;
 
 public class MobileRechargeDiscount extends DiscountDecorator{
 
 	IService service;
 	MobileRechargeDiscount(IService service) {
-		this.service=service;
+		super(service);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -28,6 +29,11 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 	@Override
 	public void setDiscountPercentage(double n) {
 		this.discountPercentage=n;
+	}
+	@Override
+	public boolean pay(User user) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

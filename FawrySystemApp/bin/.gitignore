@@ -3,3 +3,6 @@
 /serviceProviders/
 /composite/
 /transaction/
+/command/
+/discountsDecorator/
+/PaymentMethodStrategy/
