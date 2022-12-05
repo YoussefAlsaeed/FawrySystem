@@ -28,6 +28,9 @@ public class main {
         ArrayList <IService> services = new ArrayList<>();
         ArrayList <User> users=new ArrayList<>();
         int counter=0;
+        
+        //Factories
+        
         WeFactory we=new WeFactory();
         VodafoneFactory vodafone=new VodafoneFactory();
         OrangeFactory orange=new OrangeFactory();
@@ -42,33 +45,25 @@ public class main {
         
        
         
-        //Creating services using Factory Method
+        //Creating services providers using Factories
         
-       // IService service;
-      //  IServiceFactory fact = null;
         IService service;
         
-      //  IServiceFactory fact=new MobileRechargeFactory();
-      //  IService service=fact.createService("Vodafonemobile");
-      //  service.pay();
-//        IServiceFactory fact;
-//        IService service;
-    	/*fact = new DonationsFactory();
-    	service = fact.createService();  	
-    	services.add(service);
-    	
-    	fact = new LandlineFactory();
-    	service = fact.createService();
-    	services.add(service);
-    	
-    	fact = new MobileRechargeFactory();
-    	service = fact.createService();  	
-    	services.add(service);
-    	
-    	fact = new InternetPaymentFactory();
-    	service = fact.createService();   	
-    	services.add(service);
-    	*/
+        services.add(we.createServiceProvider("mobile"));
+        services.add(we.createServiceProvider("internet"));
+        services.add(vodafone.createServiceProvider("mobile"));
+        services.add(vodafone.createServiceProvider("internet"));
+        services.add(orange.createServiceProvider("mobile"));
+        services.add(orange.createServiceProvider("internet"));
+        services.add(etisalat.createServiceProvider("mobile"));
+        services.add(etisalat.createServiceProvider("internet"));
+        services.add(cancerhospital.createServiceProvider("donation"));
+        services.add(ngo.createServiceProvider("donation"));
+        services.add(school.createServiceProvider("donation"));
+        services.add(mr.createServiceProvider("landline"));
+        services.add(qr.createServiceProvider("landline"));
+
+
         	
     	
         UserController userController = new UserController(services);
@@ -78,7 +73,7 @@ public class main {
 
         IRefundRequest r;
         ArrayList<Form> forms=new ArrayList<Form>();
-		while (!choice.equals("4"))
+		while (!choice.equals("4"))               // Main menu
 		{
 			System.out.println("* * * * * * * * * * * * * * * * * * ");
 
@@ -109,7 +104,7 @@ public class main {
 				boolean found=false;
 				if(userController.login(loginUser))
                 { 
-					for(int i=0;i<users.size();i++)
+					for(int i=0;i<users.size();i++)            //Checks if the user already exists in the system
                     {
                         if(users.get(i).getUsername().equals(username))
                         {
@@ -119,11 +114,11 @@ public class main {
                     }
                     if(!found)
                     {
-                        users.add(loginUser);
+                        users.add(loginUser); 
                     }
 					
                    boolean signedIn = true;
-                   System.out.println("Login Successful");
+                   System.out.println("Login Successful");  // If the user exists he is redirected to User menu
                     
                     while(signedIn)
                     {
@@ -150,20 +145,26 @@ public class main {
                         {
                         case"1":
                             System.out.println("Enter the service you want to query for "); 
-                            String service5 = scan.next();                    
-                            userController.searchforService(service5);
+                            String searchedForService = scan.next();                    
+                            userController.searchforService(searchedForService); // Calls function with service name to get the query results
                             break;
+                            
                         case "2":
-                        	userController.viewBalance(loginUser);
+                        	userController.viewBalance(loginUser); // Views balance of current user
                         	break;
                      
                            
                         case"3":
                         	
                         	System.out.println("Enter the service you want to pay for");
-                            System.out.println("your options is (mobile Recharge-internet Payment-donations-landLine)");
+                            System.out.println("your options are "
+                            		+"\n"
+                            		+ "\n-mobile recharge"
+                            		+ "\n-internet Payment"
+                            		+ "\n-donations"
+                            		+ "\n-landLine");
                             String serviceChoice=scan.next();
-                            if(serviceChoice.contains("mobile")||serviceChoice.contains("internet"))
+                            if(serviceChoice.contains("mobile")||serviceChoice.contains("internet")) // Choosing the service and service provider to pay for
                             {
                             	if(serviceChoice.contains("mobile"))
                             		serviceChoice="mobile";
@@ -171,7 +172,12 @@ public class main {
                             		serviceChoice="internet";
                     
                             	 System.out.println("Enter the provider you want to pay for");
-                            	 System.out.println("your options is (we-vodafone-orange-etislat)");
+                            	 System.out.println("your options are "
+                            			+"\n"
+                            	 		+ "\n- we"
+                            	 		+ "\n- vodafone"
+                            	 		+ "\n- orange"
+                            	 		+ "\n- etislat");
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("we"))
                             		 service=we.createServiceProvider(serviceChoice);
@@ -223,11 +229,7 @@ public class main {
                         		System.out.println("no service with this type");
                    		        break;
                             }
-                            adminController.addToTransactions(service.pay(loginUser), loginUser);
-                            	
-                            	
-                            	
-                            
+                            adminController.addToTransactions(service.pay(loginUser), loginUser); // Calling pay method of the chosen service and saving the transaction.         
                             
                            break;
                            
@@ -237,33 +239,35 @@ public class main {
                       	    
                         case"4":
                         	
+                        	// Checks first if the user has any transactions then views the user transactions.
+                        	
                         	if(userController.viewUserTransactionHistory(loginUser))
                         	{
                         		System.out.println("Enter the Transaction ID");
-                        		TransactionID=scan.next();
-                            	adminController.addToRefundRequests(loginUser,TransactionID);
+                        		TransactionID=scan.next();                          //Choosing which transaction will be refunded.
+                            	adminController.addToRefundRequests(loginUser,TransactionID);  // Sending the refund request to the admin
                             	System.out.println("Your request will be accepted/rejected by the admin");
                         	}
                         	
                         	break;
                         	
                         case"5":
-                            userController.viewBalance(loginUser);
+                            userController.viewBalance(loginUser);  // Views the user's current balance
                             System.out.println("Enter the amount you want to add to the wallet");
                             double n=scan.nextDouble();
-                            userController.addToWallet(n, loginUser, adminController);
+                            userController.addToWallet(n, loginUser, adminController); // Adding money from credit card to current user's wallet and saving the transaction.
                           
                             break;
                         case"6":
                         	System.out.println("-----------------------------");
                         	System.out.println("Transaction History:\n");
-                            userController.viewUserTransactionHistory(loginUser);
+                            userController.viewUserTransactionHistory(loginUser); // Viewing the current user's transactions
                             System.out.println("-----------------------------");
                             break;
                       
                         case"7":
                             System.out.println("You are logged out ! ");
-                            signedIn = false;
+                            signedIn = false;  // Exiting the menu
                             break;
                            
                         	
@@ -275,20 +279,20 @@ public class main {
 					 System.out.println("There is no user with info please sign up first");
 				break;
 				
-			case"2":
-				   System.out.println("What is your username: ");
-				  username=scan.next();
+			case"2":	 // Signing Up a new user in the system.
+			    System.out.println("What is your username: ");
+		        username=scan.next();
 				  
-			     System.out.println("What is your password: ");
-			     password= scan.next();
+			    System.out.println("What is your password: ");
+			    password= scan.next();
 			     
-			     System.out.println("What is your email: ");
-			     email= scan.next();
-			     User user2=new User();
-			     user2.setUsername(username);
-			     user2.setPassword(password);
-			     user2.setEmail(email);
-			      userController.signUp(user2);
+			    System.out.println("What is your email: ");
+			    email= scan.next();
+			    User user2=new User();
+			    user2.setUsername(username);
+			    user2.setPassword(password);
+			    user2.setEmail(email);
+			    userController.signUp(user2);
 				break;
 				
 			case"3":
@@ -322,7 +326,7 @@ public class main {
                     case"6":
                     	ProviderFactory provider = null ;
 						
-						System.out.println("Enter the provider form you want to edit");
+						System.out.println("Enter the provider form you want to edit"); //Choosing which provider's form will be edited
 						String providerName=scan.next();
 						if(providerName.toLowerCase().contains("vodafone"))
 						{
@@ -380,6 +384,16 @@ public class main {
 						provider = null ;
 						
 						System.out.println("Enter the provider form you want to edit");
+						System.out.println("-> Vodafone <-");
+						System.out.println("-> Orange <-");
+						System.out.println("-> We <-");
+						System.out.println("-> Etisalat <-");
+						System.out.println("-> Schools <-");
+						System.out.println("-> Ngo <-");
+						System.out.println("-> Cancer <-");
+						System.out.println("-> Monthly Reciept <-");
+						System.out.println("-> Quarter Reciept <-");
+						
 						providerName=scan.next();
 						if(providerName.toLowerCase().contains("vodafone"))
 						{
