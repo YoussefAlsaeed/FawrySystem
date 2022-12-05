@@ -12,6 +12,10 @@ public abstract class ProviderFactory {
 	InternetCommand internetCommand=new InternetCommand();
 	LandlineCommand landlineCommand=new LandlineCommand();
 	DonationsCommand donationCommand=new DonationsCommand();
+	ArrayList<Object>fields=new ArrayList<Object>();
+	DropDownField d=new DropDownField("Payment Method",1,fields);
+	TextField t1=new TextField("Amount");
+	TextField t2=new TextField("Mobile Number");
 	
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
@@ -22,11 +26,8 @@ public abstract class ProviderFactory {
 	abstract public void setFormName(String name);
 
 	public Form createForm() {
-		ArrayList<Object>fields=new ArrayList<Object>();
+		
 		fields.add("CreditCard");
-		DropDownField d=new DropDownField("Payment Method",1,fields);
-		TextField t1=new TextField("Amount");
-		TextField t2=new TextField("Mobile Number");
 		elements.add(d);
 		elements.add(t1);
 		elements.add(t2);
@@ -59,4 +60,8 @@ public abstract class ProviderFactory {
 		return elements.size();
 	}
 	abstract public IService createServiceProvider(String type) ;
+	public void addPaymentMethod(Object newField)
+	{
+		this.d.addField(newField);
+	}
 }

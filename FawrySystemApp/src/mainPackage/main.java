@@ -5,6 +5,7 @@ import composite.*;
 import serviceProviders.*;
 import transaction.ITransaction;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -306,7 +307,8 @@ public class main {
                     System.out.println("3-List all transactions");
                     System.out.println("4-Add discounts");
                     System.out.println("5-Review Refund Requests");
-                    System.out.println("6-Log out"); 
+                    System.out.println("6-Add new payment methods to a form");
+                    System.out.println("7-Log out"); 
 
                     System.out.println();
                     System.out.println("* * * * * * * * * * * * * * * * * * ");
@@ -317,10 +319,8 @@ public class main {
                     switch (choice)
                     {
                     
-                    
-                    case"1":
-						
-						ProviderFactory provider = null ;
+                    case"6":
+                    	ProviderFactory provider = null ;
 						
 						System.out.println("Enter the provider form you want to edit");
 						String providerName=scan.next();
@@ -357,8 +357,67 @@ public class main {
 						{
 						provider =qr;
 						
-						} else 
-						System.out.println("No provider from :( ");
+						} else {
+							System.out.println("No provider from :( ");
+							break;
+						}
+						System.out.println("How many payment methods to you want to add?");
+						int num=scan.nextInt();
+						 //BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+						for(int i=0;i<num;i++)
+						{
+							System.out.println("Enter payment method ("+(i+1)+") :");
+							String s="";
+							scan.nextLine();
+							s=scan.nextLine();
+							provider.addPaymentMethod(s);
+						}
+						break;
+						
+                    	
+                    case"1":
+						
+						provider = null ;
+						
+						System.out.println("Enter the provider form you want to edit");
+						providerName=scan.next();
+						if(providerName.toLowerCase().contains("vodafone"))
+						{
+						provider= vodafone;						
+						}else if(providerName.toLowerCase().contains("orange"))
+						{
+						provider =orange;
+						}else if(providerName.toLowerCase().contains("we"))
+						{
+						provider=we;
+						}
+						else if(providerName.toLowerCase().contains("etisalat"))
+						{
+						provider= etisalat;
+						}	
+						else if(providerName.toLowerCase().contains("schools"))
+						{
+						provider = school;
+						}	
+						else if(providerName.toLowerCase().contains("ngo"))
+						{
+						provider =ngo;
+						}
+						else if(providerName.toLowerCase().contains("cancer"))
+						{
+						provider = cancerhospital;
+						}
+						else if(providerName.toLowerCase().contains("monthly"))
+						{
+						provider =mr;
+						}else if(providerName.toLowerCase().contains("quarter"))
+						{
+						provider =qr;
+						
+						} else {
+							System.out.println("No provider from :( ");
+							choice="3";
+						}
     					while (!choice.equals("3")) 
     					{
     						System.out.println("* * * * * * * * * * * * * * * * * * ");
@@ -403,6 +462,30 @@ public class main {
     						}
     					}
 						break;
+                    case"2":
+                    	if (users.size()==0)
+                            System.out.println("No transactions yet for any user");
+                        else {
+                    	System.out.println("These are the users that have transactions:\n");
+                    	int countt=1;
+                    	for (int i = 0; i < users.size(); i++) {
+							if(adminController.checkTransactions(users.get(i))) {
+								System.out.println((countt)+"-"+users.get(i).getUsername());
+								countt++;
+							}
+							
+						}
+                    	System.out.println("\nEnter the username you want to list his transactions");
+                    	String listedUser = scan.next();
+                    	adminController.listuserTransactions(listedUser);
+						
+                        }
+                    	
+                    	break;
+                    	
+                    case"3":
+                    	adminController.listallTransactions();
+                    	break;
                     case"4":
                     	String c=null;
                     	System.out.println("Enter the service you want to add/remove discount from");
@@ -412,42 +495,88 @@ public class main {
                     	System.out.println("Enter 4: Donation Services");
                     	System.out.println("Enter 5: Overall discounts");
                     	c=scan.next();
-                    	System.out.println("enter the discoount percentage ex: 10 for 10%");
-                    	double p=scan.nextDouble();
-                    	if(c.equals("1"))
+                    	System.out.println("Enter '1' to add discount and '2' to remove discount");
+                    	String c2=scan.next();
+                    	if(c2.equals("1"))
                     	{
-                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                    		MobileRechargeDiscount.setDiscountPercentage(p/100);
-                    		System.out.println(MobileRechargeDiscount.getDis()); 
-                    		
+                    		System.out.println("Enter the discount percentage ex: 10 for 10%");
+                    		double p=scan.nextDouble();
+                        	if(c.equals("1"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		MobileRechargeDiscount.setDiscountPercentage(p/100);
+                        		System.out.println(MobileRechargeDiscount.getDis()); 
+                        		
 
+                        	}
+                        	else if(c.equals("2"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		InternetDiscount.setDiscountPercentage(p/100);
+                        		System.out.println(InternetDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("3"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		LandLineDiscount.setDiscountPercentage(p/100);
+                        		System.out.println(LandLineDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("4"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		DonationsDiscount.setDiscountPercentage(p/100);
+                        		System.out.println(DonationsDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("5"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		OverallDiscount.setDiscountPercentage(p/100);
+                        		System.out.println(OverallDiscount.getDis()); 
+                        	}
+                        	else System.out.println("Invalid choice");
+                        	
                     	}
-                    	else if(c.equals("2"))
+                    	else if(c2.equals("2"))
                     	{
-                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                    		InternetDiscount.setDiscountPercentage(p/100);
-                    		System.out.println(InternetDiscount.getDis()); 
+                 
+                        	if(c.equals("1"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		MobileRechargeDiscount.setDiscountPercentage(0.0);
+                        		System.out.println(MobileRechargeDiscount.getDis()); 
+                        		
+
+                        	}
+                        	else if(c.equals("2"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		InternetDiscount.setDiscountPercentage(0.0);
+                        		System.out.println(InternetDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("3"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		LandLineDiscount.setDiscountPercentage(0.0);
+                        		System.out.println(LandLineDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("4"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		DonationsDiscount.setDiscountPercentage(0.0);
+                        		System.out.println(DonationsDiscount.getDis()); 
+                        	}
+                        	else if(c.equals("5"))
+                        	{
+                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+                        		OverallDiscount.setDiscountPercentage(0.0);
+                        		System.out.println(OverallDiscount.getDis()); 
+                        	}
+                        	else System.out.println("Invalid choice");
+                        	
                     	}
-                    	else if(c.equals("3"))
-                    	{
-                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                    		LandLineDiscount.setDiscountPercentage(p/100);
-                    		System.out.println(LandLineDiscount.getDis()); 
-                    	}
-                    	else if(c.equals("4"))
-                    	{
-                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                    		DonationsDiscount.setDiscountPercentage(p/100);
-                    		System.out.println(DonationsDiscount.getDis()); 
-                    	}
-                    	else if(c.equals("5"))
-                    	{
-                    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                    		OverallDiscount.setDiscountPercentage(p/100);
-                    		System.out.println(OverallDiscount.getDis()); 
-                    	}
-                    	else System.out.println("Invalid choice");
                     	break;
+                    	
+                    	
                     	
                     
                     case"5":
@@ -472,39 +601,9 @@ public class main {
                     	}
 
                     	break;
-                    case"2":
-                    	if (users.size()==0)
-                            System.out.println("No transactions yet for any user");
-                        else {
-                    	System.out.println("These are the users that have transactions:\n");
-                    	int countt=1;
-                    	for (int i = 0; i < users.size(); i++) {
-							if(adminController.checkTransactions(users.get(i))) {
-								System.out.println((countt)+"-"+users.get(i).getUsername());
-								countt++;
-							}
-							
-						}
-                    	System.out.println("\nEnter the username you want to list his transactions");
-                    	String listedUser = scan.next();
-                    	adminController.listuserTransactions(listedUser);
-               ///for (int i = 0; i < users.size(); i++) {
+                    
                     	
-                //if(users.get(i).getUsername().equals(listedUser))
-                    		//	adminController.listuserTransactions(listedUser);
-                    			
-                //    		else
-                //    			System.out.println("This user has no transactions");
-						
-                        }
-                    	
-                    	break;
-                    	
-                    case"3":
-                    	adminController.listallTransactions();
-                    	break;
-                    	
-                    case"6":
+                    case"7":
                     	signedIn = false;
                     	break;
                     	

@@ -23,7 +23,7 @@ public class OverallDiscount extends DiscountDecorator{
 		double c=service.getCost()*discountPercentage;
 		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
-		System.out.println(service.getCost());
+		System.out.println("Discount ="+ service.getCost());
 		return false;
 	}
 	
