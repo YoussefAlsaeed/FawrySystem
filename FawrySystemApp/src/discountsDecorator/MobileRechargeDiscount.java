@@ -15,7 +15,7 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 	public static void setDiscountPercentage(double n) {
 		//System.out.println("rrrrrr");
 		//discountPercentage=0.1;
-		discountPercentage+=n;
+		discountPercentage=n;
 		//System.out.println("ggyg"+discountPercentage);
 	}
 	public static double getDis()
@@ -29,7 +29,7 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 		double c=service.getCost()*discountPercentage;
 		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
-		System.out.println(service.getCost());
+		System.out.println("Discount ="+ service.getCost());
 		return false;
 	}
 }

@@ -28,13 +28,11 @@ public class DropDownField implements UIElements {
 	{
 		this.noOfFields+=noOfFields;
 	}
-	public void addFields(int n,ArrayList<Object> newFields)
+	public void addField(Object field)
 	{
-		this.incrementNoOfFields(n);
-		for(int i=0;i<n;i++)
-		{
-			array.add(newFields.get(i));
-		}
+		this.incrementNoOfFields(1);
+		array.add(field);
+		
 		
 	}
 
