@@ -11,6 +11,9 @@ public class AddToWalletRefundRequest implements IRefundRequest {
 	
 		user.setCreditCard(user.getCreditCard()+acceptedTransaction.getAmount());
 		user.setWallet(user.getWallet()-acceptedTransaction.getAmount());
+		System.out.println(acceptedTransaction.getAmount()+" was returned to the user ("+user.getUsername()+") credit card");
+	
+	
 	}
 
 

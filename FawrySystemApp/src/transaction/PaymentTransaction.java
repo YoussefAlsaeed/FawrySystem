@@ -23,7 +23,7 @@ public class PaymentTransaction implements ITransaction
 
 	public String toString()
 	{
-		return "\n<Transaction ID is "+ TransactionId +(">\n")+ "<Amount payed by user "+ amount +">\n" +"<Provider is "+ serviceName+">\n"+"<"+paymentMethod+">" ;
+		return "\n<Payment transaction>\n<Transaction ID is "+ TransactionId +(">\n")+ "<Amount payed by user "+ amount +">\n" +"<"+ serviceName+">\n"+"<"+paymentMethod+">\n" ;
 		
 	}
 

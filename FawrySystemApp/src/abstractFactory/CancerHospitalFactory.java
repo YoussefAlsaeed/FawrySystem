@@ -26,11 +26,6 @@ public class CancerHospitalFactory extends ProviderFactory  {
 
 		return null;
 	}
-	@Override
-	public void setFormName(String name) {
-		
-		
-	}
-	
+
 
 }

@@ -32,12 +32,24 @@ public class AdminController {
     
 	public boolean viewRefundRequests()
 	{
+		boolean found=false;
+		ArrayList<ITransaction> transactions=admin.getTransactionList();
 		for( Entry<String, User> entry :admin.getRefundRequests().entrySet() )
 		{
-		    System.out.println(entry.getValue().getUsername()+ " --- "  + " Transaction ID: " +entry.getKey() );	
+			
+		    System.out.print("UserName = "+entry.getValue().getUsername()+ " : " );
+		    for(int i=0;i<transactions.size();i++)
+		    {
+		    	if(entry.getKey().equals(transactions.get(i).getID()))
+		    	{
+		    		System.out.print(transactions.get(i)+"\n");
+		    		System.out.println("--------------------------------");
+		    		found=true;
+		    	}
+		    }
 		}
 	//	System.out.println(refundRequests);
-		return false;
+		return found;
 		
 	}
 	
@@ -180,13 +192,6 @@ public class AdminController {
 		ITransaction transaction = new RefundTransaction(t.getAmount());
 		user.addTransaction(transaction);
 		addToTransactions(transaction,user);
-		//refundRequests.put(transaction.getID(), null);
-		
-		System.out.println("THE ID: "+t.getID());
-
-		System.out.println(admin.getRefundRequests().remove(t.getID(),user));
-	//	refundRequests.replace(null, user);
-		
 		
 	}
 	public void setRefundRequest(IRefundRequest request) {
@@ -206,6 +211,8 @@ public class AdminController {
 		return false;
 		
 	}
+	
+	
 
 
 

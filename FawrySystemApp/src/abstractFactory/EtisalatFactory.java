@@ -33,10 +33,5 @@ public class EtisalatFactory extends ProviderFactory  {
 	        	  
 		return null;
 	}
-	@Override
-	public void setFormName(String name) {
-		
-		
-	}
-
+	
 }

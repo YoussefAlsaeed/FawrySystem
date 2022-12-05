@@ -7,22 +7,22 @@ import composite.*;
 import serviceProviders.IService;
 
 public abstract class ProviderFactory {
-	Form form=new Form();
-	MobileRechargeCommand mobileRechargeCommand= new MobileRechargeCommand();
-	InternetCommand internetCommand=new InternetCommand();
-	LandlineCommand landlineCommand=new LandlineCommand();
-	DonationsCommand donationCommand=new DonationsCommand();
-	ArrayList<Object>fields=new ArrayList<Object>();
+	protected Form form=new Form();
+	protected MobileRechargeCommand mobileRechargeCommand= new MobileRechargeCommand();
+	protected InternetCommand internetCommand=new InternetCommand();
+	protected LandlineCommand landlineCommand=new LandlineCommand();
+	protected DonationsCommand donationCommand=new DonationsCommand();
+	protected ArrayList<Object>fields=new ArrayList<Object>();
 	//create a drop down field for payment method that only as (credit card) as a default payment method
 	//admin can add more payment methods to this drop down field from admin menu
-	DropDownField d=new DropDownField("Payment Method",1,fields);
+	protected DropDownField d=new DropDownField("Payment Method",1,fields);
 	//creating textfields for amount and mobile number as a default for every form to be created 
 
-	TextField t1=new TextField("Amount");
-	TextField t2=new TextField("Mobile Number");
+	protected TextField t1=new TextField("Amount");
+	protected TextField t2=new TextField("Mobile Number");
 	
-	String formName;
-	ArrayList<UIElements> elements = new ArrayList<UIElements>();
+	protected String formName;
+	protected ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	public ProviderFactory()
     {
 		/*
@@ -32,7 +32,6 @@ public abstract class ProviderFactory {
 		*/
         createForm();
     }
-	abstract public void setFormName(String name);
 
 	public Form createForm() {
 		//create default form
