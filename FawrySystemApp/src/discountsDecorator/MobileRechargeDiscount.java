@@ -8,15 +8,11 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 	public MobileRechargeDiscount(IServiceProviders service) {
 		
 		super(service);
-		//discountPercentage=0.1;
-		// TODO Auto-generated constructor stub
 	}
 	//public MobileRechargeDiscount() {}
 	public static void setDiscountPercentage(double n) {
-		//System.out.println("rrrrrr");
-		//discountPercentage=0.1;
 		discountPercentage=n;
-		//System.out.println("ggyg"+discountPercentage);
+	
 	}
 	public static double getDis()
 	{
@@ -25,9 +21,8 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 	@Override
 	public boolean pay()
 	{
-		//System.out.println("d"+discountPercentage);
+		//calculate amount after applying discount
 		double c=service.getCost()*discountPercentage;
-		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
 		System.out.println("Price after applying mobile recharge service discount("+discountPercentage*100+"%)="+ service.getCost());
 		return false;

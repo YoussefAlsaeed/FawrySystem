@@ -13,7 +13,11 @@ public abstract class ProviderFactory {
 	LandlineCommand landlineCommand=new LandlineCommand();
 	DonationsCommand donationCommand=new DonationsCommand();
 	ArrayList<Object>fields=new ArrayList<Object>();
+	//create a drop down field for payment method that only as (credit card) as a default payment method
+	//admin can add more payment methods to this drop down field from admin menu
 	DropDownField d=new DropDownField("Payment Method",1,fields);
+	//creating textfields for amount and mobile number as a default for every form to be created 
+
 	TextField t1=new TextField("Amount");
 	TextField t2=new TextField("Mobile Number");
 	
@@ -21,12 +25,17 @@ public abstract class ProviderFactory {
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	public ProviderFactory()
     {
+		/*
+		 * create default form
+		 *
+		 *admin can add more text fields and drop down fields for specific provider from admin menu
+		*/
         createForm();
     }
 	abstract public void setFormName(String name);
 
 	public Form createForm() {
-		
+		//create default form
 		fields.add("CreditCard");
 		elements.add(d);
 		elements.add(t1);
@@ -38,13 +47,7 @@ public abstract class ProviderFactory {
 		return form;
 		
 	}
-	/*public void nullForm()
-	{
-		for(int i=0;i<elements.size();i++)
-		{
-			elements.remove(elements.get(i));
-		}
-	}*/
+
 	public void buildDropDownFlield(String name,int noOfFields,ArrayList<Object>array)
 	{
 		form.addElement(new DropDownField(name,noOfFields,array));
@@ -60,8 +63,14 @@ public abstract class ProviderFactory {
 		return elements.size();
 	}
 	abstract public IService createServiceProvider(String type) ;
+	
+	/*
+	 * method to add more payment methods to a form 
+	 *  wallet or cash on delivery methods can be added from here
+	 */
 	public void addPaymentMethod(Object newField)
 	{
+		
 		this.d.addField(newField);
 	}
 }

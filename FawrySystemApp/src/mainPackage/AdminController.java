@@ -181,7 +181,7 @@ public class AdminController {
 		addToTransactions(transaction,user);
 		//refundRequests.put(transaction.getID(), null);
 		
-		System.out.println("THE IDD: "+t.getID());
+		System.out.println("THE ID: "+t.getID());
 
 		System.out.println(admin.getRefundRequests().remove(t.getID(),user));
 	//	refundRequests.replace(null, user);

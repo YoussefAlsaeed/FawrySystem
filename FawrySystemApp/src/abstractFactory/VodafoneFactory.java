@@ -9,10 +9,11 @@ import composite.*;
 import serviceProviders.*;
 
 public class VodafoneFactory extends ProviderFactory  {
-
-//	Form form;
-//	Command c;
-//	//ArrayList<UIElements> elements = new ArrayList<UIElements>();
+	/*
+	 * Creating new service providers of type (we)
+	 * Each service provider takes form and command in its parameter
+	 * Command type is set according to the service that the user wants
+	 */
 	@Override
 	public IService createServiceProvider(String type) {
 		

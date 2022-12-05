@@ -6,7 +6,11 @@ import serviceProviders.IService;
 import serviceProviders.MonthlyReciept;
 
 public class MonthlyReceiptFactory extends ProviderFactory{
-
+	/*
+	 * Creating new service providers of type (we)
+	 * Each service provider takes form and command in its parameter
+	 * Command type is set according to the service that the user wants
+	 */
 	@Override
 	public void setFormName(String name) {
 		// TODO Auto-generated method stub

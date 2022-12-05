@@ -14,6 +14,7 @@ public class PaymentTransaction implements ITransaction
 
 	public PaymentTransaction(String sName, double amount, IPaymentMethod paymentMethod) {
 		counter++;
+		//every payment transaction starts with '1'
 		TransactionId="1"+Integer.toString(counter);
 		this.serviceName = sName;
 		this.amount=amount;

@@ -24,6 +24,7 @@ public class UserController{
     	
         this.servicesList=servicesList;
         discountList.put("Overall Discount",10.0);
+        discountList.put("Mobile Recharge Discount", 10.0);
     }
     
 	public void addToWallet(double amount,User user,AdminController a)

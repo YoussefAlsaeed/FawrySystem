@@ -9,10 +9,11 @@ import composite.*;
 import serviceProviders.*;
 
 public class WeFactory extends ProviderFactory  {
-
-//	Form form;
-//	Command c;
-//	//ArrayList<UIElements> elements = new ArrayList<UIElements>();
+	/*
+	 * Creating new service providers of type (we)
+	 * Each service provider takes form and command in its parameter
+	 * Command type is set according to the service that the user wants
+	 */
 	@Override
 	public IService createServiceProvider(String type) {
 	
@@ -20,15 +21,12 @@ public class WeFactory extends ProviderFactory  {
 		 if(type.toLowerCase().contains("mobile"))
 		 {
 			 form.setName("WE Mobile Recharge");
-			 //form.view();
-			 //mobileRechargeCommand.setForm(form);
 			 return new WeMobileRecharge(form,mobileRechargeCommand);
 		 }
 	            
 	      else if(type.toLowerCase().contains("internet"))
 	      {
 	    	  form.setName("WE Internet");
-	    	  //internetCommand.setForm(form);
 	    	  return new WeInternetPayment(form,internetCommand);
 	      }
 		 

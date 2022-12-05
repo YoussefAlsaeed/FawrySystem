@@ -10,10 +10,11 @@ import serviceProviders.*;
 
 public class OrangeFactory extends ProviderFactory  {
 
-//	Form form;
-//	Command c;
-//	//ArrayList<UIElements> elements = new ArrayList<UIElements>();
-	@Override
+	/*
+	 * Creating new service providers of type (we)
+	 * Each service provider takes form and command in its parameter
+	 * Command type is set according to the service that the user wants
+	 */
 	public IService createServiceProvider(String type) {
 		
 		

@@ -7,8 +7,6 @@ public class Form implements UIElements {
 	String formName;
 	ArrayList<UIElements> elements = new ArrayList<UIElements>();
 	
-	
-	
 	public Form(String formName)
 	{
 		
@@ -17,6 +15,8 @@ public class Form implements UIElements {
 	public Form() {
 		
 	}
+	
+	//print form
 	@Override
 	public void view() {
 		System.out.println("* * * * * * * * * * * * * * * * * * ");
@@ -30,14 +30,14 @@ public class Form implements UIElements {
 		}
 
 	}
+	
+	//add UIEelements to form
 	public void addElement(UIElements element)
 	{
 		elements.add(element);
 	}
-//	public void removeElement(UIElements element)
-//	{
-//		elements.add(element);
-//	}
+	
+	//method to allow user to enter values for the form
 	public ArrayList<String> getValues()
 	{
 		Scanner sc=new Scanner(System.in);
