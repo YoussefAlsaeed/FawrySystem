@@ -1,6 +1,5 @@
 package mainPackage;
 import discountsDecorator.*;
-import oldAbstractFactory.*;
 import composite.*;
 import serviceProviders.*;
 import transaction.ITransaction;
@@ -18,7 +17,6 @@ import refundRequestStrategy.*;
 public class main {
 
 	public static void main(String[] args) throws IOException {
-		FormBuilder builder=new FormBuilder();
 		String choice = "";
 		Scanner scan = new Scanner(System.in);
         String username;
@@ -549,8 +547,7 @@ public class main {
                     	}
                     	else if(c2.equals("2"))
                     	{
-                    		adminController.removeDiscount(c);
-                 
+                    		adminController.removeDiscount(c,userController);                 
                     	}
                     	break;
                     	
