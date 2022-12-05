@@ -64,6 +64,7 @@ public class DonationsCommand extends Command{
 		}
 		//System.out.println(payment);
 		PaymentTransaction t=new PaymentTransaction(sName, amount, payment);
+		System.out.println(t);
 		user.addTransaction(t);
 		return t;
 		

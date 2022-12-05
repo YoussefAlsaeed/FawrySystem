@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import composite.*;
+import discountsDecorator.DonationsDiscount;
+import discountsDecorator.InternetDiscount;
+import discountsDecorator.LandLineDiscount;
+import discountsDecorator.MobileRechargeDiscount;
+import discountsDecorator.OverallDiscount;
 import transaction.*;
 
 public class AdminController {
@@ -49,6 +54,80 @@ public class AdminController {
 			if(admin.getUserList().get(i).getUsername().equals(user))
 				System.out.println(admin.getUserList().get(i));
 		}
+	}
+	public void addDiscount(String c,double discount)
+	{
+		if(c.equals("1"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		MobileRechargeDiscount.setDiscountPercentage(discount/100);
+    		System.out.println("Discount now is:"+MobileRechargeDiscount.getDis()); 
+    		
+
+    	}
+    	else if(c.equals("2"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		InternetDiscount.setDiscountPercentage(discount/100);
+    		System.out.println("Discount now is:"+InternetDiscount.getDis()); 
+    	}
+    	else if(c.equals("3"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		LandLineDiscount.setDiscountPercentage(discount/100);
+    		System.out.println("Discount now is:"+LandLineDiscount.getDis()); 
+    	}
+    	else if(c.equals("4"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		DonationsDiscount.setDiscountPercentage(discount/100);
+    		System.out.println("Discount now is:"+DonationsDiscount.getDis()); 
+    	}
+    	else if(c.equals("5"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		OverallDiscount.setDiscountPercentage(discount/100);
+    		System.out.println("Discount now is:"+OverallDiscount.getDis()); 
+    	}
+    	else System.out.println("Invalid choice");
+	}
+	
+	public void removeDiscount(String c)
+	{
+		if(c.equals("1"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		MobileRechargeDiscount.setDiscountPercentage(0.0);
+    		System.out.println(MobileRechargeDiscount.getDis()); 
+    		
+
+    	}
+    	else if(c.equals("2"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		InternetDiscount.setDiscountPercentage(0.0);
+    		System.out.println(InternetDiscount.getDis()); 
+    	}
+    	else if(c.equals("3"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		LandLineDiscount.setDiscountPercentage(0.0);
+    		System.out.println(LandLineDiscount.getDis()); 
+    	}
+    	else if(c.equals("4"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		DonationsDiscount.setDiscountPercentage(0.0);
+    		System.out.println(DonationsDiscount.getDis()); 
+    	}
+    	else if(c.equals("5"))
+    	{
+    		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
+    		OverallDiscount.setDiscountPercentage(0.0);
+    		System.out.println(OverallDiscount.getDis()); 
+    	}
+    	else System.out.println("Invalid choice");
+    	
 	}
 
 	
