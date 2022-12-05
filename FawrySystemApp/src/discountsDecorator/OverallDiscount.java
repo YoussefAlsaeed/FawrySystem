@@ -19,9 +19,8 @@ public class OverallDiscount extends DiscountDecorator{
 	@Override
 	public boolean pay()
 	{
-		//System.out.println("d"+discountPercentage);
-		double c=service.getCost()*discountPercentage;
-		//System.out.println("C"+c);
+		
+		double c=service.getCost()*discountPercentage;//calculate amount after applying discount
 		setCost(service.getCost()-c);
 		System.out.println("Price after applying overall discount("+discountPercentage*100+"%)="+ service.getCost());
 		return false;

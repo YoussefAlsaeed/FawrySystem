@@ -10,6 +10,7 @@ public class RefundTransaction implements ITransaction{
 	public  RefundTransaction(double amount) 
 	{
 		counter++;
+		//every refund refund transaction starts with '2' 
 		transactionId="2"+Integer.toString(counter);
 		this.amount=amount;
 	}

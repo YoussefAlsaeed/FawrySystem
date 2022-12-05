@@ -55,13 +55,14 @@ public class AdminController {
 				System.out.println(admin.getUserList().get(i));
 		}
 	}
-	public void addDiscount(String c,double discount)
+	public void addDiscount(String c,double discount, UserController userController)
 	{
 		if(c.equals("1"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		MobileRechargeDiscount.setDiscountPercentage(discount/100);
     		System.out.println("Discount now is:"+MobileRechargeDiscount.getDis()); 
+    		userController.addtoDiscountList("Mobile Recharge Discount",MobileRechargeDiscount.getDis()*100);
     		
 
     	}
@@ -70,24 +71,32 @@ public class AdminController {
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		InternetDiscount.setDiscountPercentage(discount/100);
     		System.out.println("Discount now is:"+InternetDiscount.getDis()); 
+    		userController.addtoDiscountList("Internet Discount",InternetDiscount.getDis()*100);
+
     	}
     	else if(c.equals("3"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		LandLineDiscount.setDiscountPercentage(discount/100);
     		System.out.println("Discount now is:"+LandLineDiscount.getDis()); 
+    		userController.addtoDiscountList("LandLine Discount",LandLineDiscount.getDis()*100);
+
     	}
     	else if(c.equals("4"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		DonationsDiscount.setDiscountPercentage(discount/100);
     		System.out.println("Discount now is:"+DonationsDiscount.getDis()); 
+    		userController.addtoDiscountList("Donations Discount",DonationsDiscount.getDis()*100);
+
     	}
     	else if(c.equals("5"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		OverallDiscount.setDiscountPercentage(discount/100);
     		System.out.println("Discount now is:"+OverallDiscount.getDis()); 
+    		userController.addtoDiscountList("Overall Discount",OverallDiscount.getDis()*100);
+
     	}
     	else System.out.println("Invalid choice");
 	}
@@ -172,7 +181,7 @@ public class AdminController {
 		addToTransactions(transaction,user);
 		//refundRequests.put(transaction.getID(), null);
 		
-		System.out.println("THE IDD: "+t.getID());
+		System.out.println("THE ID: "+t.getID());
 
 		System.out.println(admin.getRefundRequests().remove(t.getID(),user));
 	//	refundRequests.replace(null, user);

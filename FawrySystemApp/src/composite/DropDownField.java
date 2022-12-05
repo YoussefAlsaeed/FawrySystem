@@ -7,12 +7,17 @@ public class DropDownField implements UIElements {
 	String dropDownField;
 	int noOfFields;
 	ArrayList<Object> array;
+	/*
+	 * constructor takes name of the drop down field, number of fields 
+	 * and array of objects that has the options for the drop down field
+	 */
 	public DropDownField(String dropDownField,int noOfFields, ArrayList<Object> array)
 	{
 		this.noOfFields=noOfFields;
 		this.array=array;
 		this.dropDownField=dropDownField;
 	}
+	//print drop down field
 	@Override
 	public void view() {
 		
@@ -28,6 +33,7 @@ public class DropDownField implements UIElements {
 	{
 		this.noOfFields+=noOfFields;
 	}
+	//add new field to options of the drop down field
 	public void addField(Object field)
 	{
 		this.incrementNoOfFields(1);

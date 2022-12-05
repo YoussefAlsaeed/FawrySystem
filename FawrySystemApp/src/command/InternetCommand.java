@@ -12,70 +12,50 @@ import transaction.PaymentTransaction;
 
 public class InternetCommand extends Command{
 
-	//Form form;
+	
 	IPaymentMethod payment;
 	IServiceProviders service;
-//	public InternetCommand(User user, Form form) {
-//		this.form=form;
-//		this.user=user;	
-//	}
-//	public InternetCommand(User user, Form form,IServiceProviders service) {
-//		this.form=form;
-//		this.user=user;
-//		this.service=service;	
-//	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public IServiceProviders getService() {
-		return service;
-	}
-	public void setService(IServiceProviders service) {
-		this.service = service;
-	}
+	
 	@Override
 	public ITransaction execute() {
 		double c=Double.parseDouble(values.get(1));
-		service.setCost(c);	
+		service.setCost(c);	//set the service cost to the amount that the user entered
 		String sName=service.toString();
 		System.out.println("-----------------------");
-		applyDiscounts();
+		applyDiscounts();//get cost after applying discounts (decorator)
 		System.out.println("-----------------------");
 		double amount=service.getCost();
 		
-		if(values.get(0).toLowerCase().contains("credit"))
+		if(values.get(0).toLowerCase().contains("credit")) //if user chose credit card as payment method
 		{
 			this.payment=new CreditCardPaymentMethod();
-			if(!payment.pay(user,amount)) return null;
+			if(!payment.pay(user,amount)) return null;//if amount entered is more than user's balance
 			System.out.println("Your credit card balance=" +user.getCreditCard());
 		}
-		else if(values.get(0).toLowerCase().contains("wallet"))
+		else if(values.get(0).toLowerCase().contains("wallet"))//if user chose wallet as payment method
 		{
 			payment=new WalletPaymentMethod();
-			if(!payment.pay(user, amount)) return null;
+			if(!payment.pay(user, amount)) return null;//if amount entered is more than user's balance
 			System.out.println("Your wallet balance="+user.getWallet());
 		}
-		else if(values.get(0).toLowerCase().contains("cash"))
+		else if(values.get(0).toLowerCase().contains("cash"))//if user chose cash on delivery as payment method
 		{
 			payment=new CashOnDeliveryMethod();
 		}
 		else {
-			System.out.println("Payment Method not found");
+			System.out.println("Payment Method not found");//if payment method is not of the above
 			return null;
 		}
-		System.out.println(payment);
-		PaymentTransaction t=new PaymentTransaction(sName, amount, payment);
+		//System.out.println(payment);
+		PaymentTransaction t=new PaymentTransaction(sName, amount, payment); //create new payment transaction
 		System.out.println(t);
-		user.addTransaction(t);
+		user.addTransaction(t);//add this transaction to user transaction list
 		return t;
 		
 		
 	}
 	
-	
+	//applying decorator pattern here
 	public void applyDiscounts()
 	{
 		service=new InternetDiscount(service);
@@ -89,18 +69,23 @@ public class InternetCommand extends Command{
 	}
 	
 	//setters and getters
-	
-//	public Form getForm() {
-//		return form;
-//	}
-//	public void setForm(Form form) {
-//		this.form = form;
-//	}
 	public IPaymentMethod getPayment() {
 		return payment;
 	}
 	public void setPayment(IPaymentMethod payment) {
 		this.payment = payment;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public IServiceProviders getService() {
+		return service;
+	}
+	public void setService(IServiceProviders service) {
+		this.service = service;
 	}
 
 

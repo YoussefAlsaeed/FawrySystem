@@ -10,6 +10,7 @@ public class AddToWalletTransaction implements ITransaction
 	private double amount;
 	public  AddToWalletTransaction(double amount) 
 	{
+		//every add to wallet transaction starts with '0'
 		counter++;
 		TransactionId="0"+Integer.toString(counter);
 		this.amount=amount;

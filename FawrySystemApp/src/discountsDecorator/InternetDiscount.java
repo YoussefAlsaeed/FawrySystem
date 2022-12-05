@@ -18,8 +18,7 @@ public class InternetDiscount extends DiscountDecorator{
 	@Override
 	public boolean pay()
 	{
-		//System.out.println("d"+discountPercentage);
-		double c=service.getCost()*discountPercentage;
+		double c=service.getCost()*discountPercentage;//calculate amount after applying discount
 		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
 		System.out.println("Price after applying Internet payment service discount("+discountPercentage*100+"%)="+ service.getCost());

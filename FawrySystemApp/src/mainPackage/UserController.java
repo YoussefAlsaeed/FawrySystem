@@ -9,18 +9,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class UserController{
 	
     File file= new File("users.txt");
     ArrayList <IService> servicesList= new ArrayList<IService>();
-    ArrayList<IService> discountList = new ArrayList<IService>();
+    HashMap<String,Double> discountList = new HashMap<String,Double>();
+
     
     public UserController (ArrayList <IService> servicesList) {
     	
         this.servicesList=servicesList;
+        discountList.put("Overall Discount",10.0);
+        discountList.put("Mobile Recharge Discount", 10.0);
     }
+    
 	public void addToWallet(double amount,User user,AdminController a)
 	{
 		if(amount>user.getCreditCard())
@@ -157,9 +163,16 @@ public void signUp(User user) throws IOException
 		
 	}
 	
-	public void addtoDiscountList(IService discount)
+	public void addtoDiscountList(String service, double discount)
 	{
-		
+		discountList.put(service,discount);
+	}
+	
+	public void viewDiscounts()
+	{
+		for(Entry<String, Double> map: discountList.entrySet()){  
+			System.out.println(map.getKey()+ " : "+map.getValue() + "%");  
+			}
 	}
 
 }
