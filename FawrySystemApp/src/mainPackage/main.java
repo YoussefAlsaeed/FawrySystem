@@ -393,16 +393,10 @@ public class main {
 						System.out.println(">>>>>You are now editing <<<<<<");
 						System.out.println("* * * * * * * * * * * * * * * * * * * * * * * ");
 						System.out.println("Enter '1' to add (by wallet) /n Enter '2' to add (cash on delivery)");
-						//int num=scan.nextInt();
-						 //BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
 						String s = null;
-						//scan.nextLine();
 						s=scan.next();
-						if(s.equals("1"))
-							provider.addPaymentMethod("wallet");
-						else if(s.equals("2"))
-							provider.addPaymentMethod("cash on delivery");
-						else System.out.println("Dsadsa");
+						adminController.addPaymentMethodToProvider(provider, s);
 						break;
 						
 						

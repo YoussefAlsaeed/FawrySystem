@@ -10,13 +10,10 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import composite.*;
-import discountsDecorator.DonationsDiscount;
-import discountsDecorator.InternetDiscount;
-import discountsDecorator.LandLineDiscount;
-import discountsDecorator.MobileRechargeDiscount;
-import discountsDecorator.OverallDiscount;
+import discountsDecorator.*;
 import transaction.*;
 import refundRequestStrategy.*;
+import abstractFactory.*;
 
 public class AdminController {
 	
@@ -27,6 +24,15 @@ public class AdminController {
     public AdminController()
     {
     	
+    }
+    
+    public void addPaymentMethodToProvider(ProviderFactory provider ,String s)
+    {
+    	if(s.equals("1"))
+			provider.addPaymentMethod("wallet");
+		else if(s.equals("2"))
+			provider.addPaymentMethod("cash on delivery");
+		else System.out.println("Choice invalid!");
     }
     
     
