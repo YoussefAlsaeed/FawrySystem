@@ -29,7 +29,7 @@ public class MobileRechargeDiscount extends DiscountDecorator{
 		double c=service.getCost()*discountPercentage;
 		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
-		System.out.println("Discount ="+ service.getCost());
+		System.out.println("Price after applying mobile recharge service discount("+discountPercentage*100+")="+ service.getCost());
 		return false;
 	}
 }

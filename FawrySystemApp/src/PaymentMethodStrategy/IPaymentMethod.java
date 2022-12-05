@@ -4,6 +4,6 @@ import mainPackage.User;
 
 public interface IPaymentMethod {	
 
-	void pay(User user, double amount);
+	boolean pay(User user, double amount);
 	String toString();
 }

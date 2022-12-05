@@ -37,29 +37,33 @@ public class DonationsCommand extends Command{
 		double c=Double.parseDouble(values.get(1));
 		service.setCost(c);	
 		String sName=service.toString();
+		System.out.println("-----------------------");
 		applyDiscounts();
+		System.out.println("-----------------------");
 		double amount=service.getCost();
 		
-		if(values.get(0).equals("1"))
+		if(values.get(0).toLowerCase().contains("credit"))
 		{
 			this.payment=new CreditCardPaymentMethod();
-			payment.pay(user,amount);
-			System.out.println(user.getCreditCard());
+			if(!payment.pay(user,amount)) return null;
+			System.out.println("Your credit card balance=" +user.getCreditCard());
 		}
-		else if(values.get(0).equals("2"))
+		else if(values.get(0).toLowerCase().contains("wallet"))
 		{
 			payment=new WalletPaymentMethod();
-			payment.pay(user, amount);
-			System.out.println(user.getWallet());
+			if(!payment.pay(user, amount)) return null;
+			System.out.println("Your wallet balance="+user.getWallet());
 		}
-		else if(values.get(0).equals("3"))
+		else if(values.get(0).toLowerCase().contains("cash"))
 		{
 			payment=new CashOnDeliveryMethod();
 		}
-		else System.out.println("Payment Method not found");
-		System.out.println(payment);
+		else {
+			System.out.println("Payment Method not found");
+			return null;
+		}
+		//System.out.println(payment);
 		PaymentTransaction t=new PaymentTransaction(sName, amount, payment);
-		System.out.println(t);
 		user.addTransaction(t);
 		return t;
 		

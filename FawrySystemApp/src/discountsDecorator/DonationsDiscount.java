@@ -19,11 +19,9 @@ public class DonationsDiscount extends DiscountDecorator{
 	@Override
 	public boolean pay()
 	{
-		//System.out.println("d"+discountPercentage);
 		double c=service.getCost()*discountPercentage;
-		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
-		System.out.println("Discount ="+ service.getCost());
+		System.out.println("Price after applying donation service discount("+discountPercentage*100+")="+ service.getCost());
 		return false;
 	}	
 

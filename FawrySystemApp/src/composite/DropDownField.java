@@ -19,7 +19,7 @@ public class DropDownField implements UIElements {
 		System.out.println("This is ("+dropDownField+") drop down field\n <please choose from these options>");
 		for(int i=0;i<array.size();i++)
 		{
-			System.out.println(array.get(i));
+			System.out.println(">"+array.get(i));
 		}
 		System.out.println("---------------------------------------");
 

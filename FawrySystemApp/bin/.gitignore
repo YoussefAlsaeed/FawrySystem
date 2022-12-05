@@ -4,3 +4,6 @@
 /mainPackage/
 /composite/
 /discountsDecorator/
+/command/
+/PaymentMethodStrategy/
+/serviceProviders/
