@@ -13,12 +13,6 @@ public class SchoolProviderFactory extends ProviderFactory{
 	 * Command type is set according to the service that the user wants
 	 */
 	@Override
-	public void setFormName(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public IService createServiceProvider(String type) {
 	
 		

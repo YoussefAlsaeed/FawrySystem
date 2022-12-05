@@ -255,7 +255,7 @@ public class main {
                         	if(userController.viewUserTransactionHistory(loginUser))
                         	{
                         		System.out.println("Enter the Transaction ID");
-                        		TransactionID=scan.next();                          //Choosing which transaction will be refunded.
+                        		TransactionID=scan.next();   //Choosing which transaction will be refunded.
                             	adminController.addToRefundRequests(loginUser,TransactionID);  // Sending the refund request to the admin
                             	System.out.println("Your request will be accepted/rejected by the admin");
                         	}
@@ -350,6 +350,7 @@ public class main {
 						System.out.println("-> Cancer <-");
 						System.out.println("-> Monthly Reciept <-");
 						System.out.println("-> Quarter Reciept <-");
+						System.out.println("Enter the name of the provider: ");
 						scan.nextLine();
 						String providerName=scan.nextLine();
 						if(providerName.toLowerCase().contains("vodafone"))
@@ -420,6 +421,7 @@ public class main {
 						System.out.println("-> Cancer <-");
 						System.out.println("-> Monthly Reciept <-");
 						System.out.println("-> Quarter Reciept <-");
+						System.out.println("Enter the name of the provider: ");
 						scan.nextLine();
 						providerName=scan.nextLine();
 						if(providerName.toLowerCase().contains("vodafone"))
@@ -556,16 +558,24 @@ public class main {
                     
                     case"5":
                     	user = new User();
-                    	adminController.viewRefundRequests();
+                    	if(!adminController.viewRefundRequests()) {
+                    		System.out.println("No refund requests");
+                    		break;
+                    	}
                     	System.out.println("Choose the transaction you want to process ");
                     	String chooseTransaction;
                     	ITransaction Transaction=null;
                     
                     	chooseTransaction = scan.next();
+                    	if (chooseTransaction.charAt(0)=='2')
+                    	{
+                    		break;
+                    	}
                     	
                     	System.out.println("Choose '1' to Accept or '2' to decline ");
                     	String acceptance = scan.next();
                     	String requestType=chooseTransaction.substring(0,1);
+                    	
                     	if(acceptance.equals("1"))
                     	{   
                     		if(requestType.equals("0"))

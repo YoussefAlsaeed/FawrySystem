@@ -28,10 +28,6 @@ public class NGOFactory extends ProviderFactory  {
 	        	  
 		return null;
 	}
-	@Override
-	public void setFormName(String name) {
-		
-		
-	}
+
 
 }
