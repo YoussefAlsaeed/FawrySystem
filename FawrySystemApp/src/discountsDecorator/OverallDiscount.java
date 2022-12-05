@@ -21,8 +21,9 @@ public class OverallDiscount extends DiscountDecorator{
 	{
 		
 		double c=service.getCost()*discountPercentage;//calculate amount after applying discount
-		setCost(service.getCost()-c);
-		System.out.println("Price after applying overall discount("+discountPercentage*100+"%)="+ service.getCost());
+		double cost=service.getCost()-c;
+		setCost(cost);
+		System.out.println("Price after applying mobile recharge service discount("+discountPercentage*100+"%)="+ cost);
 		return false;
 	}
 	
