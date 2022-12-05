@@ -131,7 +131,7 @@ public class main {
                         System.out.println("2-View My Balance");  
                         System.out.println("3-Pay for services");
                         System.out.println("4- Request a refund");
-                        System.out.println("5- Add to wallet from creditcard");
+                        System.out.println("5- Add to wallet from credit card");
                         System.out.println("6-View my transactions history");
                         System.out.println("7-Log out"); 
 
@@ -540,78 +540,13 @@ public class main {
                     	{
                     		System.out.println("Enter the discount percentage ex: 10 for 10%");
                     		double p=scan.nextDouble();
-                        	if(c.equals("1"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		MobileRechargeDiscount.setDiscountPercentage(p/100);
-                        		System.out.println(MobileRechargeDiscount.getDis()); 
-                        		
-
-                        	}
-                        	else if(c.equals("2"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		InternetDiscount.setDiscountPercentage(p/100);
-                        		System.out.println(InternetDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("3"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		LandLineDiscount.setDiscountPercentage(p/100);
-                        		System.out.println(LandLineDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("4"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		DonationsDiscount.setDiscountPercentage(p/100);
-                        		System.out.println(DonationsDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("5"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		OverallDiscount.setDiscountPercentage(p/100);
-                        		System.out.println(OverallDiscount.getDis()); 
-                        	}
-                        	else System.out.println("Invalid choice");
+                        	adminController.addDiscount(c, p);
                         	
                     	}
                     	else if(c2.equals("2"))
                     	{
+                    		adminController.removeDiscount(c);
                  
-                        	if(c.equals("1"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		MobileRechargeDiscount.setDiscountPercentage(0.0);
-                        		System.out.println(MobileRechargeDiscount.getDis()); 
-                        		
-
-                        	}
-                        	else if(c.equals("2"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		InternetDiscount.setDiscountPercentage(0.0);
-                        		System.out.println(InternetDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("3"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		LandLineDiscount.setDiscountPercentage(0.0);
-                        		System.out.println(LandLineDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("4"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		DonationsDiscount.setDiscountPercentage(0.0);
-                        		System.out.println(DonationsDiscount.getDis()); 
-                        	}
-                        	else if(c.equals("5"))
-                        	{
-                        		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
-                        		OverallDiscount.setDiscountPercentage(0.0);
-                        		System.out.println(OverallDiscount.getDis()); 
-                        	}
-                        	else System.out.println("Invalid choice");
-                        	
                     	}
                     	break;
                     	

@@ -22,7 +22,7 @@ public class InternetDiscount extends DiscountDecorator{
 		double c=service.getCost()*discountPercentage;
 		//System.out.println("C"+c);
 		setCost(service.getCost()-c);
-		System.out.println("Price after applying Internet payment service discount("+discountPercentage*100+")="+ service.getCost());
+		System.out.println("Price after applying Internet payment service discount("+discountPercentage*100+"%)="+ service.getCost());
 		return false;
 	}
 
