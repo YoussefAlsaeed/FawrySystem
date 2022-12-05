@@ -102,14 +102,14 @@ public class AdminController {
     	else System.out.println("Invalid choice");
 	}
 	
-	public void removeDiscount(String c)
+	public void removeDiscount(String c, UserController userController)
 	{
 		if(c.equals("1"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		MobileRechargeDiscount.setDiscountPercentage(0.0);
     		System.out.println(MobileRechargeDiscount.getDis()); 
-    		
+    		userController.removeDiscountList("Mobile Recharge Discount",0.0);
 
     	}
     	else if(c.equals("2"))
@@ -117,29 +117,36 @@ public class AdminController {
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		InternetDiscount.setDiscountPercentage(0.0);
     		System.out.println(InternetDiscount.getDis()); 
+    		userController.removeDiscountList("Internet Discount",0.0);
+
     	}
     	else if(c.equals("3"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		LandLineDiscount.setDiscountPercentage(0.0);
     		System.out.println(LandLineDiscount.getDis()); 
+    		userController.removeDiscountList("LandLine Discount",0.0);
+
     	}
     	else if(c.equals("4"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		DonationsDiscount.setDiscountPercentage(0.0);
     		System.out.println(DonationsDiscount.getDis()); 
+    		userController.removeDiscountList("Donations Discount",0.0);
+
     	}
     	else if(c.equals("5"))
     	{
     		//MobileRechargeDiscount d=new MobileRechargeDiscount(null);
     		OverallDiscount.setDiscountPercentage(0.0);
     		System.out.println(OverallDiscount.getDis()); 
+    		userController.removeDiscountList("Overall Discount",0.0);
+
     	}
     	else System.out.println("Invalid choice");
     	
 	}
-
 	
 
 	public void addToRefundRequests(User user, String transactionID) {

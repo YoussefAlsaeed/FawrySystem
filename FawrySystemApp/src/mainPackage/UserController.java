@@ -175,6 +175,10 @@ public void signUp(User user) throws IOException
 		discountList.put(service,discount);
 	}
 	
+	public void removeDiscountList(String service , double discount)
+	{
+		discountList.put(service,discount);
+	}
 	public void viewDiscounts()
 	{
 		for(Entry<String, Double> map: discountList.entrySet()){  
