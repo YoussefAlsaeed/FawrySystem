@@ -5,8 +5,9 @@ import mainPackage.User;
 public class CashOnDeliveryMethod implements IPaymentMethod{
 
 	@Override
-	public void pay(User user, double amount) {
+	public boolean pay(User user, double amount) {
 		System.out.println(user.getUsername()+",The amount you are going to pay = "+amount);
+		return true;
 		
 	}
 	public String toString()

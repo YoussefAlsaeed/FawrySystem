@@ -77,11 +77,11 @@ public class main {
 		{
 			System.out.println("* * * * * * * * * * * * * * * * * * ");
 
-			System.out.println("registeration Menu: ");
+			System.out.println("Registeration Menu: ");
 			System.out.println();
-			System.out.println("1-login as users");
-			System.out.println("2-SignUp as users");
-			System.out.println("3-login as admin");
+			System.out.println("1-Login as user");
+			System.out.println("2-SignUp as user");
+			System.out.println("3-Login as admin");
 			System.out.println();
 			System.out.println("* * * * * * * * * * * * * * * * * * ");
 			
@@ -144,7 +144,7 @@ public class main {
                         switch (choice)
                         {
                         case"1":
-                            System.out.println("Enter the service you want to query for "); 
+                            System.out.println("Enter the service you want to search for "); 
                             String searchedForService = scan.next();                    
                             userController.searchforService(searchedForService); // Calls function with service name to get the query results
                             break;
@@ -157,19 +157,19 @@ public class main {
                         case"3":
                         	
                         	System.out.println("Enter the service you want to pay for");
-                            System.out.println("your options are "
+                            System.out.println("Your options are: "
                             		+"\n"
                             		+ "\n-mobile recharge"
                             		+ "\n-internet Payment"
                             		+ "\n-donations"
                             		+ "\n-landLine");
-                            String serviceChoice=scan.next();
-                            if(serviceChoice.contains("mobile")||serviceChoice.contains("internet")) // Choosing the service and service provider to pay for
+                            String userChoice=scan.next();
+                            if(userChoice.contains("mobile")||userChoice.contains("internet")) // Choosing the service and service provider to pay for
                             {
-                            	if(serviceChoice.contains("mobile"))
-                            		serviceChoice="mobile";
-                            	else if(serviceChoice.contains("internet"))
-                            		serviceChoice="internet";
+                            	if(userChoice.contains("mobile"))
+                            		userChoice="mobile";
+                            	else if(userChoice.contains("internet"))
+                            		userChoice="internet";
                     
                             	 System.out.println("Enter the provider you want to pay for");
                             	 System.out.println("your options are "
@@ -180,13 +180,13 @@ public class main {
                             	 		+ "\n- etislat");
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("we"))
-                            		 service=we.createServiceProvider(serviceChoice);
+                            		 service=we.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("orange"))
-                             		service=orange.createServiceProvider(serviceChoice);
+                             		service=orange.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("vodafone"))
-                             		service=vodafone.createServiceProvider(serviceChoice);
+                             		service=vodafone.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("etisalat"))
-                             		service=etisalat.createServiceProvider(serviceChoice);
+                             		service=etisalat.createServiceProvider(userChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
@@ -194,31 +194,42 @@ public class main {
                             	 
                            }
                             
-                            else if(serviceChoice.contains("donation"))
+                            else if(userChoice.contains("donation"))
                             {
                             	 System.out.println("Enter the provider you want to pay for");
-                            	 System.out.println("your options is (schooldonations-ngosDonations-cancerhospitalDonations)");
+                            	 System.out.println("your options are "
+                             			+"\n"
+                             	 		+ "\n- school donations"
+                             	 		+ "\n- ngos donations"
+                             	 		+ "\n- cancer hospital donations "
+                             	 		);
+                            	 
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("school"))
-                            		 service=school.createServiceProvider(serviceChoice);
+                            		 service=school.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("ngo"))
-                             		service=ngo.createServiceProvider(serviceChoice);
+                             		service=ngo.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("cancer"))
-                             		service=cancerhospital.createServiceProvider(serviceChoice);
+                             		service=cancerhospital.createServiceProvider(userChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
                                 }
                             }
-                            else if(serviceChoice.contains("landline"))
+                            else if(userChoice.contains("landline"))
                             {
                             	 System.out.println("Enter the provider you want to pay for");
-                            	 System.out.println("your options is (monthly receipt-quarter reciept)");
+                            	 System.out.println("your options are "
+                              			+"\n"
+                              	 		+ "\n- monthly receipt"
+                              	 		+ "\n- quarter reciept"
+                             	 		);
+                            	 
                             	 String providerChoice=scan.next();
                             	 if(providerChoice.toLowerCase().contains("monthly"))
-                            		 service= mr.createServiceProvider(serviceChoice);
+                            		 service= mr.createServiceProvider(userChoice);
                              	else if(providerChoice.toLowerCase().contains("quarter"))
-                             		service=qr.createServiceProvider(serviceChoice);
+                             		service=qr.createServiceProvider(userChoice);
                              	else
                               	{   System.out.println("no provider with this type");
                            		    break;
@@ -326,8 +337,19 @@ public class main {
                     case"6":
                     	ProviderFactory provider = null ;
 						
-						System.out.println("Enter the provider form you want to edit"); //Choosing which provider's form will be edited
-						String providerName=scan.next();
+						System.out.println("Enter the provider form you want to edit");//Choosing which provider's form will be edited
+						System.out.println("Enter the provider form you want to edit");
+						System.out.println("-> Vodafone <-");
+						System.out.println("-> Orange <-");
+						System.out.println("-> We <-");
+						System.out.println("-> Etisalat <-");
+						System.out.println("-> Schools <-");
+						System.out.println("-> Ngo <-");
+						System.out.println("-> Cancer <-");
+						System.out.println("-> Monthly Reciept <-");
+						System.out.println("-> Quarter Reciept <-");
+						scan.nextLine();
+						String providerName=scan.nextLine();
 						if(providerName.toLowerCase().contains("vodafone"))
 						{
 						provider= vodafone;						
@@ -362,17 +384,20 @@ public class main {
 						provider =qr;
 						
 						} else {
-							System.out.println("No provider from :( ");
+							System.out.println("no provider with this type :( ");
 							break;
 						}
-						System.out.println("How many payment methods to you want to add?");
+						System.out.println(">>>>>You are now editing <<<<<<");
+						System.out.println("* * * * * * * * * * * * * * * * * * * * * * * ");
+						System.out.println("How many payment methods do you want to add?");
 						int num=scan.nextInt();
 						 //BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+						String s="";
+						scan.nextLine();
 						for(int i=0;i<num;i++)
 						{
 							System.out.println("Enter payment method ("+(i+1)+") :");
-							String s="";
-							scan.nextLine();
+							
 							s=scan.nextLine();
 							provider.addPaymentMethod(s);
 						}
@@ -393,8 +418,8 @@ public class main {
 						System.out.println("-> Cancer <-");
 						System.out.println("-> Monthly Reciept <-");
 						System.out.println("-> Quarter Reciept <-");
-						
-						providerName=scan.next();
+						scan.nextLine();
+						providerName=scan.nextLine();
 						if(providerName.toLowerCase().contains("vodafone"))
 						{
 						provider= vodafone;						
@@ -429,7 +454,7 @@ public class main {
 						provider =qr;
 						
 						} else {
-							System.out.println("No provider from :( ");
+							System.out.println("no provider with this type :( ");
 							choice="3";
 						}
     					while (!choice.equals("3")) 
@@ -450,7 +475,7 @@ public class main {
     						switch(choice)
     						{
     						case"1":
-    							    System.out.println("you are now editing the "+providerName+" form");
+    							    System.out.println(">>>You are now editing the "+providerName+" form<<<");
     	    						System.out.println("* * * * * * * * * * * * * * * * * * * * * * * ");
 
 									System.out.println("Enter the name of the drop down field: ");
@@ -503,11 +528,11 @@ public class main {
                     case"4":
                     	String c=null;
                     	System.out.println("Enter the service you want to add/remove discount from");
-                    	System.out.println("Enter 1: Mobile Recharge Services");
-                    	System.out.println("Enter 2: Internet payment Services");
-                    	System.out.println("Enter 3: Landline Services");
-                    	System.out.println("Enter 4: Donation Services");
-                    	System.out.println("Enter 5: Overall discounts");
+                    	System.out.println("Enter '1': Mobile Recharge Services");
+                    	System.out.println("Enter '2': Internet payment Services");
+                    	System.out.println("Enter '3': Landline Services");
+                    	System.out.println("Enter '4': Donation Services");
+                    	System.out.println("Enter '5': Overall discounts");
                     	c=scan.next();
                     	System.out.println("Enter '1' to add discount and '2' to remove discount");
                     	String c2=scan.next();

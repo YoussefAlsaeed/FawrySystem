@@ -34,7 +34,6 @@ public abstract class Donation implements IService,IServiceProviders{
 		return cost;
 	}
 	public void setCost(double cost) {
-		System.out.println("service");
 		this.cost = cost;
 	}
 	@Override
