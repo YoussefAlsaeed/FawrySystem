@@ -62,8 +62,9 @@ public class main {
         services.add(school.createServiceProvider("donation"));
         services.add(mr.createServiceProvider("landline"));
         services.add(qr.createServiceProvider("landline"));
+        
 
-
+       
         	
     	
         UserController userController = new UserController(services);
@@ -133,7 +134,8 @@ public class main {
                         System.out.println("4- Request a refund");
                         System.out.println("5- Add to wallet from credit card");
                         System.out.println("6-View my transactions history");
-                        System.out.println("7-Log out"); 
+                        System.out.println("7-List discounts");
+                        System.out.println("8-Log out"); 
 
                         System.out.println();
                         System.out.println("* * * * * * * * * * * * * * * * * * ");
@@ -275,8 +277,12 @@ public class main {
                             userController.viewUserTransactionHistory(loginUser); // Viewing the current user's transactions
                             System.out.println("-----------------------------");
                             break;
-                      
+                            
                         case"7":
+                        	userController.viewDiscounts();
+                        	break;
+                      
+                        case"8":
                             System.out.println("You are logged out ! ");
                             signedIn = false;  // Exiting the menu
                             break;
@@ -540,7 +546,7 @@ public class main {
                     	{
                     		System.out.println("Enter the discount percentage ex: 10 for 10%");
                     		double p=scan.nextDouble();
-                        	adminController.addDiscount(c, p);
+                        	adminController.addDiscount(c, p,userController);
                         	
                     	}
                     	else if(c2.equals("2"))
