@@ -342,7 +342,7 @@ public class main {
                     	ProviderFactory provider = null ;
 						
 						System.out.println("Enter the provider form you want to edit");//Choosing which provider's form will be edited
-						System.out.println("Enter the provider form you want to edit");
+						
 						System.out.println("-> Vodafone <-");
 						System.out.println("-> Orange <-");
 						System.out.println("-> We <-");
@@ -394,19 +394,19 @@ public class main {
 						}
 						System.out.println(">>>>>You are now editing <<<<<<");
 						System.out.println("* * * * * * * * * * * * * * * * * * * * * * * ");
-						System.out.println("How many payment methods do you want to add?");
-						int num=scan.nextInt();
+						System.out.println("Enter '1' to add (by wallet) /n Enter '2' to add (cash on delivery)");
+						//int num=scan.nextInt();
 						 //BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-						String s="";
-						scan.nextLine();
-						for(int i=0;i<num;i++)
-						{
-							System.out.println("Enter payment method ("+(i+1)+") :");
-							
-							s=scan.nextLine();
-							provider.addPaymentMethod(s);
-						}
+						String s = null;
+						//scan.nextLine();
+						s=scan.next();
+						if(s.equals("1"))
+							provider.addPaymentMethod("wallet");
+						else if(s.equals("2"))
+							provider.addPaymentMethod("cash on delivery");
+						else System.out.println("Dsadsa");
 						break;
+						
 						
                     	
                     case"1":
@@ -495,13 +495,13 @@ public class main {
 	    								array.add(scan.next());
 	    							}
 	    							
-	    							provider.buildDropDownFlield(name, no, array);
+	    							provider.addDropDownFlield(name, no, array);
     							break;
     						case"2":
     							
     							System.out.println("Enter the name of the TextField: ");
     							name=scan.next();
-    							provider.buildTextField(name);
+    							provider.addTextField(name);
     							break;						
 
     						}

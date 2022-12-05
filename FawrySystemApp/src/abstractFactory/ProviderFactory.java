@@ -47,12 +47,12 @@ public abstract class ProviderFactory {
 		
 	}
 
-	public void buildDropDownFlield(String name,int noOfFields,ArrayList<Object>array)
+	public void addDropDownFlield(String name,int noOfFields,ArrayList<Object>array)
 	{
 		form.addElement(new DropDownField(name,noOfFields,array));
 	}
 	
-	public void buildTextField(String name)
+	public void addTextField(String name)
 	{
 		form.addElement(new TextField(name));
 	}
