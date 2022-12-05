@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import abstractFactory.*;
-
+import refundRequestStrategy.*;
 
 
 
@@ -306,9 +306,7 @@ public class main {
 			    System.out.println("What is your email: ");
 			    email= scan.next();
 			    User user2=new User();
-			    user2.setUsername(username);
-			    user2.setPassword(password);
-			    user2.setEmail(email);
+			    userController.setUserInfo(user2, username, password, email);
 			    userController.signUp(user2);
 				break;
 				
@@ -570,9 +568,17 @@ public class main {
                     	
                     	System.out.println("Choose '1' to Accept or '2' to decline ");
                     	String acceptance = scan.next();
-                    	
+                    	String requestType=chooseTransaction.substring(0,1);
                     	if(acceptance.equals("1"))
-                    	{   adminController.setRefundRequest(new AddToWalletRefundRequest());
+                    	{   
+                    		if(requestType.equals("0"))
+                    		  adminController.setRefundRequest(new AddToWalletRefundRequest());
+                    		
+                    		
+                    		
+                    		else if(requestType.equals("1"))
+                      		  adminController.setRefundRequest(new PaymentRefundRequest());
+                    		
                     		adminController.acceptTransaction(chooseTransaction,user);
                     	}
                     	else
