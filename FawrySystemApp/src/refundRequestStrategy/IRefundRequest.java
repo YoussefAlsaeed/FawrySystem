@@ -1,5 +1,6 @@
-package mainPackage;
+package refundRequestStrategy;
 
+import mainPackage.User;
 import transaction.ITransaction;
 
 public interface IRefundRequest {

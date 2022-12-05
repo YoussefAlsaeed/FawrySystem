@@ -26,6 +26,13 @@ public class UserController{
         discountList.put("Overall Discount",10.0);
         discountList.put("Mobile Recharge Discount", 10.0);
     }
+    public void setUserInfo(User user,String username,String password,String email)
+    {
+    	user.setUsername(username);
+    	user.setPassword(password);
+    	user.setEmail(email);
+    	
+    }
     
 	public void addToWallet(double amount,User user,AdminController a)
 	{
